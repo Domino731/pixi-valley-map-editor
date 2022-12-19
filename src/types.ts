@@ -10,3 +10,8 @@ export enum SPRITE_NAMES {
 }
 
 export type SpriteNamesUnion = keyof typeof SPRITE_NAMES;
+
+export interface Vector {
+    x: number;
+    y: number;
+}
