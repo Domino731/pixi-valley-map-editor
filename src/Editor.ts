@@ -7,11 +7,14 @@ export class Editor {
     private spriteData: SpriteDim;
     private currentSprite: SpriteNamesUnion;
     private mapSize: Vector;
+    private selectedSpriteCell: Vector;
 
     constructor() {
         this.dom = {
             currentSprite: document.querySelector('.editor__currentSprite'),
-            map: document.querySelector('#map')
+            map: document.querySelector('#map'),
+            panelCellSize: document.querySelector('#panel-cell-size span'),
+            panelCellPosition: document.querySelector('#panel-cell-position span')
         }
         this.spriteData = {
             cellWidth: 0,
@@ -22,8 +25,18 @@ export class Editor {
         this.mapSize = {
             x: 65, y: 65
         }
+        this.selectedSpriteCell = {
+            x: 0,
+            y: 0
+        }
         this.currentSprite = SPRITE_NAMES.OUTDOOR_SPRING;
         this.init();
+    }
+
+    // setters
+    setSelectedSpriteCell(cell: Vector): void {
+        console.log(cell);
+        // this.selectedSpriteCell = cell;
     }
 
     setSpriteData(): void {
@@ -56,10 +69,18 @@ export class Editor {
             for (let j = 0; j < columns; j++) {
                 const cell: HTMLDivElement = document.createElement('div');
                 cell.className = `cell cell--${this.spriteData.cellWidth}`;
+                cell.addEventListener('click', () => {
+                    this.setSelectedSpriteCell({x: i, y: j});
+                    this.dom.panelCellPosition.innerText = `{x: ${i}, y: ${j}}`;
+                })
                 row.appendChild(cell)
             }
             this.dom.currentSprite.appendChild(row);
         }
+    }
+
+    setPanelCellSize(): void {
+        this.dom.panelCellSize.innerText = `{x: ${this.spriteData.cellWidth}, y: ${this.spriteData.cellHeight}}`
     }
 
     renderMapGrid(): void {
@@ -82,6 +103,7 @@ export class Editor {
         this.setSpriteBgImage();
         this.renderEditorSpriteGrid();
         this.renderMapGrid();
+        this.setPanelCellSize();
         console.log("Editor started");
     }
 }
