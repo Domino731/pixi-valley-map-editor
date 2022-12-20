@@ -35,8 +35,7 @@ export class Editor {
 
     // setters
     setSelectedSpriteCell(cell: Vector): void {
-        console.log(cell);
-        // this.selectedSpriteCell = cell;
+        this.selectedSpriteCell = cell;
     }
 
     setSpriteData(): void {
@@ -92,6 +91,12 @@ export class Editor {
             for (let j = 0; j < columns; j++) {
                 const cell: HTMLDivElement = document.createElement('div');
                 cell.className = `cell cell--${this.spriteData.cellWidth}`;
+                cell.addEventListener('click', () => {
+                    cell.style.backgroundImage = "url(./src/sprites/outdoors_spring.png)";
+                    console.log(this.selectedSpriteCell)
+                    cell.style.backgroundSize = `${this.spriteData.spriteWidth}px ${this.spriteData.spriteHeight}px`;
+                    cell.style.backgroundPosition = `-${this.selectedSpriteCell.y * this.spriteData.cellHeight}px -${this.selectedSpriteCell.x * this.spriteData.cellWidth}px`
+                })
                 row.appendChild(cell)
             }
             this.dom.map.appendChild(row);

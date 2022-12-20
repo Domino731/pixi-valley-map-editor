@@ -56,6 +56,11 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
 
+    .cell {
+      border-right: 1px solid red;
+      border-bottom: 1px solid red;
+    }
+
     .cell:hover {
       background: rgba(255, 255, 255, 0.3);
     }
