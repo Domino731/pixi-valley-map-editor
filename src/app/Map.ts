@@ -36,17 +36,29 @@ export class Map {
         cell.style.backgroundPosition = `-${this.spriteCell.y * this.main.sprite.size.cellHeight}px -${this.spriteCell.x * this.main.sprite.size.cellWidth}px`;
     }
 
-    private setObject(position: Vector) {
-        const object: HTMLDivElement = document.createElement('div');
-        object.style.position = "absolute";
-        object.style.width = `${this.main.sprite.size.cellWidth}px`;
-        object.style.height = `${this.main.sprite.size.cellHeight}px`;
-        object.style.left = `${this.cellSize * position.y}px`;
-        object.style.top = `${this.cellSize * position.x}px`;
-        object.style.border = '2px solid red';
-        object.style.backgroundImage = this.main.sprite.src;
-        object.style.backgroundPosition = `-${this.spriteCell.y * this.main.sprite.size.cellHeight}px -${this.spriteCell.x * this.main.sprite.size.cellWidth}px`;
-        this.main.dom.map.appendChild(object);
+    private setObject() {
+        this.main.dom.map.addEventListener('click', (e) => {
+            if (this.main.sprite.type === SPRITE_TYPES.OBJECT) {
+                let rect: DOMRect = this.main.dom.map.getBoundingClientRect();
+
+                const position: Vector = {
+                    x: Math.floor((e.clientX - rect.left) / this.cellSize),
+                    y: Math.floor((e.clientY - rect.top) / this.cellSize)
+                }
+
+                const object: HTMLDivElement = document.createElement('div');
+                object.style.position = "absolute";
+                object.style.width = `${this.main.sprite.size.cellWidth}px`;
+                object.style.height = `${this.main.sprite.size.cellHeight}px`;
+                object.style.left = `${this.cellSize * position.x}px`;
+                object.style.top = `${this.cellSize * position.y}px`;
+                object.style.backgroundImage = this.main.sprite.src;
+                object.style.backgroundPosition = `-${this.spriteCell.y * this.main.sprite.size.cellWidth}px -${this.spriteCell.x * this.main.sprite.size.cellHeight}px`;
+                object.style.backgroundRepeat = 'no-repeat'
+
+                this.main.dom.map.appendChild(object);
+            }
+        });
     }
 
     public renderMapGrid(): void {
@@ -58,11 +70,9 @@ export class Map {
             for (let j = 0; j < columns; j++) {
                 const cell: HTMLDivElement = document.createElement('div');
                 cell.className = `cell cell--${this.cellSize}`;
-                cell.addEventListener('click', () => {
+                cell.addEventListener('click', (e) => {
                     if (this.main.sprite.type === SPRITE_TYPES.GROUND_TILE) {
                         this.setGroundTile(cell);
-                    } else if (this.main.sprite.type === SPRITE_TYPES.OBJECT) {
-                        this.setObject({x: i, y: j});
                     }
                 })
                 row.appendChild(cell)
@@ -73,5 +83,6 @@ export class Map {
 
     public init(): void {
         this.renderMapGrid();
+        this.setObject();
     }
 }

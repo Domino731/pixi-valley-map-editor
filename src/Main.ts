@@ -15,7 +15,7 @@ export class Main {
     private selectedSpriteCell: Vector;
     private rightPanel: RightPanel;
     readonly mapCellSize: Vector;
-  
+
 
     constructor() {
         this.dom = new DOM();
@@ -35,10 +35,11 @@ export class Main {
         }
     }
 
+
     init(): void {
         this.rightPanel.setSpriteBgImage();
         this.rightPanel.renderEditorSpriteGrid();
-        this.map.renderMapGrid();
+        this.map.init();
         this.rightPanel.initSpriteSelect();
     }
 }
