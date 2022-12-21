@@ -10,6 +10,8 @@ export class DOM {
     public panelSpriteSheetWidth: HTMLSpanElement;
     public panelSpriteSheetHeight: HTMLSpanElement;
     public panelSpriteSheetType: HTMLSpanElement;
+    public selectList: any
+    public selectSpriteSheetButton: HTMLButtonElement;
 
     constructor() {
         this.currentSprite = document.querySelector('.editor__currentSprite');
@@ -23,7 +25,9 @@ export class DOM {
         this.panelSpriteSheetType = document.querySelector('#panel-sprite-sheet-type span');
 
         this.panelCellImage = document.querySelector('.editor__panelCellImage div');
-        this.selectSprite = document.querySelector('#select-sprite');
+        this.selectSprite = document.querySelector('#select-sprite-list');
+        this.selectList = document.querySelector('#select-sprite-sheet-list');
+        this.selectSpriteSheetButton = document.querySelector('#select-sprite-sheet-button');
     }
 
 }

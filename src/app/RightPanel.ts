@@ -24,7 +24,6 @@ export class RightPanel {
 
         for (let i = 0; i < rows; i++) {
             const row: HTMLDivElement = document.createElement('div');
-            console.log(this.main.sprite.size.cellWidth);
             row.className = `row`;
             row.style.height = `${this.main.sprite.size.cellHeight}px`
             for (let j = 0; j < columns; j++) {
@@ -43,15 +42,23 @@ export class RightPanel {
     }
 
     initSpriteSelect(): void {
+        console.log(this.dom.selectList);
         Sprites.forEach(({label, spriteName}) => {
-            const option: HTMLOptionElement = document.createElement('option');
-            option.value = spriteName;
-            option.innerText = label;
-            this.dom.selectSprite.appendChild(option);
+            const option: HTMLLIElement = document.createElement('li');
+            const optionButton: HTMLButtonElement = document.createElement('button');
+            optionButton.addEventListener("click", () => {
+                this.main.changeSprite(spriteName);
+                this.dom.selectList.classList.add('hide');
+            })
+            option.appendChild(optionButton);
+            option.className = 'select-item';
+            optionButton.innerText = label;
+            this.dom.selectList.appendChild(option);
         });
-        this.dom.selectSprite.addEventListener('change', (event: any) => {
-            this.main.changeSprite(event.target.value)
-        });
+
+        this.dom.selectSpriteSheetButton.addEventListener('click', () => {
+            this.dom.selectList.classList.remove('hide');
+        })
     }
 
     setSpriteBgImage(): void {
