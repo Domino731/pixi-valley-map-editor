@@ -11,20 +11,28 @@ export class Main {
     private spriteData: SpriteDim;
     public sprite: SpriteData;
     private currentSprite: SpriteNamesUnion;
-    private mapSize: Vector;
+    public mapSize: Vector;
     private selectedSpriteCell: Vector;
     private rightPanel: RightPanel;
     readonly mapCellSize: Vector;
+  
 
     constructor() {
         this.dom = new DOM();
         this.currentSprite = SPRITE_NAMES.OUTDOOR_SPRING;
-        this.map = new Map({
-            x: 65, y: 65
-        }, Sprites.find(({spriteName}) => spriteName === this.currentSprite));
         this.sprite = Sprites[0];
+        this.map = new Map(this);
         this.rightPanel = new RightPanel(this);
         this.init();
+    }
+
+    public changeSprite(spriteName: SpriteNamesUnion): void {
+        const sprite: SpriteData | undefined = Sprites.find((el) => el.spriteName === spriteName);
+        if (sprite) {
+            this.sprite = sprite;
+            this.rightPanel.setSpriteBgImage();
+            this.rightPanel.renderEditorSpriteGrid();
+        }
     }
 
     init(): void {

@@ -21,12 +21,12 @@ export const Sprites: Array<SpriteData> = [
         label: 'mahogany_stage_5',
         src: 'url(./src/sprites/mahogany_stage_5.png)',
         size: {
-            cellHeight: 182 / 4,
+            cellHeight: 182,
             cellWidth: 420 / 4,
             spriteHeight: 182,
             spriteWidth: 420
         },
         spriteName: SPRITE_NAMES.mahogany_stage_5,
-        type: SPRITE_TYPES.TREE
+        type: SPRITE_TYPES.OBJECT
     },
 ]

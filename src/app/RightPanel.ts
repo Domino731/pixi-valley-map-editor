@@ -19,12 +19,19 @@ export class RightPanel {
         const rows: number = this.main.sprite.size.spriteHeight / this.main.sprite.size.cellHeight;
         const columns: number = this.main.sprite.size.spriteWidth / this.main.sprite.size.cellWidth;
 
+        // clear previous
+        this.dom.currentSprite.innerHTML = ""
+
         for (let i = 0; i < rows; i++) {
             const row: HTMLDivElement = document.createElement('div');
-            row.className = `row row--${this.main.sprite.size.cellWidth}`;
+            console.log(this.main.sprite.size.cellWidth);
+            row.className = `row`;
+            row.style.height = `${this.main.sprite.size.cellHeight}px`
             for (let j = 0; j < columns; j++) {
                 const cell: HTMLDivElement = document.createElement('div');
-                cell.className = `cell cell--${this.main.sprite.size.cellWidth}`;
+                cell.className = `cell`;
+                cell.style.height = '100%'
+                cell.style.width = `${this.main.sprite.size.cellWidth}px`
                 cell.addEventListener('click', () => {
                     this.map.setSpriteCell({x: i, y: j});
                     this.dom.panelCellPosition.innerText = `{x: ${i}, y: ${j}}`;
@@ -43,7 +50,7 @@ export class RightPanel {
             this.dom.selectSprite.appendChild(option);
         });
         this.dom.selectSprite.addEventListener('change', (event: any) => {
-            this.main.sprite = event.target.value;
+            this.main.changeSprite(event.target.value)
         });
     }
 

@@ -10,7 +10,7 @@ export interface SpriteData {
 
 export enum SPRITE_TYPES {
     GROUND_TILE = 'GROUND_TILE',
-    TREE = 'TREE'
+    OBJECT = 'OBJECT'
 }
 
 export type SpriteTypesUnion = keyof typeof SPRITE_TYPES;
