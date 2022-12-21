@@ -32,6 +32,13 @@ export class Main {
             this.sprite = sprite;
             this.rightPanel.setSpriteBgImage();
             this.rightPanel.renderEditorSpriteGrid();
+
+            // update data in panel
+            this.dom.panelSpriteSheetHeight.innerText = String(sprite.size.spriteHeight);
+            this.dom.panelSpriteSheetWidth.innerText = String(sprite.size.spriteWidth);
+            this.dom.panelSpriteSheetType.innerText = String(sprite.type);
+            this.dom.panelCellSize.innerText = `${sprite.size.spriteWidth} / ${sprite.size.spriteHeight}`;
+            this.dom.panelCellAmount.innerText = String((sprite.size.spriteHeight / sprite.size.cellHeight) * (sprite.size.spriteWidth / sprite.size.cellWidth));
         }
     }
 

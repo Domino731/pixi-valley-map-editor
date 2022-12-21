@@ -1,7 +1,8 @@
-import {Vector} from "../types";
+import {SPRITE_NAMES, Vector} from "../types";
 import {DOM} from "./DOM";
 import {SPRITE_TYPES, SpriteData} from "../const/types";
 import {Main} from "../Main";
+import {Sprites} from "../const/sprites";
 
 export class Map {
     private dom: DOM;
@@ -81,8 +82,19 @@ export class Map {
         }
     }
 
+    private renderGround(): void {
+        const mapTiles: NodeListOf<HTMLDivElement> = document.querySelectorAll('#map .row div');
+        mapTiles.forEach(tile => {
+            const groundSprite = Sprites.find(({spriteName}) => spriteName === SPRITE_NAMES.OUTDOOR_SPRING);
+            tile.style.backgroundImage = groundSprite.src;
+            tile.style.backgroundPosition = `-0px -112px`;
+            tile.style.backgroundRepeat = 'no-repeat'
+        })
+    }
+
     public init(): void {
         this.renderMapGrid();
         this.setObject();
+        this.renderGround()
     }
 }

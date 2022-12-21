@@ -6,12 +6,22 @@ export class DOM {
     public panelCellPosition: HTMLSpanElement;
     public panelCellImage: HTMLDivElement;
     public selectSprite: HTMLDivElement;
+    public panelCellAmount: HTMLSpanElement;
+    public panelSpriteSheetWidth: HTMLSpanElement;
+    public panelSpriteSheetHeight: HTMLSpanElement;
+    public panelSpriteSheetType: HTMLSpanElement;
 
     constructor() {
         this.currentSprite = document.querySelector('.editor__currentSprite');
         this.map = document.querySelector('#map');
+
         this.panelCellSize = document.querySelector('#panel-cell-size span');
         this.panelCellPosition = document.querySelector('#panel-cell-position span');
+        this.panelSpriteSheetWidth = document.querySelector('#panel-sprite-sheet-width span');
+        this.panelSpriteSheetHeight = document.querySelector('#panel-sprite-sheet-height span');
+        this.panelCellAmount = document.querySelector('#panel-cell-amount span');
+        this.panelSpriteSheetType = document.querySelector('#panel-sprite-sheet-type span');
+
         this.panelCellImage = document.querySelector('.editor__panelCellImage div');
         this.selectSprite = document.querySelector('#select-sprite');
     }

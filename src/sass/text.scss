@@ -1,0 +1,46 @@
+.text {
+  letter-spacing: 0.05em;
+  font-family: 'Roboto', sans-serif;
+
+  // colors
+  &--blue {
+    color: $blue;
+  }
+
+  &--yellow {
+    color: $yellow;
+  }
+
+  &--pink {
+    color: $pink;
+  }
+
+  &--orange {
+    color: $orange;
+  }
+
+  &--purple {
+    color: $purple;
+  }
+
+  &--grey {
+    color: $gray;
+  }
+
+  // sizes
+  &--xxl {
+    font-size: 40px;
+  }
+
+  &--xl {
+    font-size: 28px;
+  }
+
+  &--xl {
+    font-size: 20px;
+  }
+
+  &--md {
+    font-size: 16px;
+  }
+}

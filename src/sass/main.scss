@@ -1,5 +1,10 @@
 @import "reset";
 @import "common";
+@import "variables";
+@import "text";
+@import "spacing";
+@import "borders";
+@import "other";
 
 * {
   box-sizing: border-box;
@@ -17,7 +22,8 @@ body {
   display: flex;
 
   &__map {
-    width: 100%;
+    background: #b9b9b9;
+    width: calc(100% - 800px);
     height: 100%;
     overflow: auto;
     display: flex;
@@ -41,7 +47,7 @@ body {
   }
 }
 
-#editor {
+.column {
   width: 400px;
   height: 100%;
   background: #202124;
@@ -53,7 +59,6 @@ body {
   &__selectSprite {
     label {
       display: block;
-      color: white;
     }
 
     margin-bottom: 20px;
@@ -94,7 +99,6 @@ body {
   &__panelInfo {
     display: flex;
     flex-direction: column;
-    gap: 20px;
   }
 ;
 
@@ -104,19 +108,6 @@ body {
   }
 }
 
-.text {
-  color: white;
-  letter-spacing: 0.05em;
-  font-family: 'Roboto', sans-serif;
-
-  &--md {
-    font-size: 20px;
-  }
-
-  &--bold {
-    font-weight: bold;
-  }
-}
 
 .map {
   //&__object {
