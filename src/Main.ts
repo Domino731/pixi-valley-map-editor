@@ -4,6 +4,7 @@ import {SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
 import {Map} from "./app/Map";
 import {RightPanel} from "./app/RightPanel";
+import {Debugger} from "./app/debugger";
 
 export class Main {
     dom: DOM;
@@ -48,5 +49,6 @@ export class Main {
         this.rightPanel.renderEditorSpriteGrid();
         this.map.init();
         this.rightPanel.initSpriteSelect();
+        const debbuger = new Debugger(this)
     }
 }

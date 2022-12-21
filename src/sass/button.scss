@@ -1,0 +1,29 @@
+.button {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--md {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  &--primary {
+    background: $blue;
+    color: white;
+    border: 2px solid $blue;
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid $blue;
+    color: $blue;
+  }
+
+}
