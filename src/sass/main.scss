@@ -49,6 +49,15 @@ body {
 
 
 .editor {
+  &__selectSprite {
+    label {
+      display: block;
+      color: white;
+    }
+
+    margin-bottom: 20px;
+  }
+
   &__sprite {
     overflow: auto;
     margin: 0 auto;
@@ -63,6 +72,17 @@ body {
 
     .cell:hover {
       background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &__panelCellImage {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+
+    div {
+      height: 100%;
+      background-repeat: no-repeat;
     }
   }
 

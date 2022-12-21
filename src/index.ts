@@ -1,6 +1,6 @@
 import "./sass/main.scss";
-import {Editor} from "./Editor";
+import {Main} from "./Main";
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    new Editor();
+    new Main();
 });
