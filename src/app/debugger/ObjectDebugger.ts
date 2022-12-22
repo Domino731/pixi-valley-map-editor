@@ -1,6 +1,6 @@
 import {Sprites} from "../../const/sprites";
 import {GAME_DATA} from "../../data";
-import {EngineObject} from "../../data/types";
+import {Checkbox, EngineObject} from "../../data/types";
 import {SpriteData} from "../../const/types";
 
 export class ObjectDebugger {
@@ -185,7 +185,32 @@ export class ObjectDebugger {
                 row.appendChild(inputsWrapper);
 
                 this.dom.debugObjectContainer.appendChild(row);
+            });
+
+            const button = document.createElement("button");
+            button.className = 'button button--md button--primary';
+            button.innerText = 'Console log checkboxes';
+            // {x: 0, y: 0, width: 40, height: 40}
+            // length
+            // :
+            // 1
+            // [[Prototype]]
+            // :
+            // Array(0)
+            button.addEventListener('click', () => {
+                const checkboxesElements: Array<HTMLSpanElement> = document.querySelectorAll('#debugger-object-graphic span') as Array<HTMLSpanElement>;
+                const checkboxes: Array<Checkbox> = [];
+                checkboxesElements.forEach((checkboxElement) => {
+                    checkboxes.push({
+                        x: parseFloat(checkboxElement.style.left),
+                        y: parseFloat(checkboxElement.style.top),
+                        width: parseFloat(checkboxElement.style.width),
+                        height: parseFloat(checkboxElement.style.height)
+                    })
+                });
+                console.log(checkboxes);
             })
+            this.dom.debugObjectContainer.appendChild(button);
         }
     }
 
