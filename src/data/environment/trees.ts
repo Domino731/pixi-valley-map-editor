@@ -10,7 +10,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.OAK,
         hp: defaultHp,
         sprite: {
-            src: 'oak_stage_5.png',
+            src: 'mahogany_stage_5.png',
             position: {
                 x: 0,
                 y: 0,

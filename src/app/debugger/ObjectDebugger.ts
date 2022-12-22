@@ -1,6 +1,7 @@
 import {Sprites} from "../../const/sprites";
 import {GAME_DATA} from "../../data";
 import {EngineObject} from "../../data/types";
+import {SpriteData} from "../../const/types";
 
 export class ObjectDebugger {
     private dom: {
@@ -12,6 +13,7 @@ export class ObjectDebugger {
         actionBtnCheckboxes: HTMLButtonElement;
         actionBtnActionAreas: HTMLButtonElement;
         debugObjectContainer: HTMLDivElement;
+        debugObjectGraphic: HTMLDivElement;
     }
     private objectType: string;
     private inputValue: string;
@@ -27,7 +29,8 @@ export class ObjectDebugger {
             actionBtnData: document.querySelector('#debugger-action-btn-data'),
             actionBtnCheckboxes: document.querySelector('#debugger-action-btn-checkboxes'),
             actionBtnActionAreas: document.querySelector('#debugger-action-btn-action-areas'),
-            debugObjectContainer: document.querySelector('#debug-object-container')
+            debugObjectContainer: document.querySelector('#debug-object-container'),
+            debugObjectGraphic: document.querySelector('#debugger-object-graphic')
         }
         this.objectType = 'trees';
         this.inputValue = 'OAK';
@@ -75,8 +78,31 @@ export class ObjectDebugger {
         })
     }
 
+    private showGraphic(): void {
+        const sprite: SpriteData = Sprites.find(({src}) => src.includes(this.object.sprite.src));
+        if (sprite) {
+            this.dom.debugObjectGraphic.style.backgroundImage = sprite.src;
+            this.dom.debugObjectGraphic.style.width = `${sprite.size.cellWidth}px`;
+            this.dom.debugObjectGraphic.style.height = `${sprite.size.cellHeight}px`;
+            this.dom.debugObjectGraphic.style.backgroundPosition = `-${this.object.sprite.position.y * sprite.size.cellWidth}px -${this.object.sprite.position.x * sprite.size.cellHeight}px`;
+
+            this.object.checkboxes.forEach((checkbox, index) => {
+                const span: HTMLSpanElement = document.createElement('span');
+                span.style.display = 'block';
+                span.style.position = 'absolute';
+                span.style.width = `${checkbox.width}px`;
+                span.style.height = `${checkbox.height}px`;
+                span.style.top = `${checkbox.x}px`;
+                span.style.left = `${checkbox.y}px`;
+                span.style.border = '1px solid red';
+                span.dataset.checkboxIndex = `${index}`;
+                this.dom.debugObjectGraphic.appendChild(span);
+            })
+        }
+
+    }
+
     private createDataPanel(): void {
-        console.log(this.object);
         if (this.object) {
             const {id, name, hp, tools, destroyable, items} = this.object;
             const html: string = `
@@ -90,6 +116,76 @@ export class ObjectDebugger {
              </div>
         `;
             this.dom.debugObjectContainer.innerHTML = html;
+        }
+    }
+
+    private createCheckboxesPanel(): void {
+        if (this.object) {
+            this.object.checkboxes.forEach((checkbox, index) => {
+                const row = document.createElement('div');
+                const span = document.createElement('span');
+                span.className = "text text--pinkSecondary";
+                span.innerText = `- ${index + 1}`;
+                row.appendChild(span);
+
+                const inputsWrapper = document.createElement('div');
+                inputsWrapper.className = 'debugger__inputsWrapper'
+
+
+                const xInput = document.createElement('input');
+                xInput.type = 'number';
+                xInput.value = String(checkbox.x);
+                xInput.addEventListener('input', (e: any) => {
+                    const checkboxElement: HTMLSpanElement = document.querySelector(`#debugger-object-graphic [data-checkbox-index="${index}"]`);
+                    if (checkboxElement) {
+                        checkboxElement.style.left = `${e.target.value}px`;
+                    }
+                });
+
+
+                const yInput = document.createElement('input');
+                yInput.type = 'number';
+                yInput.value = String(checkbox.y);
+                yInput.addEventListener('input', (e: any) => {
+                    const checkboxElement: HTMLSpanElement = document.querySelector(`#debugger-object-graphic [data-checkbox-index="${index}"]`);
+                    if (checkboxElement) {
+                        checkboxElement.style.top = `${e.target.value}px`;
+                    }
+                });
+
+                const widthInput = document.createElement('input');
+                widthInput.type = 'number';
+                widthInput.value = String(checkbox.width);
+                widthInput.addEventListener('input', (e: any) => {
+                    const checkboxElement: HTMLSpanElement = document.querySelector(`#debugger-object-graphic [data-checkbox-index="${index}"]`);
+                    if (checkboxElement) {
+                        checkboxElement.style.width = `${e.target.value}px`;
+                    }
+                });
+
+
+                const heightInput = document.createElement('input');
+                heightInput.type = 'number';
+                heightInput.value = String(checkbox.height);
+                heightInput.addEventListener('input', (e: any) => {
+                    const checkboxElement: HTMLSpanElement = document.querySelector(`#debugger-object-graphic [data-checkbox-index="${index}"]`);
+                    if (checkboxElement) {
+                        checkboxElement.style.height = `${e.target.value}px`;
+                    }
+                });
+
+
+                inputsWrapper.appendChild(xInput)
+                inputsWrapper.appendChild(yInput)
+                inputsWrapper.appendChild(widthInput)
+                inputsWrapper.appendChild(heightInput)
+
+
+                row.className = 'flex flex__align--center mb--8';
+                row.appendChild(inputsWrapper);
+
+                this.dom.debugObjectContainer.appendChild(row);
+            })
         }
     }
 
@@ -119,7 +215,9 @@ export class ObjectDebugger {
     initActions() {
         this.dom.selectButton.innerText = this.objectType;
         this.object = GAME_DATA.trees[0];
-        this.createDataPanel();
+        //this.createDataPanel();
+        this.createCheckboxesPanel()
+        this.showGraphic();
     }
 
     public init(): void {
