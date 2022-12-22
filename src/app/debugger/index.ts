@@ -15,7 +15,7 @@ export class Debugger {
     }
 
     debugButtonClickEvent(): void {
-        this.dom.debugButton.addEventListener('click', (e) => {
+        this.dom.debugButton.addEventListener('click', (e: any) => {
             if (this.debug) {
                 e.target.classList.add('button--outline');
                 e.target.classList.remove('button--primary');

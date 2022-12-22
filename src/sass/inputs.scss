@@ -1,0 +1,16 @@
+.input {
+  border: 1px solid $gray;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 17px;
+  padding: 5px 10px;
+  width: 100%;
+  border-radius: 4px;
+
+  &__label {
+    display: block;
+    color: $pinkSecondary;
+    padding-bottom: 4px;
+  }
+}
