@@ -22,8 +22,18 @@
         </div>
         <div class="border__primary  p--8">
             <h3 class="text text--xl text--pink mb--16">DATA</h3>
-            <label class="text input__label">Find object by id</label>
-            <input class="input" placeholder="oakwood">
+            <div class="select">
+                <button class="select__button" id="select-object-type-button">
+                    TEST
+                </button>
+                <ul class="select__list p--8 border__primary hide" id="select-object-type-list">
+                </ul>
+            </div>
+            <div class="input__wrapper">
+                <input class="input" placeholder="Find object by id" id="select-object-input-type">
+                <button id="find-object-btn">Find</button>
+            </div>
+
         </div>
     </div>
 

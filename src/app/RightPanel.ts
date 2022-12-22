@@ -42,7 +42,6 @@ export class RightPanel {
     }
 
     initSpriteSelect(): void {
-        console.log(this.dom.selectList);
         Sprites.forEach(({label, spriteName}) => {
             const option: HTMLLIElement = document.createElement('li');
             const optionButton: HTMLButtonElement = document.createElement('button');

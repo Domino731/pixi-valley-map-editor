@@ -1,10 +1,12 @@
 import {Main} from "../../Main";
+import {ObjectDebugger} from "./ObjectDebugger";
 
 export class Debugger {
     private dom: {
         debugButton: HTMLButtonElement
     }
     private debug: boolean;
+    private objectDebugger: ObjectDebugger;
 
     constructor(main: Main) {
         this.dom = {
@@ -12,6 +14,7 @@ export class Debugger {
         }
         this.debug = false;
         this.init();
+        this.objectDebugger = new ObjectDebugger();
     }
 
     debugButtonClickEvent(): void {
