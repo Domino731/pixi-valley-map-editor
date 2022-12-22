@@ -66,3 +66,28 @@
 .hide {
   display: none;
 }
+
+.debugger {
+  &__actionBar {
+    margin: 24px 0;
+    display: flex;
+
+    &--btnAction {
+      background: #3c3939 !important;
+    }
+
+    button {
+      font-size: 13px;
+      width: 33%;
+      border: 1px solid #3c3939;
+      outline: none;
+      background: transparent;
+      color: gray;
+      padding: 4px 0;
+    }
+  }
+
+  &__imageWrapper {
+
+  }
+}
