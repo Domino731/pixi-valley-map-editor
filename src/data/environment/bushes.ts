@@ -1,22 +1,24 @@
-import {TREE_ITEMS, TREE_NAMES, TreeObject} from "./types";
+import {EngineObject, FOOD_ITEMS} from "../types";
+import {BUSHES_NAMES, TREE_ITEMS, TREE_NAMES} from "./types";
 import {TOOLS} from "../tools/types";
-import {EngineObject} from "../types";
 
-const defaultHp: number = 700;
+const bushesHp: Record<string, number> = {
+    lg: 200
+}
 
-export const trees: Array<TreeObject> = [
+export const bushesLg: Array<EngineObject> = [
     {
-        id: TREE_NAMES.OAK,
-        name: TREE_NAMES.OAK,
-        hp: defaultHp,
+        id: BUSHES_NAMES.SUMMER_LG,
+        name: BUSHES_NAMES.SUMMER_LG,
+        hp: bushesHp.lg,
         sprite: {
-            src: 'oak_stage_5.png',
+            src: 'bushes_lg.png',
             position: {
                 x: 0,
                 y: 0,
             }
         },
-        tools: [TOOLS.AXE],
+        tools: [TOOLS.GARDEN_SCISSORS],
         destroyable: true,
         checkboxes: [
             {
@@ -26,20 +28,20 @@ export const trees: Array<TreeObject> = [
                 height: 40
             }
         ],
-        items: [TREE_ITEMS.WOOD]
+        items: [FOOD_ITEMS.STRAWBERRY]
     },
     {
-        id: TREE_NAMES.MAHOGANY,
-        name: TREE_NAMES.MAHOGANY,
-        hp: defaultHp,
+        id: BUSHES_NAMES.AUTUMN_LG,
+        name: BUSHES_NAMES.AUTUMN_LG,
+        hp: bushesHp.lg,
         sprite: {
-            src: 'mahogany_stage_5.png',
+            src: 'bushes_lg.png',
             position: {
-                x: 0,
+                x: 1,
                 y: 0,
             }
         },
-        tools: [TOOLS.AXE],
+        tools: [TOOLS.GARDEN_SCISSORS],
         destroyable: true,
         checkboxes: [
             {
@@ -49,20 +51,42 @@ export const trees: Array<TreeObject> = [
                 height: 40
             }
         ],
-        items: [TREE_ITEMS.WOOD]
+        items: [FOOD_ITEMS.STRAWBERRY]
+    }, {
+        id: BUSHES_NAMES.WINTER_LG,
+        name: BUSHES_NAMES.WINTER_LG,
+        hp: bushesHp.lg,
+        sprite: {
+            src: 'bushes_lg.png',
+            position: {
+                x: 1,
+                y: 0,
+            }
+        },
+        tools: [TOOLS.GARDEN_SCISSORS],
+        destroyable: true,
+        checkboxes: [
+            {
+                x: 0,
+                y: 0,
+                width: 40,
+                height: 40
+            }
+        ],
+        items: [FOOD_ITEMS.STRAWBERRY]
     },
     {
-        id: TREE_NAMES.PINE,
-        name: TREE_NAMES.PINE,
-        hp: defaultHp,
+        id: BUSHES_NAMES.SPRING_LG,
+        name: BUSHES_NAMES.SPRING_LG,
+        hp: bushesHp.lg,
         sprite: {
-            src: 'pine_stage_5.png',
+            src: 'bushes_lg.png',
             position: {
-                x: 0,
-                y: 0,
+                x: 1,
+                y: 1,
             }
         },
-        tools: [TOOLS.AXE],
+        tools: [TOOLS.GARDEN_SCISSORS],
         destroyable: true,
         checkboxes: [
             {
@@ -72,29 +96,6 @@ export const trees: Array<TreeObject> = [
                 height: 40
             }
         ],
-        items: [TREE_ITEMS.WOOD]
+        items: [FOOD_ITEMS.STRAWBERRY]
     },
-    {
-        id: TREE_NAMES.MAPLE,
-        name: TREE_NAMES.MAPLE,
-        hp: defaultHp,
-        sprite: {
-            src: 'maple_stage_5.png',
-            position: {
-                x: 0,
-                y: 0,
-            }
-        },
-        tools: [TOOLS.AXE],
-        destroyable: true,
-        checkboxes: [
-            {
-                x: 0,
-                y: 0,
-                width: 40,
-                height: 40
-            }
-        ],
-        items: [TREE_ITEMS.WOOD]
-    }
 ]

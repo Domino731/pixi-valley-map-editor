@@ -10,6 +10,14 @@ export enum TREE_NAMES {
     MAHOGANY = 'MAHOGANY'
 }
 
+export enum BUSHES_NAMES {
+    SUMMER_LG = 'SUMMER_LG',
+    AUTUMN_LG = 'AUTUMN_LG',
+    SPRING_LG = 'SPRING_LG',
+    WINTER_LG = 'WINTER_LG',
+
+}
+
 export enum TREE_ITEMS {
     WOOD = 'WOOD'
 }

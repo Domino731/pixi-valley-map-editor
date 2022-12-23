@@ -25,3 +25,7 @@ export interface EngineObject {
     checkboxes: Array<Checkbox>,
     items: Array<string>
 }
+
+export enum FOOD_ITEMS {
+    STRAWBERRY = "STRAWBERRY"
+}

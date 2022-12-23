@@ -198,7 +198,7 @@ export class ObjectDebugger {
             // :
             // Array(0)
             button.addEventListener('click', () => {
-                const checkboxesElements: Array<HTMLSpanElement> = document.querySelectorAll('#debugger-object-graphic span') as Array<HTMLSpanElement>;
+                const checkboxesElements: Array<HTMLSpanElement> = document.querySelectorAll('#debugger-object-graphic span') as unknown as Array<HTMLSpanElement>;
                 const checkboxes: Array<Checkbox> = [];
                 checkboxesElements.forEach((checkboxElement) => {
                     checkboxes.push({
