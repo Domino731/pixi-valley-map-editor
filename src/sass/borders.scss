@@ -2,4 +2,14 @@
   &__primary {
     border: 1px solid #3c3939;
   }
+
+  &__secondary {
+    border: 1px solid $gray;
+  }
+
+  &__radius {
+    &--md {
+      border-radius: 6px;
+    }
+  }
 }

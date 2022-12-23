@@ -10,8 +10,9 @@
 
   &__label {
     display: block;
-    color: $pinkSecondary;
+    color: $gray;
     padding-bottom: 4px;
+    font-family: 'Roboto', sans-serif;
   }
 
   &__wrapper {

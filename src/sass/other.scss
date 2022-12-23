@@ -24,19 +24,18 @@
     width: 100%;
     font-size: 16px;
     border-radius: 4px;
-    background: $pinkSecondary;
+    background: $black;
+    border: 1px solid $graySecondary;
     text-align: left;
-    transition: 0.2s;
     color: white;
     font-weight: 500;
     padding: 4px 8px;
-    border: none;
     outline: none;
-    margin-top: 10px;
+    height: 28px;
 
     &:hover {
       cursor: pointer;
-      letter-spacing: 0.1em;
+      border: 2px solid $gray;
     }
   }
 
