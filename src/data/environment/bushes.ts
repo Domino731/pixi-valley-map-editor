@@ -98,4 +98,98 @@ export const bushesLg: Array<EngineObject> = [
         ],
         items: [FOOD_ITEMS.STRAWBERRY]
     },
+];
+
+export const bushesMd: Array<EngineObject> = [
+    {
+        id: BUSHES_NAMES.SUMMER_MD,
+        name: BUSHES_NAMES.SUMMER_MD,
+        hp: bushesHp.lg,
+        sprite: {
+            src: 'bushes_md.png',
+            position: {
+                x: 0,
+                y: 0,
+            }
+        },
+        tools: [TOOLS.GARDEN_SCISSORS],
+        destroyable: true,
+        checkboxes: [
+            {
+                x: 0,
+                y: 0,
+                width: 40,
+                height: 40
+            }
+        ],
+        items: [FOOD_ITEMS.STRAWBERRY]
+    },
+    {
+        id: BUSHES_NAMES.AUTUMN_MD,
+        name: BUSHES_NAMES.AUTUMN_MD,
+        hp: bushesHp.lg,
+        sprite: {
+            src: 'bushes_md.png',
+            position: {
+                x: 1,
+                y: 0,
+            }
+        },
+        tools: [TOOLS.GARDEN_SCISSORS],
+        destroyable: true,
+        checkboxes: [
+            {
+                x: 0,
+                y: 0,
+                width: 40,
+                height: 40
+            }
+        ],
+        items: [FOOD_ITEMS.STRAWBERRY]
+    }, {
+        id: BUSHES_NAMES.WINTER_MD,
+        name: BUSHES_NAMES.WINTER_MD,
+        hp: bushesHp.lg,
+        sprite: {
+            src: 'bushes_md.png',
+            position: {
+                x: 1,
+                y: 2,
+            }
+        },
+        tools: [TOOLS.GARDEN_SCISSORS],
+        destroyable: true,
+        checkboxes: [
+            {
+                x: 0,
+                y: 0,
+                width: 40,
+                height: 40
+            }
+        ],
+        items: [FOOD_ITEMS.STRAWBERRY]
+    },
+    {
+        id: BUSHES_NAMES.SPRING_LG,
+        name: BUSHES_NAMES.SPRING_LG,
+        hp: bushesHp.lg,
+        sprite: {
+            src: 'bushes_md.png',
+            position: {
+                x: 1,
+                y: 0,
+            }
+        },
+        tools: [TOOLS.GARDEN_SCISSORS],
+        destroyable: true,
+        checkboxes: [
+            {
+                x: 0,
+                y: 0,
+                width: 40,
+                height: 40
+            }
+        ],
+        items: [FOOD_ITEMS.STRAWBERRY]
+    },
 ]
