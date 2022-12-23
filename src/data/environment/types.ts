@@ -20,6 +20,11 @@ export enum BUSHES_NAMES {
     AUTUMN_MD = 'AUTUMN_MD',
     SPRING_MD = 'SPRING_MD',
     WINTER_MD = 'WINTER_MD',
+
+    SUMMER_SM = 'SUMMER_SM',
+    AUTUMN_SM = 'AUTUMN_SM',
+    SPRING_SM = 'SPRING_SM',
+    WINTER_SM = 'WINTER_SM',
 }
 
 export enum TREE_ITEMS {
