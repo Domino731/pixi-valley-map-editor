@@ -72,5 +72,14 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellHeight: 182,
             cellWidth: 405 / 4
         }
+    },
+    {
+        sprite: SPRITE_SRC.OUTDOORS_SPRING,
+        size: {
+            height: 1264,
+            width: 400,
+            cellHeight: 16,
+            cellWidth: 16
+        }
     }
 ]
