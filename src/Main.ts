@@ -1,30 +1,41 @@
 import {Sprites} from "./const/sprites";
 import {SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector} from "./types";
-import {SpriteData} from "./const/types";
+import {SPRITE_TYPES, SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
 import {Map} from "./app/Map";
 import {RightPanel} from "./app/RightPanel";
 import {Debugger} from "./app/debugger";
+import {tiles} from "./data/tiles/tiles";
+import {EngineObject} from "./data/types";
 
 export class Main {
     dom: DOM;
     map: Map;
     private spriteData: SpriteDim;
-    public sprite: SpriteData;
+    public sprite: SpriteData | Array<EngineObject>;
     private currentSprite: SpriteNamesUnion;
     public mapSize: Vector;
     private selectedSpriteCell: Vector;
     private rightPanel: RightPanel;
     readonly mapCellSize: Vector;
-
+    private spriteType: keyof typeof SPRITE_TYPES;
 
     constructor() {
         this.dom = new DOM();
         this.currentSprite = SPRITE_NAMES.OUTDOOR_SPRING;
-        this.sprite = Sprites[0];
+        this.sprite = tiles[0];
         this.map = new Map(this);
         this.rightPanel = new RightPanel(this);
+        this.spriteType = SPRITE_TYPES.GROUND_TILE;
         this.init();
+    }
+
+    public getSpriteType(): keyof typeof SPRITE_TYPES {
+        return this.spriteType;
+    }
+
+    public setSpriteType(type: keyof typeof SPRITE_TYPES): void {
+        this.spriteType = type;
     }
 
     public changeSprite(spriteName: SpriteNamesUnion): void {

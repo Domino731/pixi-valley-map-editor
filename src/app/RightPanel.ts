@@ -1,18 +1,30 @@
-import {SpriteData} from "../const/types";
+import {SPRITE_TYPES, SpriteData} from "../const/types";
 import {DOM} from "./DOM";
 import {Map} from "./Map";
 import {Sprites} from "../const/sprites";
 import {Main} from "../Main";
+import {Select} from "./utils/Select";
+import {tiles} from "../data/tiles/tiles";
+import {GAME_DATA} from "../data";
+import {EngineObject} from "../data/types";
 
 export class RightPanel {
     private dom: DOM;
     private map: Map;
     private main: Main;
+    private objects: Array<EngineObject>;
+    private DOM: {
+        objectsContainer: HTMLDivElement;
+    }
 
     constructor(main: Main) {
         this.dom = main.dom;
         this.map = main.map;
         this.main = main;
+        this.DOM = {
+            objectsContainer: document.querySelector('#current-sprite-container')
+        }
+        this.objects = [];
     }
 
     renderEditorSpriteGrid(): void {
@@ -41,23 +53,33 @@ export class RightPanel {
         }
     }
 
-    initSpriteSelect(): void {
-        Sprites.forEach(({label, spriteName}) => {
-            const option: HTMLLIElement = document.createElement('li');
-            const optionButton: HTMLButtonElement = document.createElement('button');
-            optionButton.addEventListener("click", () => {
-                this.main.changeSprite(spriteName);
-                this.dom.selectList.classList.add('hide');
-            })
-            option.appendChild(optionButton);
-            option.className = 'select-item';
-            optionButton.innerText = label;
-            this.dom.selectList.appendChild(option);
-        });
+    private renderObjectsGrid(): void {
+        console.log(this.DOM.objectsContainer);
+    }
 
-        this.dom.selectSpriteSheetButton.addEventListener('click', () => {
-            this.dom.selectList.classList.remove('hide');
-        })
+    private renderGrid(): void {
+        if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
+            this.renderObjectsGrid();
+        }
+    }
+
+    initSpriteSelect(): void {
+        const tileSetsOptions = tiles.map(({label}) => ({label, value: label}));
+        const gameObjects = Object.entries(GAME_DATA.objects).map(([key]) => ({label: key, value: key}));
+        const options = [...tileSetsOptions, ...gameObjects];
+
+        const handleChange = ({value}: { value: string }) => {
+            // @ts-ignore
+            const objects = GAME_DATA.objects[value as keyof typeof GAME_DATA];
+            if (objects) {
+                this.objects = objects;
+                this.main.setSpriteType(SPRITE_TYPES.OBJECT);
+            }
+
+            this.renderGrid();
+        }
+
+        new Select("select-sprite-sheet", options, handleChange);
     }
 
     setSpriteBgImage(): void {
