@@ -54,6 +54,7 @@ export class RightPanel {
     }
 
     private renderObjectsGrid(): void {
+        console.log(this.objects)
         console.log(this.DOM.objectsContainer);
     }
 
