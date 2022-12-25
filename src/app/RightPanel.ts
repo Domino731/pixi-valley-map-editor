@@ -6,7 +6,8 @@ import {Main} from "../Main";
 import {Select} from "./utils/Select";
 import {tiles} from "../data/tiles/tiles";
 import {GAME_DATA} from "../data";
-import {EngineObject} from "../data/types";
+import {EngineObject, SpriteSize} from "../data/types";
+import {SpritesConfig} from "../data/spritesConfig";
 
 export class RightPanel {
     private dom: DOM;
@@ -54,11 +55,37 @@ export class RightPanel {
     }
 
     private renderObjectsGrid(): void {
-        console.log(this.objects)
-        console.log(this.DOM.objectsContainer);
+        this.DOM.objectsContainer.style.flexWrap = 'wrap';
+        this.DOM.objectsContainer.style.backgroundImage = '';
+        this.DOM.objectsContainer.style.width = 'auto';
+        this.DOM.objectsContainer.style.height = 'auto';
+        this.DOM.objectsContainer.style.display = 'flex';
+        this.DOM.objectsContainer.innerHTML = '';
+
+        this.objects.forEach((el) => {
+            const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === el.sprite.src)?.size
+            if (spriteSize) {
+                const {cellWidth, cellHeight} = spriteSize;
+
+                const div: HTMLDivElement = document.createElement('div');
+
+                div.style.width = `${cellWidth}px`;
+                div.style.height = `${cellHeight}px`;
+                div.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
+
+                div.addEventListener('click', () => {
+                    this.main.setEngineObject(el);
+                });
+                this.DOM.objectsContainer.appendChild(div);
+            }
+
+
+        })
+
     }
 
     private renderGrid(): void {
+        this.DOM.objectsContainer.style.flexWrap = 'no-wrap';
         if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
             this.renderObjectsGrid();
         }

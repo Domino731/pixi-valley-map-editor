@@ -1,11 +1,13 @@
 import {SPRITE_NAMES} from "../../types";
 import {SPRITE_TYPES} from "../../const/types";
 import {TilesSpriteSheet} from "./types";
+import {SPRITE_SRC} from "../types";
 
 export const tiles: Array<TilesSpriteSheet> = [
     {
         label: SPRITE_NAMES.OUTDOOR_SPRING,
         src: 'url(./src/sprites/outdoors_spring.png)',
+        appSrc: SPRITE_SRC.OUTDOORS_SPRING,
         size: {
             cellHeight: 16,
             cellWidth: 16,

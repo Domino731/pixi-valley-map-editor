@@ -20,6 +20,8 @@ export class Main {
     readonly mapCellSize: Vector;
     private spriteType: keyof typeof SPRITE_TYPES;
 
+    private engineObject: EngineObject | null;
+
     constructor() {
         this.dom = new DOM();
         this.currentSprite = SPRITE_NAMES.OUTDOOR_SPRING;
@@ -27,7 +29,17 @@ export class Main {
         this.map = new Map(this);
         this.rightPanel = new RightPanel(this);
         this.spriteType = SPRITE_TYPES.GROUND_TILE;
+        this.engineObject = null;
         this.init();
+    }
+
+    public getEngineObject(): EngineObject | null {
+        return this.engineObject;
+    }
+
+    public setEngineObject(payload: EngineObject | null): void {
+        this.spriteType = SPRITE_TYPES.OBJECT;
+        this.engineObject = payload;
     }
 
     public getSpriteType(): keyof typeof SPRITE_TYPES {
