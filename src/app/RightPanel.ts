@@ -55,11 +55,7 @@ export class RightPanel {
     }
 
     private renderObjectsGrid(): void {
-        this.DOM.objectsContainer.style.flexWrap = 'wrap';
-        this.DOM.objectsContainer.style.backgroundImage = '';
-        this.DOM.objectsContainer.style.width = 'auto';
-        this.DOM.objectsContainer.style.height = 'auto';
-        this.DOM.objectsContainer.style.display = 'flex';
+        this.DOM.objectsContainer.classList.add('objectContainer__objects');
         this.DOM.objectsContainer.innerHTML = '';
 
         this.objects.forEach((el) => {
@@ -72,7 +68,9 @@ export class RightPanel {
                 div.style.width = `${cellWidth}px`;
                 div.style.height = `${cellHeight}px`;
                 div.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-
+                div.style.backgroundPosition = `-${el.sprite.position.y * spriteSize.cellWidth}px -${el.sprite.position.x * spriteSize.cellHeight}px`;
+                div.style.backgroundRepeat = 'no-repeat';
+                
                 div.addEventListener('click', () => {
                     this.main.setEngineObject(el);
                 });

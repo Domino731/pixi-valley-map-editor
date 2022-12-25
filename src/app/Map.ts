@@ -42,7 +42,6 @@ export class Map {
     private setObject() {
         this.main.dom.map.addEventListener('click', (e) => {
             if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
-                console.log(1);
                 let rect: DOMRect = this.main.dom.map.getBoundingClientRect();
 
                 const position: Vector = {
