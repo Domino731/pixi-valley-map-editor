@@ -7,7 +7,7 @@ export const SpritesConfig: Array<SpriteConfig> = [
             height: 32,
             width: 128,
             cellHeight: 32,
-            cellWidth: 128 / 6
+            cellWidth: 128 / 8
         }
     },
     {

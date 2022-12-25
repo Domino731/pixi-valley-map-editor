@@ -59,7 +59,7 @@ export class Map {
                     object.style.left = `${this.cellSize * position.x}px`;
                     object.style.top = `${this.cellSize * position.y}px`;
                     object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
-                    object.style.backgroundPosition = `-${this.main.getEngineObject().sprite.position.y * spriteSize.cellWidth}px -${this.main.getEngineObject().sprite.position.x * spriteSize.cellHeight}px`;
+                    object.style.backgroundPosition = `-${this.main.getEngineObject().sprite.position.x * spriteSize.cellWidth}px -${this.main.getEngineObject().sprite.position.y * spriteSize.cellHeight}px`;
                     object.style.backgroundRepeat = 'no-repeat'
 
                     this.main.dom.map.appendChild(object);

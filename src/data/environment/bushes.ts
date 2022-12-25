@@ -31,14 +31,14 @@ export const bushesLg: Array<EngineObject> = [
         items: [FOOD_ITEMS.STRAWBERRY]
     },
     {
-        id: BUSHES_NAMES.AUTUMN_LG,
-        name: BUSHES_NAMES.AUTUMN_LG,
+        id: BUSHES_NAMES.WINTER_LG,
+        name: BUSHES_NAMES.WINTER_LG,
         hp: bushesHp.lg,
         sprite: {
             src: 'bushes_lg.png',
             position: {
-                x: 1,
-                y: 0,
+                x: 0,
+                y: 1,
             }
         },
         tools: [TOOLS.GARDEN_SCISSORS],
@@ -53,8 +53,8 @@ export const bushesLg: Array<EngineObject> = [
         ],
         items: [FOOD_ITEMS.STRAWBERRY]
     }, {
-        id: BUSHES_NAMES.WINTER_LG,
-        name: BUSHES_NAMES.WINTER_LG,
+        id: BUSHES_NAMES.AUTUMN_LG,
+        name: BUSHES_NAMES.AUTUMN_LG,
         hp: bushesHp.lg,
         sprite: {
             src: 'bushes_lg.png',
@@ -108,7 +108,7 @@ export const bushesMd: Array<EngineObject> = [
         sprite: {
             src: 'bushes_md.png',
             position: {
-                x: 0,
+                x: 1,
                 y: 0,
             }
         },
@@ -131,8 +131,8 @@ export const bushesMd: Array<EngineObject> = [
         sprite: {
             src: 'bushes_md.png',
             position: {
-                x: 1,
-                y: 0,
+                x: 0,
+                y: 1,
             }
         },
         tools: [TOOLS.GARDEN_SCISSORS],
@@ -153,8 +153,8 @@ export const bushesMd: Array<EngineObject> = [
         sprite: {
             src: 'bushes_md.png',
             position: {
-                x: 1,
-                y: 2,
+                x: 2,
+                y: 1,
             }
         },
         tools: [TOOLS.GARDEN_SCISSORS],
@@ -176,7 +176,7 @@ export const bushesMd: Array<EngineObject> = [
         sprite: {
             src: 'bushes_md.png',
             position: {
-                x: 1,
+                x: 0,
                 y: 0,
             }
         },
@@ -193,7 +193,6 @@ export const bushesMd: Array<EngineObject> = [
         items: [FOOD_ITEMS.STRAWBERRY]
     },
 ];
-
 
 export const bushesSm: Array<EngineObject> = [
     {
@@ -226,8 +225,8 @@ export const bushesSm: Array<EngineObject> = [
         sprite: {
             src: 'bushes_sm.png',
             position: {
-                x: 0,
-                y: 2,
+                x: 2,
+                y: 0,
             }
         },
         tools: [TOOLS.GARDEN_SCISSORS],
