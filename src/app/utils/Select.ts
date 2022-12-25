@@ -1,3 +1,5 @@
+import {SelectOption} from "./types";
+
 export class Select {
     // id of <ul> element needed to inject options list
     private listId: string;
@@ -5,7 +7,7 @@ export class Select {
     private button: HTMLButtonElement;
     private list: HTMLDivElement;
 
-    constructor(listId: string, options: Array<{ label: string, value: string }>, onChange: (v: { label: string, value: string }) => void) {
+    constructor(listId: string, options: Array<SelectOption>, onChange: (v: SelectOption) => void) {
         this.listId = listId;
         this.button = document.querySelector(`#${listId} button`);
         this.list = document.querySelector(`#${listId} ul`);
@@ -19,12 +21,13 @@ export class Select {
         });
     }
 
-    private createOptionsList(onChange: (v: { label: string, value: string }) => void): void {
-        this.options.forEach((el) => {
+    private createOptionsList(onChange: (v: SelectOption) => void): void {
+        this.options.forEach((el: SelectOption) => {
             const option: HTMLLIElement = document.createElement('li');
             const optionButton: HTMLButtonElement = document.createElement('button');
             optionButton.addEventListener("click", () => {
                 this.list.classList.add('hide');
+                this.button.innerText = el.label;
                 onChange(el);
             })
             option.className = 'select-item';
@@ -35,7 +38,12 @@ export class Select {
         });
     }
 
+    private setButtonPlaceholder(): void {
+        this.button.innerText = 'Choose from list'
+    }
+
     private init(onChange: (v: { label: string, value: string }) => void): void {
+        this.setButtonPlaceholder();
         this.createOptionsList(onChange);
         this.buttonClickEvent();
     }

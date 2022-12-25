@@ -1,6 +1,6 @@
 .styled-scrollbars {
   /* Foreground, Background */
-  scrollbar-color: #999 #333;
+  scrollbar-color: $graySecondary;
 }
 
 .styled-scrollbars::-webkit-scrollbar {
@@ -9,11 +9,12 @@
 }
 
 .styled-scrollbars::-webkit-scrollbar-thumb { /* Foreground */
-  background: #999;
+  background: $graySecondary;
+  border-radius: 3px;
 }
 
 .styled-scrollbars::-webkit-scrollbar-track { /* Background */
-  background: #333;
+  background: transparent;
 }
 
 .select {

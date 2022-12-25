@@ -39,6 +39,7 @@ export interface SpriteSize {
 
 export interface SpriteConfig {
     sprite: string,
+    spriteContainerWidth?: number;
     size: SpriteSize
 }
 
