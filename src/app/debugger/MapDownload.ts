@@ -34,7 +34,7 @@ export class MapDownload {
         return data;
     }
 
-    public createMap(): void {
+    public createMap() {
         const groundCells: Array<HTMLDivElement> = document.querySelectorAll('#map .cell') as unknown as Array<HTMLDivElement>;
         const groundData: Array<GroundData> = [];
         const trees: Array<MapObjectData> = MapDownload.getObjectsData(ENGINE_OBJECTS_TYPES.TREES)
@@ -53,11 +53,26 @@ export class MapDownload {
             });
         });
 
-
+        return ({
+            ground: groundData,
+            objects: {
+                trees
+            }
+        });
     }
 
     private buttonClickEvent(): void {
-        this.DOM.button.addEventListener('click', this.createMap)
+        const download = () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.createMap()));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "map.json");
+            document.body.appendChild(downloadAnchorNode); // required for firefox
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+        this.DOM.button.addEventListener('click', download)
     }
 
     private init(): void {
