@@ -11,6 +11,8 @@ export interface Checkbox {
 
 
 export interface EngineObject {
+    group: keyof typeof ENGINE_OBJECT_GROUPS,
+    type: keyof typeof ENGINE_OBJECTS_TYPES,
     id: string,
     name: string,
     hp: number,
@@ -65,3 +67,19 @@ export interface GroundData {
     spriteCords: Vector;
     groundCellCords: Vector;
 }
+
+export interface MapObjectData {
+    spriteSrc: string;
+    spriteCords: Vector;
+    positionCords: Vector;
+}
+
+export enum ENGINE_OBJECT_GROUPS {
+    ENVIROMENT = "ENVIROMENT"
+}
+
+export enum ENGINE_OBJECTS_TYPES {
+    TREES = 'TREES'
+}
+
+export type EngineObjectsTypesUnion = keyof typeof ENGINE_OBJECTS_TYPES;

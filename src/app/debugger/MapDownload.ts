@@ -1,6 +1,7 @@
-import {GroundData} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObjectsTypesUnion, GroundData, MapObjectData} from "../../data/types";
 import {getSpriteSrc} from "../utils/getSpriteSrc";
 import {Vector} from "../../types";
+import {Map} from "../Map";
 
 export class MapDownload {
     private DOM: {
@@ -14,9 +15,29 @@ export class MapDownload {
         this.init();
     }
 
-    private createMap(): void {
+    public static getObjectsData(objectType: EngineObjectsTypesUnion): Array<MapObjectData> {
+        const objects: Array<HTMLDivElement> = document.querySelectorAll(`#map div[data-object-type = "${objectType}"]`) as unknown as Array<HTMLDivElement>;
+        const data: Array<MapObjectData> = [];
+        objects.forEach((el: HTMLDivElement) => {
+            data.push({
+                spriteSrc: el.dataset.spriteSrc,
+                spriteCords: {
+                    x: Number(el.dataset.spritePositionX),
+                    y: Number(el.dataset.spritePositionY),
+                },
+                positionCords: {
+                    x: Number(el.dataset.objectPositionX),
+                    y: Number(el.dataset.objectPositionY),
+                }
+            })
+        });
+        return data;
+    }
+
+    public createMap(): void {
         const groundCells: Array<HTMLDivElement> = document.querySelectorAll('#map .cell') as unknown as Array<HTMLDivElement>;
-        const groundData: Array<GroundData> = []
+        const groundData: Array<GroundData> = [];
+        const trees: Array<MapObjectData> = MapDownload.getObjectsData(ENGINE_OBJECTS_TYPES.TREES)
         groundCells.forEach(el => {
             const bgPosition: Array<string> = el.style.backgroundPosition.split(' ');
             groundData.push({
@@ -30,9 +51,8 @@ export class MapDownload {
                     y: parseInt(el.dataset.cordY),
                 }
             });
-        })
+        });
 
-        console.log(groundData);
 
     }
 

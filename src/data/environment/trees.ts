@@ -1,6 +1,6 @@
 import {TREE_ITEMS, TREE_NAMES, TreeObject} from "./types";
 import {TOOLS} from "../tools/types";
-import {EngineObject, SPRITE_SRC} from "../types";
+import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, EngineObject, SPRITE_SRC} from "../types";
 
 const defaultHp: number = 700;
 
@@ -377,4 +377,4 @@ export const trees: Array<TreeObject> = [
         ],
         items: [TREE_ITEMS.WOOD]
     }
-]
+].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIROMENT, type: ENGINE_OBJECTS_TYPES.TREES}))

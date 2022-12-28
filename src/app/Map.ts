@@ -3,7 +3,7 @@ import {DOM} from "./DOM";
 import {SPRITE_TYPES, SpriteData} from "../const/types";
 import {Main} from "../Main";
 import {Sprites} from "../const/sprites";
-import {SpriteSize} from "../data/types";
+import {EngineObject, SpriteSize} from "../data/types";
 import {SpritesConfig} from "../data/spritesConfig";
 
 export class Map {
@@ -42,6 +42,7 @@ export class Map {
     private setObject() {
         this.main.dom.map.addEventListener('click', (e) => {
             if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
+                const engineObject: EngineObject = this.main.getEngineObject()
                 let rect: DOMRect = this.main.dom.map.getBoundingClientRect();
 
                 const position: Vector = {
@@ -54,6 +55,14 @@ export class Map {
 
                     object.dataset.objectName = this.main.getEngineObject().name;
                     object.style.position = "absolute";
+                    object.dataset.spriteSrc = engineObject.sprite.src;
+                    object.dataset.spritePositionX = String(engineObject.sprite.position.x);
+                    object.dataset.spritePositionY = String(engineObject.sprite.position.y);
+                    object.dataset.objectPositionX = `${position.x}`;
+                    object.dataset.objectPositionY = `${position.y}`;
+                    object.dataset.objectGroup = engineObject.group;
+                    object.dataset.objectType = engineObject.type;
+
                     object.style.width = `${spriteSize.cellWidth}px`;
                     object.style.height = `${spriteSize.cellHeight}px`;
                     object.style.left = `${this.cellSize * position.x}px`;
