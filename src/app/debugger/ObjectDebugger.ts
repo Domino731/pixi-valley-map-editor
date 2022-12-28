@@ -3,6 +3,7 @@ import {GAME_DATA} from "../../data";
 import {Checkbox, EngineObject} from "../../data/types";
 import {SpriteData} from "../../const/types";
 import {MapDownload} from "./MapDownload";
+import {LoadMap} from "./LoadMap";
 
 export class ObjectDebugger {
     private dom: {
@@ -248,6 +249,7 @@ export class ObjectDebugger {
 
     public init(): void {
         new MapDownload();
+        new LoadMap();
         this.actionBarButtonEvents();
         this.initSelect();
         this.inputChangeEvent();

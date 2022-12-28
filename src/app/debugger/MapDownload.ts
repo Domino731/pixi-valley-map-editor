@@ -1,7 +1,5 @@
 import {ENGINE_OBJECTS_TYPES, EngineObjectsTypesUnion, GroundData, MapObjectData} from "../../data/types";
 import {getSpriteSrc} from "../utils/getSpriteSrc";
-import {Vector} from "../../types";
-import {Map} from "../Map";
 
 export class MapDownload {
     private DOM: {
@@ -77,6 +75,5 @@ export class MapDownload {
 
     private init(): void {
         this.buttonClickEvent();
-        console.log(1);
     }
 }
