@@ -1,6 +1,6 @@
 import {TREE_ITEMS, TREE_NAMES, TreeObject} from "./types";
 import {TOOLS} from "../tools/types";
-import {EngineObject} from "../types";
+import {EngineObject, SPRITE_SRC} from "../types";
 
 const defaultHp: number = 700;
 
@@ -10,7 +10,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.OAK_SUMMER,
         hp: defaultHp,
         sprite: {
-            src: 'oak_stage_5.png',
+            src: SPRITE_SRC.OAK_STAGE_5,
             position: {
                 x: 0,
                 y: 0,
@@ -33,7 +33,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.OAK_AUTUMN,
         hp: defaultHp,
         sprite: {
-            src: 'oak_stage_5.png',
+            src: SPRITE_SRC.OAK_STAGE_5,
             position: {
                 x: 2,
                 y: 0,
@@ -56,7 +56,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.OAK_WINTER,
         hp: defaultHp,
         sprite: {
-            src: 'oak_stage_5.png',
+            src: SPRITE_SRC.OAK_STAGE_5,
             position: {
                 x: 3,
                 y: 0,
@@ -79,7 +79,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.OAK_SPRING,
         hp: defaultHp,
         sprite: {
-            src: 'oak_stage_5.png',
+            src: SPRITE_SRC.OAK_STAGE_5,
             position: {
                 x: 1,
                 y: 0,
@@ -104,7 +104,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAHOGANY_SUMMER,
         hp: defaultHp,
         sprite: {
-            src: 'mahogany_stage_5.png',
+            src: SPRITE_SRC.MAHOGANY_STAGE_5,
             position: {
                 x: 0,
                 y: 0,
@@ -127,7 +127,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAHOGANY_AUTUMN,
         hp: defaultHp,
         sprite: {
-            src: 'mahogany_stage_5.png',
+            src: SPRITE_SRC.MAHOGANY_STAGE_5,
             position: {
                 x: 2,
                 y: 0,
@@ -150,7 +150,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAHOGANY_WINTER,
         hp: defaultHp,
         sprite: {
-            src: 'mahogany_stage_5.png',
+            src: SPRITE_SRC.MAHOGANY_STAGE_5,
             position: {
                 x: 3,
                 y: 0,
@@ -173,7 +173,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAHOGANY_SPRING,
         hp: defaultHp,
         sprite: {
-            src: 'mahogany_stage_5.png',
+            src: SPRITE_SRC.MAHOGANY_STAGE_5,
             position: {
                 x: 1,
                 y: 0,
@@ -197,7 +197,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.PINE_SUMMER,
         hp: defaultHp,
         sprite: {
-            src: 'pine_stage_5.png',
+            src: SPRITE_SRC.PINE_STAGE_5,
             position: {
                 x: 0,
                 y: 0,
@@ -220,7 +220,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.PINE_AUTUMN,
         hp: defaultHp,
         sprite: {
-            src: 'pine_stage_5.png',
+            src: SPRITE_SRC.PINE_STAGE_5,
             position: {
                 x: 2,
                 y: 0,
@@ -243,7 +243,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.PINE_WINTER,
         hp: defaultHp,
         sprite: {
-            src: 'pine_stage_5.png',
+            src: SPRITE_SRC.PINE_STAGE_5,
             position: {
                 x: 3,
                 y: 0,
@@ -266,7 +266,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.PINE_SPRING,
         hp: defaultHp,
         sprite: {
-            src: 'pine_stage_5.png',
+            src: SPRITE_SRC.PINE_STAGE_5,
             position: {
                 x: 1,
                 y: 0,
@@ -290,7 +290,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAPLE_SUMMER,
         hp: defaultHp,
         sprite: {
-            src: 'maple_stage_5.png',
+            src: SPRITE_SRC.MAPLE_STAGE_5,
             position: {
                 x: 0,
                 y: 0,
@@ -313,7 +313,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAPLE_AUTUMN,
         hp: defaultHp,
         sprite: {
-            src: 'maple_stage_5.png',
+            src: SPRITE_SRC.MAPLE_STAGE_5,
             position: {
                 x: 2,
                 y: 0,
@@ -336,7 +336,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAPLE_WINTER,
         hp: defaultHp,
         sprite: {
-            src: 'maple_stage_5.png',
+            src: SPRITE_SRC.MAPLE_STAGE_5,
             position: {
                 x: 3,
                 y: 0,
@@ -359,7 +359,7 @@ export const trees: Array<TreeObject> = [
         name: TREE_NAMES.MAPLE_SPRING,
         hp: defaultHp,
         sprite: {
-            src: 'maple_stage_5.png',
+            src: SPRITE_SRC.MAPLE_STAGE_5,
             position: {
                 x: 1,
                 y: 0,

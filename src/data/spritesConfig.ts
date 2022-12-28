@@ -37,42 +37,45 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellWidth: 128 / 4
         }
     },
+
     {
         sprite: SPRITE_SRC.MAHOGANY_STAGE_5,
         size: {
             height: 182,
-            width: 420,
+            width: 384,
             cellHeight: 182,
-            cellWidth: 420 / 4
+            cellWidth: 384 / 4
         }
     },
     {
         sprite: SPRITE_SRC.MAPLE_STAGE_5,
         size: {
             height: 190,
-            width: 382,
+            width: 384,
             cellHeight: 190,
-            cellWidth: 382 / 4
+            cellWidth: 384 / 4
         }
     },
     {
         sprite: SPRITE_SRC.OAK_STAGE_5,
         size: {
             height: 188,
-            width: 397,
+            width: 384,
             cellHeight: 188,
-            cellWidth: 397 / 4
+            cellWidth: 384 / 4
         }
     },
     {
         sprite: SPRITE_SRC.PINE_STAGE_5,
         size: {
             height: 182,
-            width: 405,
+            width: 384,
             cellHeight: 182,
-            cellWidth: 405 / 4
+            cellWidth: 384 / 4
         }
     },
+
+
     {
         sprite: SPRITE_SRC.OUTDOORS_SPRING,
         size: {
