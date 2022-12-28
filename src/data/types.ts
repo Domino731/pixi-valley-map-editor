@@ -1,5 +1,6 @@
 import {TREE_ITEMS, TREE_NAMES} from "./environment/types";
 import {TOOLS} from "./tools/types";
+import {Vector} from "../types";
 
 export interface Checkbox {
     x: number,
@@ -57,4 +58,10 @@ export const SPRITE_SRC = {
     TREE_STAGE_2: 'TREE-STAGE-2.png',
     TREE_STAGE_3: 'TREE-STAGE-3.png',
     TREE_STAGE_4: 'TREE-STAGE-4.png',
+}
+
+export interface GroundData {
+    spriteSrc: string;
+    spriteCords: Vector;
+    groundCellCords: Vector;
 }

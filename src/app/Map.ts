@@ -50,9 +50,9 @@ export class Map {
                 }
                 const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.main.getEngineObject().sprite.src)?.size
                 if (spriteSize) {
-                    console.log(spriteSize);
                     const object: HTMLDivElement = document.createElement('div');
 
+                    object.dataset.objectName = this.main.getEngineObject().name;
                     object.style.position = "absolute";
                     object.style.width = `${spriteSize.cellWidth}px`;
                     object.style.height = `${spriteSize.cellHeight}px`;
@@ -76,6 +76,8 @@ export class Map {
             row.className = `row row--${this.cellSize}`;
             for (let j = 0; j < columns; j++) {
                 const cell: HTMLDivElement = document.createElement('div');
+                cell.dataset.cordX = String(j);
+                cell.dataset.cordY = String(i);
                 cell.className = `cell cell--${this.cellSize}`;
                 cell.addEventListener('click', (e) => {
                     if (this.main.getSpriteType() === SPRITE_TYPES.GROUND_TILE) {

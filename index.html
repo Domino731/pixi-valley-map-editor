@@ -13,40 +13,45 @@
 </head>
 <body>
 <div class="container">
-    <div class="column">
-        <h2 class="text text--blue text--xxl mb--16">
-            DEBUGGER
-        </h2>
-        <div class="mb--16">
-            <button class="button button--md button--outline" id="debug-button">Debug mode off</button>
-        </div>
-        <div class="border__primary  p--8">
-            <h3 class="text text--xl text--pink mb--16">DATA</h3>
-            <div class="select">
-                <button class="select__button" id="select-object-type-button">
-                    TEST
-                </button>
-                <ul class="select__list p--8 border__primary hide" id="select-object-type-list">
-                </ul>
+    <div class="column debugger">
+        <div class="debugger__content">
+            <h2 class="text text--blue text--xxl mb--16">
+                DEBUGGER
+            </h2>
+            <div class="mb--16">
+                <button class="button button--md button--outline" id="debug-button">Debug mode off</button>
             </div>
-            <div class="input__wrapper">
-                <input class="input" placeholder="Find object by id" id="select-object-input-type">
-                <button id="find-object-btn">Find</button>
-            </div>
-            <div class="debugger__actionBar">
-                <button id="debugger-action-btn-data" class="debugger__actionBar--btnAction">DATA</button>
-                <button id="debugger-action-btn-checkboxes">CHECKBOXES</button>
-                <button id="debugger-action-btn-action-areas">ACTION AREAS</button>
-            </div>
-            <div class="debugger__imageWrapper">
-                <div id="debugger-object-graphic">
+            <div class="border__primary  p--8">
+                <h3 class="text text--xl text--pink mb--16">DATA</h3>
+                <div class="select">
+                    <button class="select__button" id="select-object-type-button">
+                        TEST
+                    </button>
+                    <ul class="select__list p--8 border__primary hide" id="select-object-type-list">
+                    </ul>
+                </div>
+                <div class="input__wrapper">
+                    <input class="input" placeholder="Find object by id" id="select-object-input-type">
+                    <button id="find-object-btn">Find</button>
+                </div>
+                <div class="debugger__actionBar">
+                    <button id="debugger-action-btn-data" class="debugger__actionBar--btnAction">DATA</button>
+                    <button id="debugger-action-btn-checkboxes">CHECKBOXES</button>
+                    <button id="debugger-action-btn-action-areas">ACTION AREAS</button>
+                </div>
+                <div class="debugger__imageWrapper">
+                    <div id="debugger-object-graphic">
+
+                    </div>
+                </div>
+                <div id="debug-object-container">
 
                 </div>
-            </div>
-            <div id="debug-object-container">
 
             </div>
-
+        </div>
+        <div class="flex flex__justify--center">
+            <button class="button button--primary button--lg" id="download-map-btn">Download map.json</button>
         </div>
     </div>
 
