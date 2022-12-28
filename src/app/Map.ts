@@ -60,6 +60,7 @@ export class Map {
                     object.dataset.spritePositionY = String(engineObject.sprite.position.y);
                     object.dataset.objectPositionX = `${position.x}`;
                     object.dataset.objectPositionY = `${position.y}`;
+                    object.dataset.objectId = engineObject.id;
                     object.dataset.objectGroup = engineObject.group;
                     object.dataset.objectType = engineObject.type;
 

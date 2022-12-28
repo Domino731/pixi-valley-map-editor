@@ -69,6 +69,7 @@ export interface GroundData {
 }
 
 export interface MapObjectData {
+    id: string,
     spriteSrc: string;
     spriteCords: Vector;
     positionCords: Vector;
@@ -80,6 +81,15 @@ export enum ENGINE_OBJECT_GROUPS {
 
 export enum ENGINE_OBJECTS_TYPES {
     TREES = 'TREES'
+}
+
+export interface MapJsonData {
+    ground: Array<GroundData>;
+    objects: {
+        environment: {
+            trees: Array<MapObjectData>
+        }
+    }
 }
 
 export type EngineObjectsTypesUnion = keyof typeof ENGINE_OBJECTS_TYPES;

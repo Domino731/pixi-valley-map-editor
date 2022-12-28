@@ -1,4 +1,4 @@
-import {ENGINE_OBJECTS_TYPES, EngineObjectsTypesUnion, GroundData, MapObjectData} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObjectsTypesUnion, GroundData, MapJsonData, MapObjectData} from "../../data/types";
 import {getSpriteSrc} from "../utils/getSpriteSrc";
 
 export class MapDownload {
@@ -18,6 +18,7 @@ export class MapDownload {
         const data: Array<MapObjectData> = [];
         objects.forEach((el: HTMLDivElement) => {
             data.push({
+                id: el.dataset.objectId,
                 spriteSrc: el.dataset.spriteSrc,
                 spriteCords: {
                     x: Number(el.dataset.spritePositionX),
@@ -32,7 +33,7 @@ export class MapDownload {
         return data;
     }
 
-    public createMap() {
+    public createMap(): MapJsonData {
         const groundCells: Array<HTMLDivElement> = document.querySelectorAll('#map .cell') as unknown as Array<HTMLDivElement>;
         const groundData: Array<GroundData> = [];
         const trees: Array<MapObjectData> = MapDownload.getObjectsData(ENGINE_OBJECTS_TYPES.TREES)
@@ -52,9 +53,9 @@ export class MapDownload {
         });
 
         return ({
-            ground: groundData,
+            ground: [{test: 1}],
             objects: {
-                trees
+                environment: {trees}
             }
         });
     }
