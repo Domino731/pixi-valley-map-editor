@@ -62,7 +62,8 @@ export const SPRITE_SRC = {
     TREE_STAGE_4: 'trees-stage-4.png',
 
     // resources
-    RESOURCES_32: 'resources-32.png'
+    RESOURCES_32: 'resources-32.png',
+    RESOURCES_16: 'resources-16.png'
 }
 
 export interface GroundData {
@@ -85,7 +86,7 @@ export enum ENGINE_OBJECT_GROUPS {
 export enum ENGINE_OBJECTS_TYPES {
     TREES = 'TREES',
     RESOURCES_32 = 'RESOURCES_32',
-    RESOURCES = 'RESOURCES'
+    RESOURCES_16 = 'RESOURCES_16'
 }
 
 export interface MapJsonData {
