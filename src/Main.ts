@@ -6,7 +6,8 @@ import {Map} from "./app/Map";
 import {RightPanel} from "./app/RightPanel";
 import {Debugger} from "./app/debugger";
 import {tiles} from "./data/tiles/tiles";
-import {EngineObject} from "./data/types";
+import {EngineObject, SpriteSize} from "./data/types";
+import {SpritesConfig} from "./data/spritesConfig";
 
 export class Main {
     dom: DOM;
@@ -40,6 +41,20 @@ export class Main {
     public setEngineObject(payload: EngineObject | null): void {
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
+        const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.engineObject.sprite.src)?.size
+        if (spriteSize) {
+
+            this.dom.hoverObject.dataset.objectName = this.engineObject.name;
+            this.dom.hoverObject.style.position = "absolute";
+            this.dom.hoverObject.style.width = `${spriteSize.cellWidth}px`;
+            this.dom.hoverObject.style.height = `${spriteSize.cellHeight}px`;
+            this.dom.hoverObject.style.left = `${16 * 0}px`;
+            this.dom.hoverObject.style.top = `${16 * 0}px`;
+            this.dom.hoverObject.style.backgroundImage = `url(./src/sprites/${this.engineObject.sprite.src})`;
+            this.dom.hoverObject.style.backgroundPosition = `-${this.engineObject.sprite.position.x * spriteSize.cellWidth}px -${this.engineObject.sprite.position.y * spriteSize.cellHeight}px`;
+            this.dom.hoverObject.style.backgroundRepeat = 'no-repeat'
+
+        }
     }
 
     public getSpriteType(): keyof typeof SPRITE_TYPES {

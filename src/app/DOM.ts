@@ -12,6 +12,7 @@ export class DOM {
     public panelSpriteSheetType: HTMLSpanElement;
     public selectList: any
     public selectSpriteSheetButton: HTMLButtonElement;
+    public hoverObject: HTMLButtonElement;
 
     constructor() {
         this.currentSprite = document.querySelector('.editor__currentSprite');
@@ -28,6 +29,7 @@ export class DOM {
         this.selectSprite = document.querySelector('#select-sprite-list');
         this.selectList = document.querySelector('#select-sprite-sheet-list');
         this.selectSpriteSheetButton = document.querySelector('#select-sprite-sheet-button');
+        this.hoverObject = document.querySelector('#container-hover-object')
     }
 
 }

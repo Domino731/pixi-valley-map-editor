@@ -56,10 +56,13 @@ export const SPRITE_SRC = {
     OAK_STAGE_5: 'tree_stage_5_oak.png',
     PINE_STAGE_5: 'tree_stage_5_pine.png',
     OUTDOORS_SPRING: 'outdoors_spring.png',
-    TREE_STAGE_1: 'TREE-STAGE-1.png',
-    TREE_STAGE_2: 'TREE-STAGE-2.png',
-    TREE_STAGE_3: 'TREE-STAGE-3.png',
-    TREE_STAGE_4: 'TREE-STAGE-4.png',
+    TREE_STAGE_1: 'trees-stage-1.png',
+    TREE_STAGE_2: 'trees-stage-2.png',
+    TREE_STAGE_3: 'trees-stage-3.png',
+    TREE_STAGE_4: 'trees-stage-4.png',
+
+    // resources
+    RESOURCES_32: 'resources-32.png'
 }
 
 export interface GroundData {
@@ -80,7 +83,9 @@ export enum ENGINE_OBJECT_GROUPS {
 }
 
 export enum ENGINE_OBJECTS_TYPES {
-    TREES = 'TREES'
+    TREES = 'TREES',
+    RESOURCES_32 = 'RESOURCES_32',
+    RESOURCES = 'RESOURCES'
 }
 
 export interface MapJsonData {

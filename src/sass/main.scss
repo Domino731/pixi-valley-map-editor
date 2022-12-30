@@ -25,12 +25,17 @@ body {
   display: flex;
 
   &__map {
+    position: relative;
     background: #b9b9b9;
     flex-grow: 1;
     overflow: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &__hoverObject {
+    position: absolute;
   }
 }
 

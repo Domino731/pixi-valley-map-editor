@@ -110,9 +110,10 @@ export class Map {
         })
     }
 
+
     public init(): void {
         this.renderMapGrid();
         this.setObject();
-        this.renderGround()
+        this.renderGround();
     }
 }
