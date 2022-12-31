@@ -1,6 +1,6 @@
+@import "variables";
 @import "reset";
 @import "common";
-@import "variables";
 @import "text";
 @import "spacing";
 @import "borders";
@@ -57,7 +57,7 @@ body {
   width: 400px;
   height: 100%;
   background: #202124;
-  padding: 20px;
+  padding: 16px;
 }
 
 
@@ -72,7 +72,6 @@ body {
 
   &__sprite {
     overflow: auto;
-    margin: 0 auto;
     height: 700px;
     background-size: contain;
     background-repeat: no-repeat;

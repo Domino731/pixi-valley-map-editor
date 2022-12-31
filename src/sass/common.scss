@@ -50,3 +50,14 @@
     width: 24px;
   }
 }
+
+.divider {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: $graySecondary;
+
+  &--md {
+    margin: 20px 0;
+  }
+}
