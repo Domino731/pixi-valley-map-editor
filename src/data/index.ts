@@ -3,6 +3,7 @@ import {bushesLg, bushesSm, bushesMd, bushesSmDb} from "./environment/bushes";
 import {treesStage4} from "./environment/treesStage4";
 import {resources32} from "./resources/resources32";
 import {resources16} from "./resources/resources16";
+import {fences} from "./environment/fences";
 
 export const GAME_DATA = {
     objects: {
@@ -13,6 +14,7 @@ export const GAME_DATA = {
         bushesMd,
         bushesSmDb,
         resources32,
-        resources16
+        resources16,
+        fences
     }
 }

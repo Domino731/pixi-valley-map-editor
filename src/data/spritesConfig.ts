@@ -111,5 +111,14 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellHeight: 32 / 2,
             cellWidth: 400 / 25
         }
+    },
+    {
+        sprite: SPRITE_SRC.FENCES,
+        size: {
+            height: 128,
+            width: 192,
+            cellHeight: 128 / 4,
+            cellWidth: 192 / 12
+        }
     }
 ]
