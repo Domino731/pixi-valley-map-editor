@@ -68,6 +68,7 @@ export class Map {
                     object.style.height = `${spriteSize.cellHeight}px`;
                     object.style.left = `${this.cellSize * position.x}px`;
                     object.style.top = `${this.cellSize * position.y}px`;
+                    object.style.zIndex = `${position.y}`;
                     object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
                     object.style.backgroundPosition = `-${this.main.getEngineObject().sprite.position.x * spriteSize.cellWidth}px -${this.main.getEngineObject().sprite.position.y * spriteSize.cellHeight}px`;
                     object.style.backgroundRepeat = 'no-repeat'
