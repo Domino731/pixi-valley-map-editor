@@ -63,7 +63,10 @@ export const SPRITE_SRC = {
 
     // resources
     RESOURCES_32: 'resources-32.png',
-    RESOURCES_16: 'resources-16.png'
+    RESOURCES_16: 'resources-16.png',
+
+    // fences
+    FENCES: 'fences.png'
 }
 
 export interface GroundData {
