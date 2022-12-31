@@ -580,4 +580,27 @@ export const resources16: Array<EngineObject> = [
         ],
         items: []
     },
+    {
+        id: RESOURCES_16_NAMES.STONE,
+        name: RESOURCES_16_NAMES.STONE,
+        hp: defaultHp,
+        sprite: {
+            src: SPRITE_SRC.RESOURCES_16,
+            position: {
+                x: 0,
+                y: 1,
+            }
+        },
+        tools: [TOOLS.PICKAXE],
+        destroyable: true,
+        checkboxes: [
+            {
+                x: 0,
+                y: 0,
+                width: 40,
+                height: 40
+            }
+        ],
+        items: []
+    },
 ].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIROMENT, type: ENGINE_OBJECTS_TYPES.RESOURCES_16}))

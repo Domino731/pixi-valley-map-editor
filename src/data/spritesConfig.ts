@@ -106,9 +106,9 @@ export const SpritesConfig: Array<SpriteConfig> = [
     {
         sprite: SPRITE_SRC.RESOURCES_16,
         size: {
-            height: 16,
+            height: 32,
             width: 400,
-            cellHeight: 16,
+            cellHeight: 32 / 2,
             cellWidth: 400 / 25
         }
     }

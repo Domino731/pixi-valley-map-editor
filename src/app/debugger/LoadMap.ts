@@ -19,7 +19,9 @@ export class LoadMap {
 
     private loadMap(map: MapJsonData): void {
         const currentObjects: Array<HTMLDivElement> = document.querySelectorAll('#map div[data-object-name]') as unknown as Array<HTMLDivElement>;
-        const mapContainer = document.querySelector('#map')
+        const mapContainer = document.querySelector('#map');
+        const tiles = document.querySelectorAll('#map .cell');
+
         // clear map from objects
         currentObjects.forEach((el: HTMLDivElement) => el.remove());
 
@@ -48,6 +50,14 @@ export class LoadMap {
 
             mapContainer.appendChild(object)
         }
+
+        // render tiles
+        map.ground.forEach(({spriteCords, groundCellCords}) => {
+            const tile: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${groundCellCords.x}"][data-cord-y="${groundCellCords.y}"]`);
+            if (tile) {
+                tile.style.backgroundPosition = `${spriteCords.x}px ${spriteCords.y}px`;
+            }
+        })
 
         // render environment - trees
         map.objects.environment.trees.map((el: MapObjectData) => createObject(el));

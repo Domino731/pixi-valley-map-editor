@@ -57,7 +57,7 @@ export class RightPanel {
     private renderObjectsGrid(): void {
         this.DOM.objectsContainer.classList.add('objectContainer__objects');
         this.DOM.objectsContainer.innerHTML = '';
-        console.log(this.objects);
+      
         this.objects.forEach((el) => {
             const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === el.sprite.src)?.size
             if (spriteSize) {
@@ -75,6 +75,7 @@ export class RightPanel {
                 div.addEventListener('click', () => {
                     this.main.setEngineObject(el);
                 });
+
                 this.DOM.objectsContainer.appendChild(div);
             }
 

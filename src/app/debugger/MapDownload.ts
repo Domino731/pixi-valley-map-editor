@@ -39,6 +39,7 @@ export class MapDownload {
         const trees: Array<MapObjectData> = MapDownload.getObjectsData(ENGINE_OBJECTS_TYPES.TREES)
         groundCells.forEach(el => {
             const bgPosition: Array<string> = el.style.backgroundPosition.split(' ');
+           
             groundData.push({
                 spriteSrc: getSpriteSrc(el.style.backgroundImage),
                 spriteCords: {
@@ -53,7 +54,7 @@ export class MapDownload {
         });
 
         return ({
-            ground: [{test: 1}],
+            ground: groundData,
             objects: {
                 environment: {trees}
             }

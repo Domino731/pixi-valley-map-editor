@@ -33,5 +33,6 @@ export enum RESOURCES_16_NAMES {
     BONE_FRAGMENT = 'Bone fragment',
     QUARTZ = 'Quartz',
     FROZEN_TEAR = 'FROZEN_TEAR',
-    FIRE_QUARTZ = 'Fire quartz'
+    FIRE_QUARTZ = 'Fire quartz',
+    STONE = 'STONE'
 }
