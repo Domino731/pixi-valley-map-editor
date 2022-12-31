@@ -26,7 +26,7 @@ body {
 
   &__map {
     position: relative;
-    background: #b9b9b9;
+    background: #252526;
     flex-grow: 1;
     overflow: auto;
     display: flex;
@@ -37,6 +37,7 @@ body {
   &__hoverObject {
     position: absolute;
     border: 1px solid $pink;
+    opacity: 0.7;
   }
 }
 
@@ -44,14 +45,11 @@ body {
   border-top: 1px solid black;
   border-right: 1px solid black;
   position: relative;
+  overflow: hidden;
 
-  .row {
-    flex-wrap: nowrap;
-
-    .cell {
-      border-left: 1px solid black;
-      border-bottom: 1px solid black;
-    }
+  .cell {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
   }
 }
 

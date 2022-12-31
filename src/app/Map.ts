@@ -126,7 +126,8 @@ export class Map {
             }
             const engineObject: EngineObject | null = this.main.getEngineObject();
             if (position.x >= 0 && position.y >= 0 && position.x <= this.size.x && position.y <= this.size.y && engineObject) {
-                const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === engineObject.sprite.src)?.size
+                const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === engineObject.sprite.src)?.size;
+                console.log(position);
                 this.main.dom.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
                 this.main.dom.hoverObject.style.top = `${(position.y * this.cellSize)}px`;
             }
