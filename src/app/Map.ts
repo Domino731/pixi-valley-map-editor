@@ -12,6 +12,7 @@ export class Map {
     private spriteCell: Vector;
     private main: Main;
     private size: Vector;
+    private hoverPosition: Vector;
 
     constructor(main: Main) {
         this.main = main;
@@ -21,6 +22,10 @@ export class Map {
         }
         this.cellSize = 16;
         this.spriteCell = {
+            x: 0,
+            y: 0
+        }
+        this.hoverPosition = {
             x: 0,
             y: 0
         }
@@ -37,6 +42,7 @@ export class Map {
     private setGroundTile(cell: HTMLDivElement) {
         cell.style.backgroundImage = this.main.sprite.src;
         cell.style.backgroundPosition = `-${this.spriteCell.y * this.main.sprite.size.cellHeight}px -${this.spriteCell.x * this.main.sprite.size.cellWidth}px`;
+
     }
 
     private setObject() {
@@ -111,10 +117,26 @@ export class Map {
         })
     }
 
+    private selectedObjectOnMousePosition(): void {
+        const rect = this.main.dom.map.getBoundingClientRect();
+        this.main.dom.map.addEventListener('mousemove', (({clientX, clientY}) => {
+            const position: Vector = {
+                x: Math.floor((clientX - rect.left) / this.cellSize),
+                y: Math.floor((clientY - rect.top) / this.cellSize)
+            }
+            const engineObject: EngineObject | null = this.main.getEngineObject();
+            if (position.x >= 0 && position.y >= 0 && position.x <= this.size.x && position.y <= this.size.y && engineObject) {
+                const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === engineObject.sprite.src)?.size
+                this.main.dom.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
+                this.main.dom.hoverObject.style.top = `${(position.y * this.cellSize)}px`;
+            }
+        }));
+    }
 
     public init(): void {
         this.renderMapGrid();
         this.setObject();
         this.renderGround();
+        this.selectedObjectOnMousePosition();
     }
 }
