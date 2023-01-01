@@ -3,9 +3,49 @@ import {TOOLS} from "../tools/types";
 import {TREE_ITEMS} from "./types";
 
 const defaultHp = 100;
-const flooringFactory = (flooringName: string) => {
+const flooringFactory = (flooringName: 'Oak' | 'Stone' | 'Pine' | 'Light stone' | 'Barn' | 'Dirt' | 'Plank' | 'Dungeon stone') => {
     let xOffset: number = 0;
     let yOffset: number = 0;
+
+    switch (flooringName) {
+        // y = 0
+        case 'Stone':
+            xOffset = 4;
+            yOffset = 0;
+            break;
+        case 'Pine':
+            xOffset = 8;
+            yOffset = 0;
+            break;
+        case 'Light stone':
+            xOffset = 12;
+            yOffset = 0;
+            break;
+        // y = 1
+        case 'Barn':
+            xOffset = 0;
+            yOffset = 4;
+            break;
+        case 'Dirt':
+            xOffset = 4;
+            yOffset = 4;
+            break;
+        // y = 3;
+        case 'Dungeon stone':
+            xOffset = 0;
+            yOffset = 12;
+            break;
+        case 'Plank':
+            xOffset = 8;
+            yOffset = 4;
+            break;
+        //
+        // default set oak flooring offsets
+        default:
+            xOffset = 0;
+            yOffset = 0;
+            break;
+    }
 
     return [
         {
@@ -379,7 +419,16 @@ const flooringFactory = (flooringName: string) => {
     ]
 }
 
-export const flooring: Array<EngineObject> = [...flooringFactory('Oak')]
+export const flooring: Array<EngineObject> = [
+    ...flooringFactory('Oak'),
+    ...flooringFactory('Stone'),
+    ...flooringFactory('Pine'),
+    ...flooringFactory('Light stone'),
+    ...flooringFactory('Barn'),
+    ...flooringFactory('Dirt'),
+    ...flooringFactory('Plank'),
+    ...flooringFactory('Dungeon stone'),
+]
     .map(el => ({
         ...el,
         group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
