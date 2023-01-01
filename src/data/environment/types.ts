@@ -67,6 +67,21 @@ export enum BUSHES_NAMES {
     WINTER_SM_DB = 'WINTER_SM_DB',
 }
 
+export enum BUILDINGS_NAMES {
+    BARN_SM = 'Barn small',
+    BARN_MD = 'Barn medium',
+    BARN_LG = 'Barn large',
+    HOUSE_SM = 'House small',
+    HOUSE_MD = 'House medium',
+    HOUSE_LG = 'House large',
+    STUD_FARM_SM = 'Stud farm small',
+    STUD_FARM_MD = 'Stud farm medium',
+    STUD_FARM_LG = 'Stud farm large',
+    SILO = 'Silo',
+    GLASSHOUSE = 'Glasshouse',
+    WELL = 'Well'
+}
+
 export enum TREE_ITEMS {
     WOOD = 'WOOD'
 }
