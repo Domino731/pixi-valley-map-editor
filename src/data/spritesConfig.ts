@@ -129,5 +129,14 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellHeight: 256 / 16,
             cellWidth: 256 / 16
         }
+    },
+    {
+        sprite: SPRITE_SRC.DIRT_HOED,
+        size: {
+            height: 128,
+            width: 128,
+            cellHeight: 128 / 8,
+            cellWidth: 128 / 8
+        }
     }
 ]

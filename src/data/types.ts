@@ -69,7 +69,8 @@ export const SPRITE_SRC = {
     FENCES: 'fences.png',
 
     // flooring
-    FLOORING: 'flooring.png'
+    FLOORING: 'flooring.png',
+    DIRT_HOED: 'dirt-hoed.png'
 }
 
 export interface GroundData {
