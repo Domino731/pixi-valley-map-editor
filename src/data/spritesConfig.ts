@@ -138,5 +138,115 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellHeight: 128 / 8,
             cellWidth: 128 / 8
         }
-    }
+    },
+
+    // buildings
+    {
+        sprite: SPRITE_SRC.BARN_SM,
+        size: {
+            height: 112,
+            width: 112,
+            cellHeight: 112,
+            cellWidth: 112
+        }
+    },
+    {
+        sprite: SPRITE_SRC.BARN_MD,
+        size: {
+            height: 112,
+            width: 112,
+            cellHeight: 112,
+            cellWidth: 112
+        }
+    },
+    {
+        sprite: SPRITE_SRC.BARN_LG,
+        size: {
+            height: 112,
+            width: 112,
+            cellHeight: 112,
+            cellWidth: 112
+        }
+    },
+    {
+        sprite: SPRITE_SRC.GLASSHOUSE,
+        size: {
+            height: 144,
+            width: 96,
+            cellHeight: 144,
+            cellWidth: 96
+        }
+    },
+    {
+        sprite: SPRITE_SRC.HOUSE_SM,
+        size: {
+            height: 144,
+            width: 144,
+            cellHeight: 144,
+            cellWidth: 144
+        }
+    },
+    {
+        sprite: SPRITE_SRC.HOUSE_MD,
+        size: {
+            height: 144,
+            width: 160,
+            cellHeight: 144,
+            cellWidth: 160
+        }
+    },
+    {
+        sprite: SPRITE_SRC.HOUSE_LG,
+        size: {
+            height: 144,
+            width: 160,
+            cellHeight: 144,
+            cellWidth: 160
+        }
+    },
+    {
+        sprite: SPRITE_SRC.SILO,
+        size: {
+            height: 144,
+            width: 48,
+            cellHeight: 144,
+            cellWidth: 48
+        }
+    },
+    {
+        sprite: SPRITE_SRC.STUD_FARM_SM,
+        size: {
+            height: 112,
+            width: 96,
+            cellHeight: 96,
+            cellWidth: 112
+        }
+    },
+    {
+        sprite: SPRITE_SRC.STUD_FARM_MD,
+        size: {
+            height: 112,
+            width: 112,
+            cellHeight: 112,
+            cellWidth: 112
+        }
+    },
+    {
+        sprite: SPRITE_SRC.STUD_FARM_LG,
+        size: {
+            height: 112,
+            width: 112,
+            cellHeight: 112,
+            cellWidth: 112
+        }
+    },
+    {
+        sprite: SPRITE_SRC.WELL,
+        size: {
+            height: 80,
+            width: 48,
+            cellHeight: 80,
+            cellWidth: 48
+        }
+    },
 ]

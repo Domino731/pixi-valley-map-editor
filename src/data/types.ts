@@ -70,7 +70,22 @@ export const SPRITE_SRC = {
 
     // flooring
     FLOORING: 'flooring.png',
-    DIRT_HOED: 'dirt-hoed.png'
+    DIRT_HOED: 'dirt-hoed.png',
+
+    // buildings
+    BARN_SM: 'buildings/barn-sm.png',
+    BARN_MD: 'buildings/barn-md.png',
+    BARN_LG: 'buildings/barn-lg.png',
+    HOUSE_SM: 'buildings/house-sm.png',
+    HOUSE_MD: 'buildings/house-md.png',
+    HOUSE_LG: 'buildings/house-lg.png',
+    SILO: 'buildings/silo.png',
+    GLASSHOUSE: 'buildings/glasshouse.png',
+    STUD_FARM_SM: 'buildings/stud-farm-sm.png',
+    STUD_FARM_MD: 'buildings/stud-farm-md.png',
+    STUD_FARM_LG: 'buildings/stud-farm-lg.png',
+    WELL: 'buildings/well.png'
+
 }
 
 export interface GroundData {
