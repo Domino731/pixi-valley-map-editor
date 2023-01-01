@@ -120,5 +120,14 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellHeight: 128 / 4,
             cellWidth: 192 / 12
         }
+    },
+    {
+        sprite: SPRITE_SRC.FLOORING,
+        size: {
+            height: 256,
+            width: 256,
+            cellHeight: 256 / 16,
+            cellWidth: 256 / 16
+        }
     }
 ]
