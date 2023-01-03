@@ -109,7 +109,8 @@ export enum ENGINE_OBJECTS_TYPES {
     TREES = 'TREES',
     RESOURCES_32 = 'RESOURCES_32',
     RESOURCES_16 = 'RESOURCES_16',
-    BUILDING = 'BUILDING'
+    BUILDING = 'BUILDING',
+    CROPS = "CROPS"
 }
 
 export interface MapJsonData {
