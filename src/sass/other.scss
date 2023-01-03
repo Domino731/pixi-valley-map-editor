@@ -138,20 +138,20 @@
 
 
 .objectContainer__objects {
-  display: flex !important;
-  flex-wrap: wrap !important;
+  //display: flex !important;
+  //flex-wrap: wrap !important;
   background-image: none !important;
-  width: auto !important;
-  height: auto !important;
+  //width: auto !important;
+  //height: auto !important;
 
-  div {
-    border: 1px solid #f54b4b;
-
-    &:hover {
-      cursor: pointer;
-      opacity: 0.9;
-    }
-  }
+  //div {
+  //  border: 1px solid #f54b4b;
+  //
+  //  &:hover {
+  //    cursor: pointer;
+  //    opacity: 0.9;
+  //  }
+  //}
 }
 
 .mapLoadSave {

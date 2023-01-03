@@ -8,12 +8,14 @@ import {tiles} from "../data/tiles/tiles";
 import {GAME_DATA} from "../data";
 import {EngineObject, SpriteSize} from "../data/types";
 import {SpritesConfig} from "../data/spritesConfig";
+import {ObjectsListBuilder} from "./RightPanel/ObjectsListBuilder";
 
 export class RightPanel {
     private dom: DOM;
     private map: Map;
     private main: Main;
     private objects: Array<EngineObject>;
+    private objectsListBuilder: ObjectsListBuilder
     private DOM: {
         objectsContainer: HTMLDivElement;
     }
@@ -25,6 +27,7 @@ export class RightPanel {
         this.DOM = {
             objectsContainer: document.querySelector('#current-sprite-container')
         }
+        this.objectsListBuilder = new ObjectsListBuilder(this.main);
         this.objects = [];
     }
 
@@ -57,29 +60,37 @@ export class RightPanel {
     private renderObjectsGrid(): void {
         this.DOM.objectsContainer.classList.add('objectContainer__objects');
         this.DOM.objectsContainer.innerHTML = '';
-      
+
         this.objects.forEach((el) => {
             const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === el.sprite.src)?.size
             if (spriteSize) {
                 const {cellWidth, cellHeight} = spriteSize;
 
-                const div: HTMLDivElement = document.createElement('div');
+                const wrapper: HTMLDivElement = document.createElement('div');
+                wrapper.className = 'engineObject__wrapper';
+                
+                const image: HTMLDivElement = document.createElement('div');
+                image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
+                image.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
+                image.style.width = `${16}px`;
+                image.style.height = `${16}px`;
+                wrapper.appendChild(image)
 
-                div.style.width = `${cellWidth}px`;
-                div.style.height = `${cellHeight}px`;
-                div.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-                div.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
-                div.style.backgroundRepeat = 'no-repeat';
-                div.title = el.name
+                // const div: HTMLDivElement = document.createElement('div');
+                //
+                // div.style.width = `${cellWidth}px`;
+                // div.style.height = `${cellHeight}px`;
+                // div.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
+                // div.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
+                // div.style.backgroundRepeat = 'no-repeat';
+                // div.title = el.name
+                //
+                // div.addEventListener('click', () => {
+                //     this.main.setEngineObject(el);
+                // });
 
-                div.addEventListener('click', () => {
-                    this.main.setEngineObject(el);
-                });
-
-                this.DOM.objectsContainer.appendChild(div);
+                this.DOM.objectsContainer.appendChild(wrapper);
             }
-
-
         })
 
     }
@@ -100,11 +111,12 @@ export class RightPanel {
             // @ts-ignore
             const objects = GAME_DATA.objects[value as keyof typeof GAME_DATA];
             if (objects) {
+                console.log(objects);
                 this.objects = objects;
                 this.main.setSpriteType(SPRITE_TYPES.OBJECT);
             }
 
-            this.renderGrid();
+            this.objectsListBuilder.objectsListWithStages(objects)
         }
 
         new Select("select-sprite-sheet", options, handleChange);

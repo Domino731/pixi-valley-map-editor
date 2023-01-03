@@ -7,6 +7,7 @@ import {fences} from "./environment/fences";
 import {flooring} from "./environment/flooring";
 import {dirtHoed} from "./environment/dirtHoed";
 import {buildings} from "./environment/buildings";
+import {crops} from "./crops";
 
 export const GAME_DATA = {
     objects: {
@@ -21,6 +22,7 @@ export const GAME_DATA = {
         fences,
         flooring,
         dirtHoed,
-        buildings
+        buildings,
+        crops
     }
 }

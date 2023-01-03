@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .row {
   display: block;
 
@@ -59,5 +61,34 @@
 
   &--md {
     margin: 20px 0;
+  }
+}
+
+.engineObject {
+  &__wrapper {
+    width: 100%;
+    padding: 8px 4px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $graySecondary;
+
+    &:hover {
+      cursor: pointer;
+
+      p {
+        color: $pinkSecondary !important;
+      }
+    }
+
+    p {
+      padding-left: 10px;
+      color: $gray;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+
+  &__img {
+    width: 16px;
+    height: 16px;
   }
 }

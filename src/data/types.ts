@@ -29,6 +29,9 @@ export interface EngineObject {
     items: Array<string>
 }
 
+export interface EngineObjectWithStages extends EngineObject {
+}
+
 export enum FOOD_ITEMS {
     STRAWBERRY = "STRAWBERRY"
 }
