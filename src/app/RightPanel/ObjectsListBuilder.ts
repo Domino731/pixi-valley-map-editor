@@ -18,7 +18,7 @@ export class ObjectsListBuilder {
     public prepareObjectsContainerForList(): void {
         this.DOM.objectsContainer.style.flexWrap = 'no-wrap';
         this.DOM.objectsContainer.classList.add('objectContainer__objects');
-        this.DOM.objectsContainer.innerHTML = '';
+        this.DOM.objectsContainer.innerHTML = "";
     }
 
     public objectsListWithStages(objects: Array<EngineObjectWithStages>): void {
