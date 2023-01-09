@@ -23,7 +23,7 @@ export class ObjectsListBuilder {
 
     public objectsListWithStages(objects: Array<EngineObjectWithStages>): void {
         this.prepareObjectsContainerForList();
-
+        console.log(objects);
         objects.forEach((el) => {
             const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === el.sprite.src)?.size
             if (spriteSize) {
@@ -41,12 +41,38 @@ export class ObjectsListBuilder {
                 image.style.height = `${16}px`;
 
                 const title: HTMLParagraphElement = document.createElement('p');
-                title.innerText = el.name;
+                let objectTitle = el.name;
+                if (el.stages) {
+                    objectTitle += ` (${el.stages.length})`;
+                }
+                title.innerText = objectTitle;
 
                 mainObjectWrapper.appendChild(image);
                 mainObjectWrapper.appendChild(title);
-
                 wrapper.appendChild(mainObjectWrapper)
+                // creating stages list
+                if (el.stages) {
+                    const stages = el.stages as Array<any>;
+                    stages.forEach((stage, index) => {
+                        const mainObjectWrapper: HTMLDivElement = document.createElement('div');
+                        mainObjectWrapper.className = 'engineObject__wrapper'
+
+                        const image: HTMLDivElement = document.createElement('div');
+                        image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
+                        image.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
+                        image.style.width = `${16}px`;
+                        image.style.height = `${16}px`;
+
+                        const title: HTMLParagraphElement = document.createElement('p');
+
+                        title.innerText = `Stage ${index}`;
+
+                        mainObjectWrapper.appendChild(image);
+                        mainObjectWrapper.appendChild(title);
+
+                        wrapper.appendChild(mainObjectWrapper)
+                    })
+                }
                 const div: HTMLDivElement = document.createElement('div');
                 div.style.width = `${cellWidth}px`;
                 div.style.height = `${cellHeight}px`;
