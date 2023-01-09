@@ -51,8 +51,13 @@ export class ObjectsListBuilder {
                 mainObjectWrapper.appendChild(title);
                 wrapper.appendChild(mainObjectWrapper)
                 // creating stages list
+                const listId = `object-stages-list-${el.id}`
+                const list = document.createElement('div');
+
                 if (el.stages) {
                     const stages = el.stages as Array<any>;
+
+
                     stages.forEach((stage, index) => {
                         const mainObjectWrapper: HTMLDivElement = document.createElement('div');
                         mainObjectWrapper.className = 'engineObject__wrapper'
@@ -70,19 +75,19 @@ export class ObjectsListBuilder {
                         mainObjectWrapper.appendChild(image);
                         mainObjectWrapper.appendChild(title);
 
-                        wrapper.appendChild(mainObjectWrapper)
-                    })
+                        list.appendChild(mainObjectWrapper)
+                    });
+                    list.id = listId;
+                    list.style.display = 'none';
+                    wrapper.appendChild(list);
                 }
-                const div: HTMLDivElement = document.createElement('div');
-                div.style.width = `${cellWidth}px`;
-                div.style.height = `${cellHeight}px`;
-                div.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-                div.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
-                div.style.backgroundRepeat = 'no-repeat';
-                div.title = el.name
 
                 mainObjectWrapper.addEventListener('click', () => {
-                    this.main.setEngineObject(el);
+                    if (!el.stages) {
+                        this.main.setEngineObject(el);
+                    } else {
+                        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+                    }
                 });
 
                 this.DOM.objectsContainer.appendChild(wrapper);
