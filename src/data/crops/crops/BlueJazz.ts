@@ -9,11 +9,15 @@ export const BlueJazz: CropObject = {
     name: CROPS_NAMES.BLUE_JAZZ,
     hp: 100,
     sprite: {
-        src: SPRITE_SRC.WELL,
+        src: SPRITE_SRC.CROPS,
         position: {
             x: 0,
             y: 0,
         }
+    },
+    spriteOffset: {
+        x: 0,
+        y: 0
     },
     stages: [
         {

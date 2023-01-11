@@ -87,7 +87,10 @@ export const SPRITE_SRC = {
     STUD_FARM_SM: 'buildings/stud-farm-sm.png',
     STUD_FARM_MD: 'buildings/stud-farm-md.png',
     STUD_FARM_LG: 'buildings/stud-farm-lg.png',
-    WELL: 'buildings/well.png'
+    WELL: 'buildings/well.png',
+
+    // crops
+    CROPS: 'crops/crops-stages.png'
 
 }
 

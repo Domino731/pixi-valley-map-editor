@@ -249,4 +249,13 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellWidth: 48
         }
     },
+    {
+        sprite: SPRITE_SRC.CROPS,
+        size: {
+            height: 192,
+            width: 672,
+            cellHeight: 32,
+            cellWidth: 16
+        }
+    }
 ]

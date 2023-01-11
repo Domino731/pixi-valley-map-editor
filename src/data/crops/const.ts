@@ -47,3 +47,8 @@ export enum CROPS_NAMES {
     SWEET_GEM_BERRY = "Sweet Gem Berry",
     TEA_LEAVES = "Tea Leaves",
 }
+
+export enum CROPS_PER_PANEL {
+    x = 7,
+    y = 6
+}

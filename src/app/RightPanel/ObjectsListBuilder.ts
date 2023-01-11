@@ -1,6 +1,8 @@
 import {EngineObjectWithStages, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {Main} from "../../Main";
+import {CropObject} from "../../data/crops/types";
+import {CROPS_PER_PANEL} from "../../data/crops/const";
 
 export class ObjectsListBuilder {
     private DOM: {
@@ -24,7 +26,9 @@ export class ObjectsListBuilder {
     public objectsListWithStages(objects: Array<EngineObjectWithStages>): void {
         this.prepareObjectsContainerForList();
         console.log(objects);
-        objects.forEach((el) => {
+        objects.forEach((e) => {
+            const el = e as CropObject;
+
             const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === el.sprite.src)?.size
             if (spriteSize) {
                 const {cellWidth, cellHeight} = spriteSize;
@@ -38,7 +42,7 @@ export class ObjectsListBuilder {
                 image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
                 image.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
                 image.style.width = `${16}px`;
-                image.style.height = `${16}px`;
+                image.style.height = `${32}px`;
 
                 const title: HTMLParagraphElement = document.createElement('p');
                 let objectTitle = el.name;
@@ -64,9 +68,9 @@ export class ObjectsListBuilder {
 
                         const image: HTMLDivElement = document.createElement('div');
                         image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-                        image.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
+                        image.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * index}px -${0}px`;
                         image.style.width = `${16}px`;
-                        image.style.height = `${16}px`;
+                        image.style.height = `${32}px`;
 
                         const title: HTMLParagraphElement = document.createElement('p');
 
