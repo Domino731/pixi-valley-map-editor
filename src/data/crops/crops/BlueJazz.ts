@@ -1,8 +1,6 @@
 import {CropObject} from "../types";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
 import {CROPS_NAMES} from "../const";
-import {TREE_ITEMS} from "../../environment/types";
-import {TOOLS} from "../../tools/types";
 
 export const BlueJazz: CropObject = {
     id: CROPS_NAMES.BLUE_JAZZ,
@@ -19,6 +17,7 @@ export const BlueJazz: CropObject = {
         x: 0,
         y: 0
     },
+    currentStage: 1,
     stages: [
         {
             stage: 1,

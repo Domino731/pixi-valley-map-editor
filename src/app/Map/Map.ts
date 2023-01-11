@@ -1,8 +1,10 @@
 import {Vector} from "../../types";
 import {SPRITE_TYPES} from "../../const/types";
 import {Main} from "../../Main";
-import {EngineObject, SpriteSize} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObject, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
+import {CROPS_PER_PANEL} from "../../data/crops/const";
+import {CropObject} from "../../data/crops/types";
 
 export class Map {
     readonly cellSize: number;
@@ -55,7 +57,7 @@ export class Map {
     private setObject() {
         this.main.dom.map.addEventListener('click', (e) => {
             if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
-                const engineObject: EngineObject = this.main.getEngineObject()
+                const engineObject: EngineObject | CropObject = this.main.getEngineObject()
                 let rect: DOMRect = this.main.dom.map.getBoundingClientRect();
 
                 const position: Vector = {
@@ -65,6 +67,7 @@ export class Map {
                 const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.main.getEngineObject().sprite.src)?.size
                 if (spriteSize) {
                     const object: HTMLDivElement = document.createElement('div');
+
 
                     object.dataset.objectName = this.main.getEngineObject().name;
                     object.style.position = "absolute";
@@ -83,8 +86,14 @@ export class Map {
                     object.style.top = `${this.cellSize * position.y}px`;
                     object.style.zIndex = `${position.y}`;
                     object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
-                    object.style.backgroundPosition = `-${this.main.getEngineObject().sprite.position.x * spriteSize.cellWidth}px -${this.main.getEngineObject().sprite.position.y * spriteSize.cellHeight}px`;
                     object.style.backgroundRepeat = 'no-repeat'
+
+                    if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS) {
+                        const cropObject: CropObject = engineObject as CropObject;
+                        object.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * cropObject.spriteIndex.x}px -${0}px`;
+                    } else {
+                        object.style.backgroundPosition = `-${engineObject.sprite.position.x * spriteSize.cellWidth}px -${engineObject.sprite.position.y * spriteSize.cellHeight}px`;
+                    }
 
                     this.main.dom.map.appendChild(object);
                 }

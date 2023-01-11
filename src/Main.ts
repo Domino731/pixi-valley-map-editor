@@ -7,20 +7,18 @@ import {tiles} from "./data/tiles/tiles";
 import {EngineObject, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
 import {LeftPanel} from "./app/LeftPanel/LeftPanel";
+import {CropObject} from "./data/crops/types";
 
 export class Main {
     dom: DOM;
     map: Map;
-    private spriteData: SpriteDim;
     public sprite: SpriteData | Array<EngineObject>;
     private currentSprite: SpriteNamesUnion;
     public mapSize: Vector;
-    private selectedSpriteCell: Vector;
     private rightPanel: RightPanel;
-    readonly mapCellSize: Vector;
     private spriteType: keyof typeof SPRITE_TYPES;
 
-    private engineObject: EngineObject | null;
+    private engineObject: EngineObject | CropObject | null;
 
     constructor() {
         this.dom = new DOM();
@@ -37,7 +35,7 @@ export class Main {
         return this.engineObject;
     }
 
-    public setEngineObject(payload: EngineObject | null): void {
+    public setEngineObject(payload: EngineObject | CropObject | null): void {
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
         const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.engineObject.sprite.src)?.size

@@ -6,6 +6,8 @@ export interface CropObject extends EngineObject {
     soilHydrationLevel: Array<number>;
     stages: Array<CropStageObject>;
     spriteOffset: Vector;
+    currentStage: number;
+    spriteIndex: Vector;
 }
 
 export interface CropStageObject {

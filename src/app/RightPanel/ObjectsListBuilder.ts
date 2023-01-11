@@ -79,6 +79,14 @@ export class ObjectsListBuilder {
                         mainObjectWrapper.appendChild(image);
                         mainObjectWrapper.appendChild(title);
 
+                        mainObjectWrapper.addEventListener('click', () => {
+                            this.main.setEngineObject({
+                                ...el,
+                                currentStage: stage.stage,
+                                spriteIndex: {x: index, y: 0}
+                            });
+                        });
+
                         list.appendChild(mainObjectWrapper)
                     });
                     list.id = listId;
