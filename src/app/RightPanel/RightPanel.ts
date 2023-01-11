@@ -1,14 +1,12 @@
-import {SPRITE_TYPES, SpriteData} from "../const/types";
-import {DOM} from "./DOM";
-import {Map} from "./Map";
-import {Sprites} from "../const/sprites";
-import {Main} from "../Main";
-import {Select} from "./utils/Select";
-import {tiles} from "../data/tiles/tiles";
-import {GAME_DATA} from "../data";
-import {EngineObject, SpriteSize} from "../data/types";
-import {SpritesConfig} from "../data/spritesConfig";
-import {ObjectsListBuilder} from "./RightPanel/ObjectsListBuilder";
+import {SPRITE_TYPES} from "../../const/types";
+import {DOM} from "../DOM";
+import {Map} from "../Map/Map";
+import {Main} from "../../Main";
+import {Select} from "../utils/Select";
+import {tiles} from "../../data/tiles/tiles";
+import {GAME_DATA} from "../../data";
+import {EngineObject} from "../../data/types";
+import {ObjectsListBuilder} from "./ObjectsListBuilder";
 
 export class RightPanel {
     private dom: DOM;
@@ -29,6 +27,7 @@ export class RightPanel {
         }
         this.objectsListBuilder = new ObjectsListBuilder(this.main);
         this.objects = [];
+        this.init();
     }
 
     renderEditorSpriteGrid(): void {
@@ -57,51 +56,6 @@ export class RightPanel {
         }
     }
 
-    private renderObjectsGrid(): void {
-        this.DOM.objectsContainer.classList.add('objectContainer__objects');
-        this.DOM.objectsContainer.innerHTML = '';
-
-        this.objects.forEach((el) => {
-            const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === el.sprite.src)?.size
-            if (spriteSize) {
-                const {cellWidth, cellHeight} = spriteSize;
-
-                const wrapper: HTMLDivElement = document.createElement('div');
-                wrapper.className = 'engineObject__wrapper';
-                
-                const image: HTMLDivElement = document.createElement('div');
-                image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-                image.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
-                image.style.width = `${16}px`;
-                image.style.height = `${16}px`;
-                wrapper.appendChild(image)
-
-                // const div: HTMLDivElement = document.createElement('div');
-                //
-                // div.style.width = `${cellWidth}px`;
-                // div.style.height = `${cellHeight}px`;
-                // div.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-                // div.style.backgroundPosition = `-${el.sprite.position.x * spriteSize.cellWidth}px -${el.sprite.position.y * spriteSize.cellHeight}px`;
-                // div.style.backgroundRepeat = 'no-repeat';
-                // div.title = el.name
-                //
-                // div.addEventListener('click', () => {
-                //     this.main.setEngineObject(el);
-                // });
-
-                this.DOM.objectsContainer.appendChild(wrapper);
-            }
-        })
-
-    }
-
-    private renderGrid(): void {
-        this.DOM.objectsContainer.style.flexWrap = 'no-wrap';
-        if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
-            this.renderObjectsGrid();
-        }
-    }
-
     initSpriteSelect(): void {
         const tileSetsOptions = tiles.map(({label}) => ({label, value: label}));
         const gameObjects = Object.entries(GAME_DATA.objects).map(([key]) => ({label: key, value: key}));
@@ -126,5 +80,11 @@ export class RightPanel {
         this.dom.currentSprite.style.backgroundImage = this.main.sprite.src;
         this.dom.currentSprite.style.width = `${this.main.sprite.size.spriteWidth}px`;
         this.dom.currentSprite.style.height = `${this.main.sprite.size.spriteHeight}px`;
+    }
+
+    private init(): void {
+        this.setSpriteBgImage();
+        this.renderEditorSpriteGrid();
+        this.initSpriteSelect();
     }
 }

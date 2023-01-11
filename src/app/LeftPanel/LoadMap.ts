@@ -1,5 +1,4 @@
 import {EngineObject, MapJsonData, MapObjectData, SpriteSize} from "../../data/types";
-import {Map} from "../Map";
 import {GAME_DATA} from "../../data";
 import {SpritesConfig} from "../../data/spritesConfig";
 

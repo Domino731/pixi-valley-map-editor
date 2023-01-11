@@ -1,13 +1,12 @@
-import {Sprites} from "./const/sprites";
 import {SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector} from "./types";
 import {SPRITE_TYPES, SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
-import {Map} from "./app/Map";
-import {RightPanel} from "./app/RightPanel";
-import {Debugger} from "./app/debugger";
+import {Map} from "./app/Map/Map";
+import {RightPanel} from "./app/RightPanel/RightPanel";
 import {tiles} from "./data/tiles/tiles";
 import {EngineObject, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
+import {LeftPanel} from "./app/LeftPanel/LeftPanel";
 
 export class Main {
     dom: DOM;
@@ -48,8 +47,8 @@ export class Main {
             this.dom.hoverObject.style.position = "absolute";
             this.dom.hoverObject.style.width = `${spriteSize.cellWidth}px`;
             this.dom.hoverObject.style.height = `${spriteSize.cellHeight}px`;
-            this.dom.hoverObject.style.left = `${16 * 0}px`;
-            this.dom.hoverObject.style.top = `${16 * 0}px`;
+            this.dom.hoverObject.style.left = `16px`;
+            this.dom.hoverObject.style.top = `16px`;
             this.dom.hoverObject.style.backgroundImage = `url(./src/sprites/${this.engineObject.sprite.src})`;
             this.dom.hoverObject.style.backgroundPosition = `-${this.engineObject.sprite.position.x * spriteSize.cellWidth}px -${this.engineObject.sprite.position.y * spriteSize.cellHeight}px`;
             this.dom.hoverObject.style.backgroundRepeat = 'no-repeat'
@@ -65,28 +64,9 @@ export class Main {
         this.spriteType = type;
     }
 
-    public changeSprite(spriteName: SpriteNamesUnion): void {
-        const sprite: SpriteData | undefined = Sprites.find((el) => el.spriteName === spriteName);
-        if (sprite) {
-            this.sprite = sprite;
-            this.rightPanel.setSpriteBgImage();
-            this.rightPanel.renderEditorSpriteGrid();
-
-            // update data in panel
-            this.dom.panelSpriteSheetHeight.innerText = String(sprite.size.spriteHeight);
-            this.dom.panelSpriteSheetWidth.innerText = String(sprite.size.spriteWidth);
-            this.dom.panelSpriteSheetType.innerText = String(sprite.type);
-            this.dom.panelCellSize.innerText = `${sprite.size.spriteWidth} / ${sprite.size.spriteHeight}`;
-            this.dom.panelCellAmount.innerText = String((sprite.size.spriteHeight / sprite.size.cellHeight) * (sprite.size.spriteWidth / sprite.size.cellWidth));
-        }
-    }
-
-
     init(): void {
-        this.rightPanel.setSpriteBgImage();
-        this.rightPanel.renderEditorSpriteGrid();
         this.map.init();
-        this.rightPanel.initSpriteSelect();
-        const debbuger = new Debugger(this)
+        new RightPanel(this);
+        new LeftPanel();
     }
 }
