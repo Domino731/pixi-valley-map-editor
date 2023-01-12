@@ -8,10 +8,7 @@ export const Cauliflower: CropObject = {
     hp: 100,
     sprite: {
         src: SPRITE_SRC.CROPS,
-        position: {
-            x: 0,
-            y: 0,
-        }
+        position: {x: 28, y: 1}
     },
     spriteOffset: {
         x: 0,

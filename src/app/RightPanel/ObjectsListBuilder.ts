@@ -50,6 +50,7 @@ export class ObjectsListBuilder {
                     objectTitle += ` (${el.stages.length})`;
                 }
                 title.innerText = objectTitle;
+                title.className = 'text--white'
 
                 mainObjectWrapper.appendChild(image);
                 mainObjectWrapper.appendChild(title);
@@ -81,6 +82,7 @@ export class ObjectsListBuilder {
                         if (index === el.stages.length - 1) {
                             innerText += ' (Harvest)'
                         }
+                        title.className = 'text--grey'
                         title.innerText = innerText;
 
                         mainObjectWrapper.appendChild(image);
