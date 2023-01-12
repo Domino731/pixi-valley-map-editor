@@ -2,56 +2,56 @@ import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
 
-export const Cauliflower: CropObject = {
-    id: CROPS_NAMES.CAULIFLOWER,
-    name: CROPS_NAMES.CAULIFLOWER,
+export const Tomato: CropObject = {
+    id: CROPS_NAMES.TOMATO,
+    name: CROPS_NAMES.TOMATO,
     hp: 100,
     sprite: {
         src: SPRITE_SRC.CROPS,
-        position: {x: 28, y: 1}
+        position: {x: 38, y: 5}
     },
     spriteOffset: {
         x: 0,
-        y: 1
+        y: 0
     },
     currentStage: 1,
-    spriteIndex: {x: 0, y: 1},
+    spriteIndex: {x: 0, y: 0},
     stages: [
         {
             stage: 1,
             nextStageByDays: 1,
             nextStageByWater: null,
-            spritePosition: {x: 0, y: 1},
+            spritePosition: {x: 3, y: 5}
         },
         {
             stage: 2,
             nextStageByDays: 2,
             nextStageByWater: null,
-            spritePosition: {x: 7, y: 1},
+            spritePosition: {x: 10, y: 5}
         },
         {
             stage: 3,
             nextStageByDays: 2,
             nextStageByWater: null,
-            spritePosition: {x: 14, y: 1},
+            spritePosition: {x: 17, y: 5}
         },
         {
             stage: 4,
             nextStageByDays: 2,
             nextStageByWater: null,
-            spritePosition: {x: 21, y: 1},
+            spritePosition: {x: 24, y: 5}
         },
         {
             stage: 5,
             nextStageByDays: null,
             nextStageByWater: null,
-            spritePosition: {x: 28, y: 1},
+            spritePosition: {x: 31, y: 5}
         },
         {
             stage: 6,
             nextStageByDays: null,
             nextStageByWater: null,
-            spritePosition: {x: 35, y: 1},
+            spritePosition: {x: 38, y: 5}
         }
     ],
     soilHydrationLevel: [0, 100],
