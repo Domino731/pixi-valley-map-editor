@@ -22,6 +22,24 @@ import {Starfruit} from "./crops/Starfruit";
 import {SummerSpangle} from "./crops/SummerSpangle";
 import {Sunflower} from "./crops/Sunflower";
 import {Tomato} from "./crops/Tomato";
+import {Wheat} from "./crops/Wheat";
+import {Amaranth} from "./crops/Amaranth";
+import {Artichoke} from "./crops/Artichoke";
+import {Beet} from "./crops/Beet";
+import {BokChoy} from "./crops/BokChoy";
+import {Cranberries} from "./crops/Cranberries";
+import {Eggplant} from "./crops/Eggplant";
+import {FairyRose} from "./crops/FairyRose";
+import {Grape} from "./crops/Grape";
+import {Pumpkin} from "./crops/Pumpkin";
+import {Yam} from "./crops/Yam";
+import {AncientFruit} from "./crops/AncientFruit";
+import {Fiber} from "./crops/Fiber";
+import {CactusFruit} from "./crops/CactusFruit";
+import {Pineapple} from "./crops/Pineapple";
+import {TaroRoot} from "./crops/TaroRoot";
+import {SweetGemBerry} from "./crops/SweetGemBerry";
+import {TeaLeaves} from "./crops/TeaLeaves";
 
 export const crops = [
     BlueJazz,
@@ -50,5 +68,26 @@ export const crops = [
     Starfruit,
     SummerSpangle,
     Sunflower,
-    Tomato
+    Tomato,
+
+    Wheat,
+    Amaranth,
+    Artichoke,
+    Beet,
+    BokChoy,
+    Cranberries,
+
+    Eggplant,
+    FairyRose,
+    Grape,
+    Pumpkin,
+    Yam,
+    AncientFruit,
+
+    CactusFruit,
+    Fiber,
+    Pineapple,
+    TaroRoot,
+    SweetGemBerry,
+    TeaLeaves
 ]
