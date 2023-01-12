@@ -61,20 +61,27 @@ export class ObjectsListBuilder {
                 if (el.stages) {
                     const stages = el.stages as Array<any>;
 
-
                     stages.forEach((stage, index) => {
                         const mainObjectWrapper: HTMLDivElement = document.createElement('div');
                         mainObjectWrapper.className = 'engineObject__wrapper'
 
+                        // create image positions
+                        const imageYOffset: number = (spriteSize.cellHeight * stage.spritePosition.y);
+                        const imageXOffset: number = (spriteSize.cellWidth * stage.spritePosition.x);
+
                         const image: HTMLDivElement = document.createElement('div');
                         image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
-                        image.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * index}px -${0}px`;
+                        image.style.backgroundPosition = `-${imageXOffset}px -${imageYOffset}px`;
                         image.style.width = `${16}px`;
                         image.style.height = `${32}px`;
 
                         const title: HTMLParagraphElement = document.createElement('p');
 
-                        title.innerText = `Stage ${index}`;
+                        let innerText = `Stage ${stage.stage}`;
+                        if (index === el.stages.length - 1) {
+                            innerText += ' (Harvest)'
+                        }
+                        title.innerText = innerText;
 
                         mainObjectWrapper.appendChild(image);
                         mainObjectWrapper.appendChild(title);
@@ -89,6 +96,7 @@ export class ObjectsListBuilder {
 
                         list.appendChild(mainObjectWrapper)
                     });
+
                     list.id = listId;
                     list.style.display = 'none';
                     wrapper.appendChild(list);

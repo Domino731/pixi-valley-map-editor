@@ -14,4 +14,5 @@ export interface CropStageObject {
     nextStageByDays: number | null;
     nextStageByWater: number | null;
     stage: number;
+    spritePosition: Vector;
 }
