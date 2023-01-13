@@ -36,7 +36,7 @@ export class ObjectsListBuilder {
                 const wrapper: HTMLDivElement = document.createElement('div');
 
                 const mainObjectWrapper: HTMLDivElement = document.createElement('div');
-                mainObjectWrapper.className = 'engineObject__wrapper'
+                mainObjectWrapper.className = 'engineObject__wrapper mb--4'
 
                 const image: HTMLDivElement = document.createElement('div');
                 image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
@@ -57,14 +57,15 @@ export class ObjectsListBuilder {
                 wrapper.appendChild(mainObjectWrapper)
                 // creating stages list
                 const listId = `object-stages-list-${el.id}`
-                const list = document.createElement('div');
+                const list = document.createElement('ul');
+                list.className = 'pt--8 pb--8 pl--24';
 
                 if (el.stages) {
                     const stages = el.stages as Array<any>;
 
                     stages.forEach((stage, index) => {
-                        const mainObjectWrapper: HTMLDivElement = document.createElement('div');
-                        mainObjectWrapper.className = 'engineObject__wrapper'
+                        const mainObjectWrapper: HTMLLIElement = document.createElement('li');
+                        mainObjectWrapper.className = 'listHover text flex flex__align--center pl--10 mb--6 text--whiteHover'
 
                         // create image positions
                         const imageYOffset: number = (spriteSize.cellHeight * stage.spritePosition.y);
@@ -82,7 +83,7 @@ export class ObjectsListBuilder {
                         if (index === el.stages.length - 1) {
                             innerText += ' (Harvest)'
                         }
-                        title.className = 'text--grey'
+                        title.className = 'text--grey pl--10'
                         title.innerText = innerText;
 
                         mainObjectWrapper.appendChild(image);

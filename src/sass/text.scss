@@ -37,6 +37,13 @@
 
   &--white {
     color: $white;
+
+    &Hover {
+      &:hover {
+        color: $white !important;
+        cursor: pointer;
+      }
+    }
   }
 
   // sizes
