@@ -92,12 +92,34 @@
   }
 }
 
-.listHover {
-  &:hover {
-    p {
-      color: $white !important;
+.stageObject {
+  &__listItem {
+    position: relative;
+    border-bottom: 1px solid #2c2d2e;
+    padding: 4px 0;
+
+    &:hover {
+      p {
+        color: $white !important;
+      }
+
+      &::before {
+        background: $pink;
+      }
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      position: absolute;
+      background: $gray;
+      top: 50%;
+      left: 0;
+      /* bring your own prefixes */
+      transform: translate(-50%, -50%);
     }
   }
-
-
 }

@@ -65,7 +65,7 @@ export class ObjectsListBuilder {
 
                     stages.forEach((stage, index) => {
                         const mainObjectWrapper: HTMLLIElement = document.createElement('li');
-                        mainObjectWrapper.className = 'listHover text flex flex__align--center pl--10 mb--6 text--whiteHover'
+                        mainObjectWrapper.className = 'stageObject__listItem text flex flex__align--center pl--10 mb--6 text--whiteHover'
 
                         // create image positions
                         const imageYOffset: number = (spriteSize.cellHeight * stage.spritePosition.y);
