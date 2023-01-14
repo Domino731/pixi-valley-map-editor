@@ -12,4 +12,16 @@
       align-items: center;
     }
   }
+
+  &__grow {
+    &--1 {
+      flex-grow: 1;
+    }
+  }
+
+  &__direction {
+    &--column {
+      flex-direction: column;
+    }
+  }
 }
