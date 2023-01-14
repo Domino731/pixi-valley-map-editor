@@ -64,7 +64,6 @@ export class Main {
 
     init(): void {
         this.map.init();
-        new RightPanel(this);
         new LeftPanel();
     }
 }
