@@ -65,9 +65,9 @@ export class RightPanel {
             // @ts-ignore
             const objects = GAME_DATA.objects[value as keyof typeof GAME_DATA];
             if (objects) {
-                console.log(objects);
                 this.objects = objects;
                 this.main.setSpriteType(SPRITE_TYPES.OBJECT);
+                this.dom.currentSprite.style.width = 'auto';
             }
 
             this.objectsListBuilder.objectsListWithStages(objects)

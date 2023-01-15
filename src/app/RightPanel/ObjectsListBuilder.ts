@@ -44,6 +44,9 @@ export class ObjectsListBuilder {
                 image.style.width = `${16}px`;
                 image.style.height = `${32}px`;
 
+                const icon = document.createElement('i');
+                icon.className = 'fa-solid fa-chevron-down';
+
                 const title: HTMLParagraphElement = document.createElement('p');
                 let objectTitle = el.name;
                 if (el.stages) {
@@ -103,13 +106,23 @@ export class ObjectsListBuilder {
                     list.id = listId;
                     list.style.display = 'none';
                     wrapper.appendChild(list);
+
+
+                    mainObjectWrapper.appendChild(icon)
                 }
 
                 mainObjectWrapper.addEventListener('click', () => {
                     if (!el.stages) {
                         this.main.setEngineObject(el);
                     } else {
-                        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+                        const isVisible: boolean = list.style.display === 'block';
+                        list.style.display = isVisible ? 'none' : 'block';
+                        if (isVisible) {
+                            icon.classList.remove('stageObject__iconActive')
+                        } else {
+                            icon.classList.add('stageObject__iconActive')
+                        }
+
                     }
                 });
 

@@ -71,6 +71,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid $graySecondary;
+    position: relative;
 
     &:hover {
       cursor: pointer;
@@ -78,11 +79,22 @@
       p {
         color: $pink !important;
       }
+
+      i {
+        color: white;
+      }
     }
 
     p {
       padding-left: 10px;
       font-family: "Roboto", sans-serif;
+    }
+
+    i {
+      position: absolute;
+      right: 16px;
+      color: $graySecondary;
+      transition: 0.2s;
     }
   }
 
@@ -121,5 +133,10 @@
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
     }
+  }
+
+  &__iconActive {
+    color: $gray !important;
+    transform: rotate(180deg);
   }
 }
