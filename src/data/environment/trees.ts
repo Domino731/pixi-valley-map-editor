@@ -97,8 +97,6 @@ export const trees: Array<TreeObject> = [
         ],
         items: [TREE_ITEMS.WOOD]
     },
-
-
     {
         id: TREE_NAMES.MAHOGANY_SUMMER,
         name: TREE_NAMES.MAHOGANY_SUMMER,
