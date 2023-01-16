@@ -1,4 +1,4 @@
-import {EngineObjectWithStages, SpriteSize} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObjectWithStages, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {Main} from "../../Main";
 import {CropObject} from "../../data/crops/types";
@@ -71,15 +71,29 @@ export class ObjectsListBuilder {
                         mainObjectWrapper.className = 'stageObject__listItem text flex flex__align--center pl--10 mb--6 text--whiteHover'
 
                         // create image positions
-                        const imageYOffset: number = (spriteSize.cellHeight * stage.spritePosition.y);
-                        const imageXOffset: number = (spriteSize.cellWidth * stage.spritePosition.x);
+                        let imageYOffset: number = 0;
+                        let imageXOffset: number = 0;
 
+
+                        if (el.type === ENGINE_OBJECTS_TYPES.TREES) {
+                            imageYOffset = (spriteSize.cellHeight * stage.sprite.position.y);
+                            imageXOffset = (spriteSize.cellWidth * stage.sprite.position.x);
+                        } else {
+                            imageYOffset = (spriteSize.cellHeight * stage.spritePosition.y);
+                            imageXOffset = (spriteSize.cellWidth * stage.spritePosition.x);
+                        }
                         const image: HTMLDivElement = document.createElement('div');
-                        image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
                         image.style.backgroundPosition = `-${imageXOffset}px -${imageYOffset}px`;
+
+                        if (el.type === ENGINE_OBJECTS_TYPES.TREES) {
+                            image.style.backgroundImage = `url(./src/sprites/${stage.sprite.src})`;
+
+                        } else {
+                            image.style.backgroundImage = `url(./src/sprites/${el.sprite.src})`;
+                        }
                         image.style.width = `${16}px`;
                         image.style.height = `${32}px`;
-
+                        
                         const title: HTMLParagraphElement = document.createElement('p');
 
                         let innerText = `Stage ${stage.stage}`;

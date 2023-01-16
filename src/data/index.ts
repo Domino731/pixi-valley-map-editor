@@ -8,6 +8,7 @@ import {flooring} from "./environment/flooring";
 import {dirtHoed} from "./environment/dirtHoed";
 import {buildings} from "./environment/buildings";
 import {crops} from "./crops";
+import {Trees as newTrees} from "./environment/trees/index";
 
 export const GAME_DATA = {
     objects: {
@@ -23,6 +24,7 @@ export const GAME_DATA = {
         flooring,
         dirtHoed,
         buildings,
-        crops
+        crops,
+        newTrees
     }
 }
