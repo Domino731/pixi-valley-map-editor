@@ -29,6 +29,28 @@ export interface EngineObject {
     items: Array<string>
 }
 
+export interface EngineStageObject {
+    id: string,
+    name: string,
+    hp: number,
+    sprite: {
+        src: string,
+        position: {
+            x: number,
+            y: number,
+        }
+    },
+    tools: Array<keyof typeof TOOLS>,
+    destroyable: boolean,
+    checkboxes: Array<Checkbox>,
+    items: Array<string>,
+    stage: number
+}
+
+export interface EngineObjectWithStages extends EngineObject {
+    stages: Array<EngineStageObject>
+}
+
 export interface EngineObjectWithStages extends EngineObject {
 }
 
