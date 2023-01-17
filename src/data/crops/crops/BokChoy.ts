@@ -1,6 +1,7 @@
 import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
+import {cropStagesFactory} from "../utils";
 
 export const BokChoy: CropObject = {
     id: CROPS_NAMES.BOK_CHOY,
@@ -10,45 +11,7 @@ export const BokChoy: CropObject = {
         src: SPRITE_SRC.CROPS,
         position: {x: 32, y: 4}
     },
-    spriteOffset: {
-        x: 0,
-        y: 0
-    },
-    currentStage: 1,
-    spriteIndex: {x: 0, y: 0},
-    stages: [
-        {
-            stage: 1,
-            nextStageByDays: 1,
-            nextStageByWater: null,
-            spritePosition: {x: 4, y: 4}
-        },
-        {
-            stage: 2,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 11, y: 4}
-        },
-        {
-            stage: 3,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 18, y: 4}
-        },
-        {
-            stage: 4,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 25, y: 4}
-        },
-        {
-            stage: 5,
-            nextStageByDays: null,
-            nextStageByWater: null,
-            spritePosition: {x: 32, y: 4}
-        },
-    ],
-    soilHydrationLevel: [0, 100],
+    stages: cropStagesFactory(4, 4, 5, CROPS_NAMES.BOK_CHOY),
     tools: [],
     destroyable: true,
     checkboxes: [],

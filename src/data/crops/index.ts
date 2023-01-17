@@ -40,7 +40,9 @@ import {Pineapple} from "./crops/Pineapple";
 import {TaroRoot} from "./crops/TaroRoot";
 import {SweetGemBerry} from "./crops/SweetGemBerry";
 import {TeaLeaves} from "./crops/TeaLeaves";
+import {cropStagesFactory} from "./utils";
 
+console.log(cropStagesFactory(0, 0, 5, 'test'));
 export const crops = [
     BlueJazz,
     Cauliflower,

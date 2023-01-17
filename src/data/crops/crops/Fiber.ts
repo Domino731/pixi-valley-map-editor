@@ -1,6 +1,7 @@
 import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
+import {cropStagesFactory} from "../utils";
 
 export const Fiber: CropObject = {
     id: CROPS_NAMES.FIBER,
@@ -10,45 +11,7 @@ export const Fiber: CropObject = {
         src: SPRITE_SRC.CROPS,
         position: {x: 34, y: 1}
     },
-    spriteOffset: {
-        x: 0,
-        y: 0
-    },
-    currentStage: 1,
-    spriteIndex: {x: 0, y: 0},
-    stages: [
-        {
-            stage: 1,
-            nextStageByDays: 1,
-            nextStageByWater: null,
-            spritePosition: {x: 6, y: 1}
-        },
-        {
-            stage: 2,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 13, y: 1}
-        },
-        {
-            stage: 3,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 20, y: 1}
-        },
-        {
-            stage: 4,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 27, y: 1}
-        },
-        {
-            stage: 5,
-            nextStageByDays: null,
-            nextStageByWater: null,
-            spritePosition: {x: 34, y: 1}
-        },
-    ],
-    soilHydrationLevel: [0, 100],
+    stages: cropStagesFactory(6, 1, 5, CROPS_NAMES.FIBER),
     tools: [],
     destroyable: true,
     checkboxes: [],

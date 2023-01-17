@@ -1,6 +1,7 @@
 import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
+import {cropStagesFactory} from "../utils";
 
 export const Artichoke: CropObject = {
     id: CROPS_NAMES.ARTICHOKE,
@@ -10,45 +11,7 @@ export const Artichoke: CropObject = {
         src: SPRITE_SRC.CROPS,
         position: {x: 32, y: 3}
     },
-    spriteOffset: {
-        x: 0,
-        y: 0
-    },
-    currentStage: 1,
-    spriteIndex: {x: 0, y: 0},
-    stages: [
-        {
-            stage: 1,
-            nextStageByDays: 1,
-            nextStageByWater: null,
-            spritePosition: {x: 4, y: 3}
-        },
-        {
-            stage: 2,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 11, y: 3}
-        },
-        {
-            stage: 3,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 18, y: 3}
-        },
-        {
-            stage: 4,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 25, y: 3}
-        },
-        {
-            stage: 5,
-            nextStageByDays: null,
-            nextStageByWater: null,
-            spritePosition: {x: 32, y: 3}
-        },
-    ],
-    soilHydrationLevel: [0, 100],
+    stages: cropStagesFactory(4, 3, 5, CROPS_NAMES.ARTICHOKE),
     tools: [],
     destroyable: true,
     checkboxes: [],

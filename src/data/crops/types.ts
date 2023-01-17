@@ -1,18 +1,10 @@
 import {EngineObject} from "../types";
 import {Vector} from "../../types";
 
-
-export interface CropObject extends EngineObject {
-    soilHydrationLevel: Array<number>;
-    stages: Array<CropStageObject>;
-    spriteOffset: Vector;
-    currentStage: number;
-    spriteIndex: Vector;
+export interface CropStageObject extends EngineObject {
+    stage: number;
 }
 
-export interface CropStageObject {
-    nextStageByDays: number | null;
-    nextStageByWater: number | null;
-    stage: number;
-    spritePosition: Vector;
+export interface CropObject extends EngineObject {
+    stages: Array<CropStageObject>;
 }

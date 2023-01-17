@@ -1,6 +1,7 @@
 import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
+import {cropStagesFactory} from "../utils";
 
 export const TeaLeaves: CropObject = {
     id: CROPS_NAMES.TEA_LEAVES,
@@ -10,39 +11,7 @@ export const TeaLeaves: CropObject = {
         src: SPRITE_SRC.CROPS,
         position: {x: 27, y: 5}
     },
-    spriteOffset: {
-        x: 0,
-        y: 0
-    },
-    currentStage: 1,
-    spriteIndex: {x: 0, y: 0},
-    stages: [
-        {
-            stage: 1,
-            nextStageByDays: 1,
-            nextStageByWater: null,
-            spritePosition: {x: 6, y: 5}
-        },
-        {
-            stage: 2,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 13, y: 5}
-        },
-        {
-            stage: 3,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 20, y: 5}
-        },
-        {
-            stage: 4,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 27, y: 5}
-        }
-    ],
-    soilHydrationLevel: [0, 100],
+    stages: cropStagesFactory(6, 5, 4, CROPS_NAMES.TEA_LEAVES),
     tools: [],
     destroyable: true,
     checkboxes: [],

@@ -1,6 +1,7 @@
 import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
+import {cropStagesFactory} from "../utils";
 
 export const UnmilledRice: CropObject = {
     id: CROPS_NAMES.UNMILLED_RICE,
@@ -10,45 +11,7 @@ export const UnmilledRice: CropObject = {
         src: SPRITE_SRC.CROPS,
         position: {x: 29, y: 5}
     },
-    spriteOffset: {
-        x: 0,
-        y: 0
-    },
-    currentStage: 1,
-    spriteIndex: {x: 0, y: 0},
-    stages: [
-        {
-            stage: 1,
-            nextStageByDays: 1,
-            nextStageByWater: null,
-            spritePosition: {x: 1, y: 5}
-        },
-        {
-            stage: 2,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 8, y: 5}
-        },
-        {
-            stage: 3,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 15, y: 5}
-        },
-        {
-            stage: 4,
-            nextStageByDays: 2,
-            nextStageByWater: null,
-            spritePosition: {x: 22, y: 5}
-        },
-        {
-            stage: 5,
-            nextStageByDays: null,
-            nextStageByWater: null,
-            spritePosition: {x: 29, y: 5}
-        },
-    ],
-    soilHydrationLevel: [0, 100],
+    stages: cropStagesFactory(1, 5, 5, CROPS_NAMES.UNMILLED_RICE),
     tools: [],
     destroyable: true,
     checkboxes: [],
