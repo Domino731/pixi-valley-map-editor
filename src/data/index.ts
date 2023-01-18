@@ -1,5 +1,3 @@
-import {trees} from "./environment/trees";
-import {bushesLg, bushesSm, bushesMd, bushesSmDb} from "./environment/bushes";
 import {treesStage4} from "./environment/treesStage4";
 import {resources32} from "./resources/resources32";
 import {resources16} from "./resources/resources16";
@@ -8,16 +6,13 @@ import {flooring} from "./environment/flooring";
 import {dirtHoed} from "./environment/dirtHoed";
 import {buildings} from "./environment/buildings";
 import {crops} from "./crops";
-import {Trees as newTrees} from "./environment/trees/index";
+import {Trees} from "./environment/trees";
+import {bushes} from "./environment/bushes";
 
 export const GAME_DATA = {
     objects: {
-        trees,
         treesStage4,
-        bushesLg,
-        bushesSm,
-        bushesMd,
-        bushesSmDb,
+        bushes,
         resources32,
         resources16,
         fences,
@@ -25,6 +20,6 @@ export const GAME_DATA = {
         dirtHoed,
         buildings,
         crops,
-        newTrees
+        Trees
     }
 }

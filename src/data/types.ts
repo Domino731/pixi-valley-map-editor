@@ -81,7 +81,7 @@ export const SPRITE_SRC = {
     OAK_STAGE_5: 'tree_stage_5_oak.png',
     PINE_STAGE_5: 'tree_stage_5_pine.png',
     OUTDOORS_SPRING: 'outdoors_spring.png',
-    
+
     TREE_STAGE_1: 'trees-stage-1.png',
     TREE_STAGE_2: 'trees-stage-2.png',
     TREE_STAGE_3: 'trees-stage-3.png',
@@ -139,7 +139,8 @@ export enum ENGINE_OBJECTS_TYPES {
     RESOURCES_32 = 'RESOURCES_32',
     RESOURCES_16 = 'RESOURCES_16',
     BUILDING = 'BUILDING',
-    CROPS = "CROPS"
+    CROPS = "CROPS",
+    BUSHES = 'BUSHES'
 }
 
 export interface MapJsonData {
@@ -152,3 +153,12 @@ export interface MapJsonData {
 }
 
 export type EngineObjectsTypesUnion = keyof typeof ENGINE_OBJECTS_TYPES;
+
+export enum GAME_SEASONS {
+    WINTER = 'WINTER',
+    SPRING = 'SPRING',
+    SUMMER = 'SUMMER',
+    AUTUMN = 'AUTUMN'
+}
+
+export type GameSeasonsUnion = keyof typeof GAME_SEASONS;
