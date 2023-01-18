@@ -80,36 +80,36 @@ export const SpritesConfig: Array<SpriteConfig> = [
         sprite: SPRITE_SRC.TREE_STAGE_4,
         size: {
             height: 32,
-            width: 64,
+            width: 128,
             cellHeight: 32,
-            cellWidth: 64 / 4
+            cellWidth: 32
         }
     },
     {
         sprite: SPRITE_SRC.TREE_STAGE_3,
         size: {
-            height: 36,
-            width: 144,
-            cellHeight: 36,
-            cellWidth: 144 / 4
+            height: 32,
+            width: 128,
+            cellHeight: 32,
+            cellWidth: 32
         }
     },
     {
         sprite: SPRITE_SRC.TREE_STAGE_2,
         size: {
-            height: 28,
-            width: 112,
-            cellHeight: 28,
-            cellWidth: 112 / 4
+            height: 32,
+            width: 128,
+            cellHeight: 32,
+            cellWidth: 32
         }
     },
     {
         sprite: SPRITE_SRC.TREE_STAGE_1,
         size: {
-            height: 28,
-            width: 112,
-            cellHeight: 28,
-            cellWidth: 112 / 4
+            height: 32,
+            width: 128,
+            cellHeight: 32,
+            cellWidth: 32
         }
     },
 
