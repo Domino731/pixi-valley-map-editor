@@ -86,6 +86,34 @@ export const SpritesConfig: Array<SpriteConfig> = [
         }
     },
     {
+        sprite: SPRITE_SRC.TREE_STAGE_3,
+        size: {
+            height: 36,
+            width: 144,
+            cellHeight: 36,
+            cellWidth: 144 / 4
+        }
+    },
+    {
+        sprite: SPRITE_SRC.TREE_STAGE_2,
+        size: {
+            height: 28,
+            width: 112,
+            cellHeight: 28,
+            cellWidth: 112 / 4
+        }
+    },
+    {
+        sprite: SPRITE_SRC.TREE_STAGE_1,
+        size: {
+            height: 28,
+            width: 112,
+            cellHeight: 28,
+            cellWidth: 112 / 4
+        }
+    },
+
+    {
         sprite: SPRITE_SRC.OUTDOORS_SPRING,
         size: {
             height: 1264,

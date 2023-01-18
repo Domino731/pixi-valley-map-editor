@@ -38,9 +38,9 @@ export class Main {
     public setEngineObject(payload: EngineObject | CropObject | null): void {
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
+        console.log(SpritesConfig, this.engineObject);
         const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.engineObject.sprite.src)?.size
         if (spriteSize) {
-
             this.dom.hoverObject.dataset.objectName = this.engineObject.name;
             this.dom.hoverObject.style.position = "absolute";
             this.dom.hoverObject.style.width = `${spriteSize.cellWidth}px`;

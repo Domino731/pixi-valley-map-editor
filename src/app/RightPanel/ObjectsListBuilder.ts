@@ -99,11 +99,7 @@ export class ObjectsListBuilder {
                         mainObjectWrapper.appendChild(title);
 
                         mainObjectWrapper.addEventListener('click', () => {
-                            this.main.setEngineObject({
-                                ...el,
-                                currentStage: stage.stage,
-                                spriteIndex: {x: index, y: 0}
-                            });
+                            this.main.setEngineObject(stage);
                         });
 
                         list.appendChild(mainObjectWrapper)
