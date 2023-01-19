@@ -88,7 +88,7 @@ export class Map {
                     object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
                     object.style.backgroundRepeat = 'no-repeat'
 
-                    if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS) {
+                    if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS && engineObject.stages?.length) {
                         const cropObject: CropObject = engineObject as CropObject;
                         object.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * cropObject.spriteIndex.x}px -${0}px`;
                     } else {

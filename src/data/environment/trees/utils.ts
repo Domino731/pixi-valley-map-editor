@@ -94,3 +94,26 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
     })
     return Tree;
 }
+
+export const treeStaticFactory = (treeName: keyof typeof TREE_NAMES) => {
+    const Tree: TreeObject = {
+        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        type: ENGINE_OBJECTS_TYPES.TREES,
+        id: treeName,
+        name: treeName,
+        hp: 800,
+        sprite: {
+            // @ts-ignore
+            src: SPRITE_SRC[`${treeName.toUpperCase()}_STAGE_5` as keyof SPRITE_SRC],
+            position: {
+                x: 0,
+                y: 0,
+            }
+        },
+        tools: [TOOLS.AXE],
+        destroyable: true,
+        checkboxes: [],
+        items: [TREE_ITEMS.WOOD],
+        stages: []
+    }
+}

@@ -285,5 +285,50 @@ export const SpritesConfig: Array<SpriteConfig> = [
             cellHeight: 32,
             cellWidth: 16
         }
+    },
+    {
+        sprite: SPRITE_SRC.TREE_MD,
+        size: {
+            height: 320,
+            width: 112,
+            cellHeight: 112,
+            cellWidth: 80
+        }
+    },
+    {
+        sprite: SPRITE_SRC.TREE_LG,
+        size: {
+            height: 112,
+            width: 320,
+            cellHeight: 112,
+            cellWidth: 80
+        }
+    },
+    {
+        sprite: SPRITE_SRC.TREE_LG,
+        size: {
+            height: 112,
+            width: 320,
+            cellHeight: 112,
+            cellWidth: 80
+        }
+    },
+    {
+        sprite: SPRITE_SRC.TREE_XL,
+        size: {
+            height: 112,
+            width: 384,
+            cellHeight: 112,
+            cellWidth: 384 / 4
+        }
+    },
+    {
+        sprite: SPRITE_SRC.CROPS_GIANT,
+        size: {
+            height: 112,
+            width: 228,
+            cellHeight: 112,
+            cellWidth: 96
+        }
     }
 ]

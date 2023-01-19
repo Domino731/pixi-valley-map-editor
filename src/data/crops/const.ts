@@ -42,6 +42,11 @@ export enum CROPS_NAMES {
     TARO_ROOT = "Taro Root",
     SWEET_GEM_BERRY = "Sweet Gem Berry",
     TEA_LEAVES = "Tea Leaves",
+
+    // large crops
+    CAULIFLOWER_GIANT = 'Cauliflower giant',
+    MELON_GIANT = 'Melon giant',
+    PUMPKIN_GIANT = 'Pumpkin giant'
 }
 
 export enum CROPS_PER_PANEL {

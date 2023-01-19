@@ -1,6 +1,15 @@
 export enum TREE_NAMES {
     MAPLE = 'MAPLE',
+    MAPLE_MD = 'MAPLE_MD',
+    MAPLE_LG = 'MAPLE_LG',
+    MAPLE_XL = 'MAPLE_XL',
     OAK = 'OAK',
+    OAK_MD = 'OAK_MD',
+    OAK_LG = 'OAK_LG',
+    OAK_XL = 'OAK_XL',
     PINE = 'PINE',
-    MAHOGANY = 'MAHOGANY'
+    MAHOGANY = 'MAHOGANY',
+    MAHOGANY_MD = 'MAHOGANY_MD',
+    MAHOGANY_LG = 'MAHOGANY_LG',
+    MAHOGANY_XL = 'MAHOGANY_XL',
 }

@@ -86,6 +86,9 @@ export const SPRITE_SRC = {
     TREE_STAGE_2: 'trees-stage-2.png',
     TREE_STAGE_3: 'trees-stage-3.png',
     TREE_STAGE_4: 'trees-stage-4.png',
+    TREE_MD: 'trees-md.png',
+    TREE_LG: 'trees-lg.png',
+    TREE_XL: 'trees-xl.png',
 
     // resources
     RESOURCES_32: 'resources-32.png',
@@ -113,7 +116,8 @@ export const SPRITE_SRC = {
     WELL: 'buildings/well.png',
 
     // crops
-    CROPS: 'crops/crops-stages.png'
+    CROPS: 'crops/crops-stages.png',
+    CROPS_GIANT: 'crops/crops-giant.png'
 
 }
 

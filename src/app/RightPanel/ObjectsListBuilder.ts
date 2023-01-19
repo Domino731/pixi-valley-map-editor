@@ -49,7 +49,7 @@ export class ObjectsListBuilder {
 
                 const title: HTMLParagraphElement = document.createElement('p');
                 let objectTitle = el.name;
-                if (el.stages) {
+                if (el.stages?.length) {
                     objectTitle += ` (${el.stages.length})`;
                 }
                 title.innerText = objectTitle;
@@ -63,7 +63,7 @@ export class ObjectsListBuilder {
                 const list = document.createElement('ul');
                 list.className = 'pt--8 pb--8 pl--24';
 
-                if (el.stages) {
+                if (el.stages?.length) {
                     const stages = el.stages as Array<any>;
 
                     stages.forEach((stage, index) => {
@@ -114,7 +114,7 @@ export class ObjectsListBuilder {
                 }
 
                 mainObjectWrapper.addEventListener('click', () => {
-                    if (!el.stages) {
+                    if (!el.stages?.length) {
                         this.main.setEngineObject(el);
                     } else {
                         const isVisible: boolean = list.style.display === 'block';
