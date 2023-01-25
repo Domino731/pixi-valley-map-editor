@@ -1,0 +1,70 @@
+.inspect {
+  padding-top: 42px;
+
+  &__graphic {
+
+  }
+
+  &__blueprint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border: 1px solid #FFFFFF7F;
+    background-color: #269;
+    background-image: linear-gradient(rgba(255, 255, 255, .5) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, .5) 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, .28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .28) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  }
+
+  &__panel {
+    display: flex;
+    margin-top: 40px;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: #242528;
+  }
+
+  &__panelButtons {
+    width: 50px;
+    background: black;
+  }
+
+  &__panelButton {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 22px;
+    transition: 0.1s;
+
+    &--active {
+      background-color: $blue;
+      color: $white;
+    }
+
+    &--disabled {
+      background-color: $graySecondary;
+      color: $gray;
+
+      &:hover {
+        color: $white;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+  &__panelContent {
+    flex-grow: 1;
+    border: 1px solid $graySecondary;
+  }
+
+}
