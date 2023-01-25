@@ -8,6 +8,7 @@ import {EngineObject, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
 import {LeftPanel} from "./app/LeftPanel/LeftPanel";
 import {CropObject} from "./data/crops/types";
+import {Inspect} from "./app/LeftPanel/Inspect";
 
 export class Main {
     dom: DOM;
@@ -38,7 +39,7 @@ export class Main {
     public setEngineObject(payload: EngineObject | CropObject | null): void {
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
-        console.log(SpritesConfig, this.engineObject);
+        Inspect.addImage(this.engineObject.id);
         const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.engineObject.sprite.src)?.size
         if (spriteSize) {
             this.dom.hoverObject.dataset.objectName = this.engineObject.name;
