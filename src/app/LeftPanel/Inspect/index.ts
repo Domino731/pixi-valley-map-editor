@@ -1,9 +1,17 @@
 import {GAME_DATA} from "../../../data";
 import {EngineObject, SpriteSize} from "../../../data/types";
 import {SpritesConfig} from "../../../data/spritesConfig";
+import {GeneralData} from "./GeneralData";
 
 export class Inspect {
+    private readonly inspect: {
+        generalData: GeneralData
+    };
+
     constructor() {
+        this.inspect = {
+            generalData: new GeneralData()
+        }
         this.init();
     }
 
@@ -69,6 +77,7 @@ export class Inspect {
                 setAllButtonsDisabled();
                 button.classList.remove(disabledButtonClass);
                 button.classList.add(activeButtonClass);
+                this.inspect.generalData.buildPanel(GAME_DATA.objects.crops[0]);
             });
         }
 
