@@ -8,7 +8,7 @@ export class GeneralData {
         this.tableValueCells = document.querySelectorAll('.inspectTable td[data-inspect-table-object-attribute]')
     }
 
-    public buildPanel(engineObject: EngineObject) {
+    public build(engineObject: EngineObject) {
         this.tableValueCells.forEach((cell) => {
             // find value base on attribute path
             const {dataset: {inspectTableObjectAttribute}} = cell;

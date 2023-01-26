@@ -2,6 +2,7 @@ import {GAME_DATA} from "../../../data";
 import {EngineObject, SpriteSize} from "../../../data/types";
 import {SpritesConfig} from "../../../data/spritesConfig";
 import {GeneralData} from "./GeneralData";
+import {INSPECT_SECTIONS_NAMES, InspectSectionsNamesUnion} from "./const";
 
 export class Inspect {
     private readonly inspect: {
@@ -73,11 +74,12 @@ export class Inspect {
 
         // set section
         const setActiveSection = (button: HTMLButtonElement): void => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
                 setAllButtonsDisabled();
                 button.classList.remove(disabledButtonClass);
                 button.classList.add(activeButtonClass);
-                this.inspect.generalData.buildPanel(GAME_DATA.objects.crops[0]);
+
+                this.buildSection(button.dataset.sectionName as InspectSectionsNamesUnion, GAME_DATA.objects.crops[0])
             });
         }
 
@@ -85,7 +87,16 @@ export class Inspect {
         setActiveSection(dataButton);
         setActiveSection(checkboxesButton);
         setActiveSection(itemsButton);
+    }
 
+    private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
+        switch (sectionName) {
+            case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
+                this.inspect.generalData.build(engineObject);
+                break;
+            default:
+                break;
+        }
     }
 
     private init(): void {
