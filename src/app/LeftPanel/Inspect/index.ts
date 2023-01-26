@@ -4,6 +4,7 @@ import {SpritesConfig} from "../../../data/spritesConfig";
 
 export class Inspect {
     constructor() {
+        this.init();
     }
 
 
@@ -42,6 +43,45 @@ export class Inspect {
 
         // hide label
         blueprintLabel.classList.add('hide');
+    }
+
+    private panelButtons(): void {
+        // general constants
+        const activeButtonClass: string = 'inspect__panelButton--active';
+        const disabledButtonClass: string = 'inspect__panelButton--disabled'
+
+        // gather button elements in order to apply click events that will be responsible for toggling inspection section
+        const dataButton: HTMLButtonElement = document.querySelector('#inspect-data-button');
+        const checkboxesButton: HTMLButtonElement = document.querySelector('#inspect-checkboxes-button');
+        const itemsButton: HTMLButtonElement = document.querySelector('#inspect-items-button');
+
+        // put all buttons into array, so it will be easy to change their styles (active or disabled)
+        const allButtons: Array<HTMLButtonElement> = [dataButton, checkboxesButton, itemsButton];
+
+        // function that makes all buttons disabled
+        const setAllButtonsDisabled = (): void => {
+            allButtons.forEach((button: HTMLButtonElement): void => button.classList.add(disabledButtonClass));
+        }
+
+        // set section
+        const setActiveSection = (button: HTMLButtonElement): void => {
+            button.addEventListener('click', () => {
+                setAllButtonsDisabled();
+                button.classList.remove(disabledButtonClass);
+                button.classList.add(activeButtonClass);
+            });
+        }
+
+        // apply event on each button
+        setActiveSection(dataButton);
+        setActiveSection(checkboxesButton);
+        setActiveSection(itemsButton);
+
+    }
+
+    private init(): void {
+        console.log(12);
+        this.panelButtons();
     }
 
 }

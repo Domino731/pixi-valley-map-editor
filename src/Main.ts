@@ -29,6 +29,8 @@ export class Main {
         this.rightPanel = new RightPanel(this);
         this.spriteType = SPRITE_TYPES.GROUND_TILE;
         this.engineObject = null;
+
+        new Inspect();
         this.init();
     }
 
