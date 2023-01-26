@@ -28,12 +28,10 @@
     margin-top: 40px;
     border-radius: 2px;
     overflow: hidden;
-    background-color: #242528;
   }
 
   &__panelButtons {
     width: 50px;
-    background: black;
   }
 
   &__panelButton {
@@ -65,6 +63,38 @@
   &__panelContent {
     flex-grow: 1;
     border: 1px solid $graySecondary;
+    background-color: #242528;
+    padding-left: 12px;
   }
 
+  &__sectionTitle {
+    color: $pink;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    // same as .inspect__panelButton class
+    height: 50px;
+  }
+}
+
+.inspectTable {
+  font-family: 'Roboto', sans-serif;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  &__tdName {
+    color: $gray;
+  }
+
+  &__tdValue {
+    color: $white;
+    word-wrap: break-word;
+    padding-right: 10px !important;
+  }
 }
