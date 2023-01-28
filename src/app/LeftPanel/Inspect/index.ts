@@ -101,7 +101,8 @@ export class Inspect {
                     height: 40,
                     xPosition: 14,
                     yPosition: 19,
-                    index: 1
+                    index: 1,
+                    color: 'orange'
                 });
                 break;
             default:
@@ -110,7 +111,6 @@ export class Inspect {
     }
 
     private init(): void {
-        console.log(12);
         this.panelButtons();
     }
 
