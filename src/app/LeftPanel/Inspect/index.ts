@@ -3,6 +3,7 @@ import {EngineObject, SpriteSize} from "../../../data/types";
 import {SpritesConfig} from "../../../data/spritesConfig";
 import {GeneralData} from "./GeneralData";
 import {INSPECT_SECTIONS_NAMES, InspectSectionsNamesUnion} from "./const";
+import {Collision} from "./Components/Collision";
 
 export class Inspect {
     private readonly inspect: {
@@ -93,6 +94,15 @@ export class Inspect {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
                 this.inspect.generalData.build(engineObject);
+                break;
+            case INSPECT_SECTIONS_NAMES.CHECKBOXES:
+                new Collision('#inspect-checkboxes-list', {
+                    width: 40,
+                    height: 40,
+                    xPosition: 14,
+                    yPosition: 19,
+                    index: 1
+                });
                 break;
             default:
                 break;
