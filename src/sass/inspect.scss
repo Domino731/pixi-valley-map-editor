@@ -64,7 +64,7 @@
     flex-grow: 1;
     border: 1px solid $graySecondary;
     background-color: #242528;
-    padding-left: 12px;
+    padding: 0 12px 12px;
   }
 
   &__sectionTitle {
@@ -96,5 +96,77 @@
     color: $white;
     word-wrap: break-word;
     padding-right: 10px !important;
+  }
+}
+
+.inspectCollision {
+  padding: 10px;
+  border-radius: 3px;
+
+  &--active {
+    border: 1px solid #8237d5;
+  }
+
+  &__numberBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #8237d5;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    color: $white;
+    font-weight: bold;
+    border-radius: 3px;
+  }
+
+  &__panelButton {
+    display: flex;
+    align-items: center;
+  }
+
+  &__coordinates {
+    padding-left: 6px;
+    color: $gray;
+  }
+
+  &__inputs {
+    border-collapse: collapse;
+
+    th, td {
+      padding-bottom: 8px;
+      padding-top: 8px;
+    }
+  }
+
+  &__input {
+    color: $gray;
+    font-size: 18px;
+    width: 50%;
+
+    &--border {
+      border-bottom: 1px solid $graySecondary;
+    }
+
+    input {
+      margin-left: 10px;
+      width: 176px;
+      background: transparent;
+      border: 1px solid $graySecondary;
+      outline: none;
+      color: $gray;
+      font-size: 18px;
+      padding: 2px 4px;
+
+      &:hover {
+        color: white;
+        border: 1px solid $gray;
+      }
+
+      &:focus {
+        color: white;
+        border: 1px solid $blue;
+      }
+    }
   }
 }
