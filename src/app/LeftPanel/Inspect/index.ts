@@ -91,19 +91,18 @@ export class Inspect {
     }
 
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
+        const exampleCollisions = [{
+            width: 40,
+            height: 40,
+            xPosition: 14,
+            yPosition: 19
+        }]
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
                 this.inspect.generalData.build(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.CHECKBOXES:
-                new Collision('#inspect-checkboxes-list', {
-                    width: 40,
-                    height: 40,
-                    xPosition: 14,
-                    yPosition: 19,
-                    index: 1,
-                    color: 'orange'
-                });
+                exampleCollisions.forEach((el, index) => new Collision('#inspect-checkboxes-list', {...el, index}))
                 break;
             default:
                 break;

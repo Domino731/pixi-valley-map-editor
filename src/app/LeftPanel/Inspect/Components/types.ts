@@ -4,5 +4,4 @@ export class CollisionComponentProps {
     xPosition: number;
     yPosition: number;
     index: number;
-    color: string;
 }

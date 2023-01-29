@@ -127,11 +127,38 @@
   &__panelButton {
     display: flex;
     align-items: center;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+
+      i {
+        color: $gray;
+      }
+    }
+
+    i {
+      color: #3c3939;
+      transition: 0.2s;
+    }
+
+    &--active {
+      i {
+        color: $gray;
+      }
+    }
+
+    div {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__coordinates {
     padding-left: 6px;
     color: $gray;
+    font-size: 15px;
   }
 
   &__inputs {
@@ -145,7 +172,7 @@
 
   &__input {
     color: $gray;
-    font-size: 18px;
+    font-size: 16px;
     width: 50%;
 
     &--border {
@@ -154,7 +181,7 @@
 
     input {
       margin-left: 10px;
-      width: 176px;
+      width: 100px;
       background: transparent;
       border: 1px solid $graySecondary;
       outline: none;

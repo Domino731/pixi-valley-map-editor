@@ -1,10 +1,12 @@
 import {CollisionComponentProps} from "./types";
+import {CollisionColors} from "./const";
 
 export class Collision {
     private readonly collisionElement: HTMLElement;
     private readonly parentElement: HTMLElement;
     private readonly props: CollisionComponentProps;
     private readonly objectImageElement: HTMLElement;
+    private readonly color: string;
     private collisionAreaElement: HTMLElement | null;
 
     constructor(parentSelector: string, props: CollisionComponentProps) {
@@ -12,6 +14,7 @@ export class Collision {
         this.collisionElement = document.querySelector('#example-inspect-collision').cloneNode(true) as HTMLElement
         this.objectImageElement = document.querySelector('#inspect-blueprint');
         this.collisionAreaElement = null;
+        this.color = CollisionColors[props.index];
         this.props = props;
 
         this.init();
@@ -24,7 +27,7 @@ export class Collision {
         area.style.height = `${this.props.height}px`;
         area.style.left = `${this.props.xPosition}px`;
         area.style.top = `${this.props.yPosition}px`;
-        area.style.border = `1px solid ${this.props.color}`;
+        area.style.border = `1px solid ${this.color}`;
 
         this.collisionAreaElement = area;
         this.objectImageElement.appendChild(area);
@@ -38,6 +41,12 @@ export class Collision {
     private setTitle(): void {
         const titleElement: HTMLElement = this.collisionElement.querySelector('.inspectCollision__coordinates');
         titleElement.innerText = `w: ${this.props.width}; h: ${this.props.height}; x: ${this.props.xPosition}; y: ${this.props.yPosition};`;
+    }
+
+    private setStyles(): void {
+        const numberBox: HTMLElement = this.collisionElement.querySelector('.inspectCollision__numberBox');
+        numberBox.style.backgroundColor = this.color;
+        this.collisionElement.style.border = `1px solid ${this.color}`;
     }
 
     private collisionInputEvent(input: HTMLInputElement, dimensionStyleProperty: 'width' | 'height' | 'top' | 'left'): void {
@@ -80,11 +89,31 @@ export class Collision {
         this.setYPositionInput();
     }
 
+    private setButton(): void {
+        const button: HTMLElement = this.collisionElement.querySelector('.inspectCollision__panelButton');
+        const panel: HTMLElement = this.collisionElement.querySelector('.inspectCollision__inputs');
+        const icon: HTMLElement = button.querySelector('i');
+
+        button.addEventListener('click', () => {
+            if (panel.classList.contains('hide')) {
+                panel.classList.remove('hide');
+                icon.classList.add('stageObject__iconActive');
+                this.collisionElement.style.border = `1px solid ${this.color}`;
+            } else {
+                panel.classList.add('hide');
+                icon.classList.remove('stageObject__iconActive');
+                this.collisionElement.style.border = `none`;
+            }
+        })
+    }
+
     private build(): void {
         this.setTitle();
+        this.setStyles();
         this.setIndexBox();
         this.setInputs();
         this.setCollisionArea();
+        this.setButton();
         this.parentElement.appendChild(this.collisionElement);
     }
 
