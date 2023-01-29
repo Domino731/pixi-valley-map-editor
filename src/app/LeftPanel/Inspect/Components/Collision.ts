@@ -28,6 +28,7 @@ export class Collision {
         area.style.left = `${this.props.xPosition}px`;
         area.style.top = `${this.props.yPosition}px`;
         area.style.border = `1px solid ${this.color}`;
+        area.dataset.collisionIndex = `${this.props.index}`;
 
         this.collisionAreaElement = area;
         this.objectImageElement.appendChild(area);
@@ -82,11 +83,26 @@ export class Collision {
         input.value = `${this.props.yPosition}`;
     }
 
+    private setVisibleCheckbox(): void {
+        const checkbox: HTMLInputElement = this.collisionElement.querySelector('input[data-inspect-collision-visible]');
+        const collisionArea: HTMLElement = this.objectImageElement.querySelector(`div[data-collision-index="${this.props.index}"]`);
+
+        checkbox.addEventListener('input', (event: Event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.checked) {
+                collisionArea.classList.remove('hide');
+            } else {
+                collisionArea.classList.add('hide');
+            }
+        })
+    }
+
     private setInputs(): void {
         this.setWidthInput();
         this.setHeightInput();
         this.setXPositionInput();
         this.setYPositionInput();
+        this.setVisibleCheckbox();
     }
 
     private setButton(): void {
@@ -111,9 +127,9 @@ export class Collision {
         this.setTitle();
         this.setStyles();
         this.setIndexBox();
-        this.setInputs();
         this.setCollisionArea();
         this.setButton();
+        this.setInputs();
         this.parentElement.appendChild(this.collisionElement);
     }
 
