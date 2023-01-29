@@ -83,9 +83,13 @@ export class Collision {
         input.value = `${this.props.yPosition}`;
     }
 
+    private getCollisionAreaElement(): HTMLElement {
+        return this.objectImageElement.querySelector(`div[data-collision-index="${this.props.index}"]`);
+    }
+
     private setVisibleCheckbox(): void {
         const checkbox: HTMLInputElement = this.collisionElement.querySelector('input[data-inspect-collision-visible]');
-        const collisionArea: HTMLElement = this.objectImageElement.querySelector(`div[data-collision-index="${this.props.index}"]`);
+        const collisionArea: HTMLElement = this.getCollisionAreaElement();
 
         checkbox.addEventListener('input', (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -94,8 +98,23 @@ export class Collision {
             } else {
                 collisionArea.classList.add('hide');
             }
-        })
+        });
     }
+
+    private setFulfilledCheckbox(): void {
+        const checkbox: HTMLInputElement = this.collisionElement.querySelector('input[data-inspect-collision-fulfilled]');
+        const collisionArea: HTMLElement = this.getCollisionAreaElement();
+
+        checkbox.addEventListener('input', (event: Event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.checked) {
+                collisionArea.style.backgroundColor = this.color;
+            } else {
+                collisionArea.style.backgroundColor = 'transparent';
+            }
+        });
+    }
+
 
     private setInputs(): void {
         this.setWidthInput();
@@ -103,6 +122,7 @@ export class Collision {
         this.setXPositionInput();
         this.setYPositionInput();
         this.setVisibleCheckbox();
+        this.setFulfilledCheckbox();
     }
 
     private setButton(): void {
