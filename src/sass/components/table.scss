@@ -1,0 +1,29 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td, th {
+    border: 1px solid $graySecondary;
+  }
+
+  &__thead {
+    color: $white;
+
+    th {
+      padding: 6px;
+    }
+
+    &--alignLeft {
+      text-align: left;
+    }
+  }
+
+  &__tbody {
+    color: $gray;
+    font-size: 15px;
+
+    td {
+      padding: 6px;
+    }
+  }
+}
