@@ -35,12 +35,15 @@
                                 id="inspect-checkboxes-button">
                             <i class="fa-solid fa-border-all"></i>
                         </button>
-                        <button class="inspect__panelButton  inspect__panelButton--disabled" id="inspect-items-button">
+                        <button class="inspect__panelButton  inspect__panelButton--disabled" id="inspect-items-button"
+                                data-section-name="DROP_ITEMS">
                             <i class="fa-regular fa-gem"></i>
                         </button>
                     </div>
-                    <div class="inspect__panelContent hide">
-                        <h2 class="text inspect__sectionTitle">General data</h2>
+
+                    <!-- inspect sections, the content is created by js -->
+                    <div class="inspect__panelContent hide" id="inspect-sections-general-data">
+                        <h2 class="text inspect__sectionTitle">GENERAL DATA</h2>
                         <section>
                             <table class="inspectTable" id="inspect-table">
                                 <tr>
@@ -77,37 +80,20 @@
                             </table>
                         </section>
                     </div>
-                    <div class="inspect__panelContent">
+                    <div class="inspect__panelContent hide" id="inspect-sections-checkboxes">
                         <h2 class="text inspect__sectionTitle">CHECKBOXES</h2>
                         <section>
-                            <ul id="inspect-checkboxes-list">
-                                <!--                                <li class="inspectCollision inspectCollision&#45;&#45;active">-->
-                                <!--                                    <div class="inspectCollision__panelButton">-->
-                                <!--                                        <p class="inspectCollision__numberBox">1</p>-->
-                                <!--                                        <p class="inspectCollision__coordinates">w: 14; h: 20; x: 30; y: 40;</p>-->
-                                <!--                                    </div>-->
-                                <!--                                    <table class="inspectCollision__inputs">-->
-                                <!--                                        <tr class="inspectCollision__input inspectCollision__input&#45;&#45;border">-->
-                                <!--                                            <td> width:</td>-->
-                                <!--                                            <td><input></td>-->
-                                <!--                                        </tr>-->
-                                <!--                                        <tr class="inspectCollision__input inspectCollision__input&#45;&#45;border">-->
-                                <!--                                            <td> height:</td>-->
-                                <!--                                            <td><input></td>-->
-                                <!--                                        </tr>-->
-                                <!--                                        <tr class="inspectCollision__input inspectCollision__input&#45;&#45;border">-->
-                                <!--                                            <td> x position:</td>-->
-                                <!--                                            <td><input></td>-->
-                                <!--                                        </tr>-->
-                                <!--                                        <tr class="inspectCollision__input">-->
-                                <!--                                            <td> y position:</td>-->
-                                <!--                                            <td><input></td>-->
-                                <!--                                        </tr>-->
-                                <!--                                    </table>-->
-                                <!--                                </li>-->
-                            </ul>
+                            <ul id="inspect-checkboxes-list"></ul>
                         </section>
                     </div>
+                    <div class="inspect__panelContent" id="inspect-sections-drop-items">
+                        <h2 class="text inspect__sectionTitle">DROP ITEMS</h2>
+                        <section>
+
+                        </section>
+                    </div>
+
+
                 </div>
 
             </div>

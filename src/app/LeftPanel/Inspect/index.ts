@@ -4,16 +4,25 @@ import {SpritesConfig} from "../../../data/spritesConfig";
 import {GeneralData} from "./GeneralData";
 import {INSPECT_SECTIONS_NAMES, InspectSectionsNamesUnion} from "./const";
 import {Collision} from "./Components/Collision";
+import {DropItems} from "./Components/InspectItems";
 
 export class Inspect {
     private readonly inspect: {
-        generalData: GeneralData
+        generalData: GeneralData,
+        dropItems: DropItems
     };
+    private readonly generalDataSection: HTMLElement;
+    private readonly checkboxesSection: HTMLElement;
+    private readonly dropItemsSection: HTMLElement;
 
     constructor() {
         this.inspect = {
-            generalData: new GeneralData()
+            generalData: new GeneralData(),
+            dropItems: new DropItems()
         }
+        this.generalDataSection = document.querySelector('#inspect-sections-general-data');
+        this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
+        this.dropItemsSection = document.querySelector('#inspect-sections-drop-items')
         this.init();
     }
 
@@ -90,19 +99,48 @@ export class Inspect {
         setActiveSection(itemsButton);
     }
 
-    private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
+    private hideAllSections(): void {
+        this.generalDataSection.classList.add('hide');
+        this.checkboxesSection.classList.add('hide');
+        this.dropItemsSection.classList.add('hide');
+    }
+
+    private buildGeneralDataSection(engineObject: EngineObject): void {
+        this.hideAllSections();
+        this.generalDataSection.classList.remove('hide');
+        this.inspect.generalData.build(engineObject);
+    }
+
+    private buildCheckboxesSection(): void {
+        this.hideAllSections();
+        this.checkboxesSection.classList.remove('hide');
+        document.querySelector('#inspect-checkboxes-list').innerHTML = '';
         const exampleCollisions = [{
             width: 40,
             height: 40,
             xPosition: 14,
             yPosition: 19
         }]
+        exampleCollisions.forEach((el, index) => new Collision('#inspect-checkboxes-list', {...el, index}));
+    }
+
+    private buildDropItemsSection(): void {
+        this.hideAllSections();
+        this.dropItemsSection.classList.remove('hide');
+
+        this.inspect.dropItems.build();
+    }
+
+    private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
-                this.inspect.generalData.build(engineObject);
+                this.buildGeneralDataSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.CHECKBOXES:
-                exampleCollisions.forEach((el, index) => new Collision('#inspect-checkboxes-list', {...el, index}))
+                this.buildCheckboxesSection();
+                break;
+            case INSPECT_SECTIONS_NAMES.DROP_ITEMS:
+                this.buildDropItemsSection();
                 break;
             default:
                 break;

@@ -109,8 +109,10 @@ export class Collision {
             const target = event.target as HTMLInputElement;
             if (target.checked) {
                 collisionArea.style.backgroundColor = this.color;
+                collisionArea.style.opacity = '0.7';
             } else {
                 collisionArea.style.backgroundColor = 'transparent';
+                collisionArea.style.opacity = '1';
             }
         });
     }
@@ -130,15 +132,20 @@ export class Collision {
         const panel: HTMLElement = this.collisionElement.querySelector('.inspectCollision__inputs');
         const icon: HTMLElement = button.querySelector('i');
 
+        const hidePanel = (): void => {
+            panel.classList.add('hide');
+            icon.classList.remove('stageObject__iconActive');
+            this.collisionElement.style.border = `none`;
+        }
+        hidePanel();
+
         button.addEventListener('click', () => {
             if (panel.classList.contains('hide')) {
                 panel.classList.remove('hide');
                 icon.classList.add('stageObject__iconActive');
                 this.collisionElement.style.border = `1px solid ${this.color}`;
             } else {
-                panel.classList.add('hide');
-                icon.classList.remove('stageObject__iconActive');
-                this.collisionElement.style.border = `none`;
+                hidePanel();
             }
         })
     }
