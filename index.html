@@ -39,6 +39,11 @@
                                 data-section-name="DROP_ITEMS">
                             <i class="fa-regular fa-gem"></i>
                         </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-description-button"
+                                data-section-name="DESCRIPTION">
+                            <i class="fa-solid fa-message"></i>
+                        </button>
                     </div>
 
                     <!-- inspect sections, the content is created by js -->
@@ -86,7 +91,7 @@
                             <ul id="inspect-checkboxes-list"></ul>
                         </section>
                     </div>
-                    <div class="inspect__panelContent" id="inspect-sections-drop-items">
+                    <div class="inspect__panelContent hide" id="inspect-sections-drop-items">
                         <h2 class="text inspect__sectionTitle">DROP ITEMS</h2>
                         <section>
                             <table class="table">
@@ -103,7 +108,14 @@
                             </table>
                         </section>
                     </div>
-
+                    <div class="inspect__panelContent" id="inspect-sections-description">
+                        <h2 class="text inspect__sectionTitle">DESCRIPTION</h2>
+                        <section>
+                            <p class="text text--grey text--justify text--15 text--lineHeight-md"
+                               id="inspect-description-text">Lorem ipsum
+                            </p>
+                        </section>
+                    </div>
 
                 </div>
 

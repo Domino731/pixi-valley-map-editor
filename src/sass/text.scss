@@ -46,6 +46,10 @@
     }
   }
 
+  &--15 {
+    font-size: 15px;
+  }
+
   // sizes
   &--xxl {
     font-size: 40px;
@@ -66,5 +70,13 @@
   // align
   &--center {
     text-align: center;
+  }
+
+  &--justify {
+    text-align: justify;
+  }
+
+  &--lineHeight-md {
+    line-height: 1.5em;
   }
 }

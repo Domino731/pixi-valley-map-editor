@@ -6,24 +6,29 @@ import {INSPECT_SECTIONS_NAMES, InspectSectionsNamesUnion} from "./const";
 import {Collision} from "./Components/Collision";
 import {DropItems} from "./Components/DropIItems";
 import {RESOURCES_32_NAMES} from "../../../data/resources/const";
+import {Description} from "./Components/Description";
 
 export class Inspect {
     private readonly inspect: {
         generalData: GeneralData,
-        dropItems: DropItems
+        dropItems: DropItems,
+        description: Description
     };
     private readonly generalDataSection: HTMLElement;
     private readonly checkboxesSection: HTMLElement;
     private readonly dropItemsSection: HTMLElement;
+    private readonly descriptionSection: HTMLElement;
 
     constructor() {
         this.inspect = {
             generalData: new GeneralData(),
-            dropItems: new DropItems()
+            dropItems: new DropItems(),
+            description: new Description()
         }
         this.generalDataSection = document.querySelector('#inspect-sections-general-data');
         this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
-        this.dropItemsSection = document.querySelector('#inspect-sections-drop-items')
+        this.dropItemsSection = document.querySelector('#inspect-sections-drop-items');
+        this.descriptionSection = document.querySelector('#inspect-sections-description');
         this.init();
     }
 
@@ -75,9 +80,10 @@ export class Inspect {
         const dataButton: HTMLButtonElement = document.querySelector('#inspect-data-button');
         const checkboxesButton: HTMLButtonElement = document.querySelector('#inspect-checkboxes-button');
         const itemsButton: HTMLButtonElement = document.querySelector('#inspect-items-button');
+        const descriptionButton: HTMLButtonElement = document.querySelector('#inspect-description-button');
 
         // put all buttons into array, so it will be easy to change their styles (active or disabled)
-        const allButtons: Array<HTMLButtonElement> = [dataButton, checkboxesButton, itemsButton];
+        const allButtons: Array<HTMLButtonElement> = [dataButton, checkboxesButton, itemsButton, descriptionButton];
 
         // function that makes all buttons disabled
         const setAllButtonsDisabled = (): void => {
@@ -99,12 +105,14 @@ export class Inspect {
         setActiveSection(dataButton);
         setActiveSection(checkboxesButton);
         setActiveSection(itemsButton);
+        setActiveSection(descriptionButton);
     }
 
     private hideAllSections(): void {
         this.generalDataSection.classList.add('hide');
         this.checkboxesSection.classList.add('hide');
         this.dropItemsSection.classList.add('hide');
+        this.descriptionSection.classList.add('hide');
     }
 
     private buildGeneralDataSection(engineObject: EngineObject): void {
@@ -151,6 +159,18 @@ export class Inspect {
         this.inspect.dropItems.build(example);
     }
 
+    private buildDescriptionSection(): void {
+        this.hideAllSections();
+        this.descriptionSection.classList.remove('hide');
+        this.inspect.description.build(`dolor sit
+                                amet,
+                                consectetur adipisicing elit.
+                                Dignissimos dolore et ex facere fugit iure magni odit recusandae temporibus vel. Animi
+                                aut consequuntur cum cupiditate earum esse est ex explicabo id in ipsam iusto labore
+                                laboriosam, nesciunt non odit omnis, quam qui reiciendis saepe velit voluptates
+                                voluptatum!!`);
+    }
+
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
@@ -161,6 +181,9 @@ export class Inspect {
                 break;
             case INSPECT_SECTIONS_NAMES.DROP_ITEMS:
                 this.buildDropItemsSection();
+                break;
+            case INSPECT_SECTIONS_NAMES.DESCRIPTION:
+                this.buildDescriptionSection();
                 break;
             default:
                 break;
