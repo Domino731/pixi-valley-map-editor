@@ -18,6 +18,10 @@ export class Inspect {
     private readonly checkboxesSection: HTMLElement;
     private readonly dropItemsSection: HTMLElement;
     private readonly descriptionSection: HTMLElement;
+    private readonly actionCollisionsSection: HTMLElement;
+    private readonly stagesSection: HTMLElement;
+    private readonly toolsSection: HTMLElement;
+    private readonly jsonSection: HTMLElement;
 
     constructor() {
         this.inspect = {
@@ -29,6 +33,10 @@ export class Inspect {
         this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
         this.dropItemsSection = document.querySelector('#inspect-sections-drop-items');
         this.descriptionSection = document.querySelector('#inspect-sections-description');
+        this.actionCollisionsSection = document.querySelector('#inspect-sections-action-collisions')
+        this.stagesSection = document.querySelector('#inspect-sections-stages');
+        this.toolsSection = document.querySelector('#inspect-sections-tools');
+        this.jsonSection = document.querySelector('#inspect-sections-json');
         this.init();
     }
 
@@ -81,9 +89,13 @@ export class Inspect {
         const checkboxesButton: HTMLButtonElement = document.querySelector('#inspect-checkboxes-button');
         const itemsButton: HTMLButtonElement = document.querySelector('#inspect-items-button');
         const descriptionButton: HTMLButtonElement = document.querySelector('#inspect-description-button');
+        const actionCollisionsButton: HTMLButtonElement = document.querySelector('#inspect-action-collisions-button');
+        const toolsButton: HTMLButtonElement = document.querySelector('#inspect-tools-button');
+        const stagesButton: HTMLButtonElement = document.querySelector('#inspect-stages-button');
+        const jsonButton: HTMLButtonElement = document.querySelector('#inspect-json-button');
 
         // put all buttons into array, so it will be easy to change their styles (active or disabled)
-        const allButtons: Array<HTMLButtonElement> = [dataButton, checkboxesButton, itemsButton, descriptionButton];
+        const allButtons: Array<HTMLButtonElement> = [dataButton, checkboxesButton, itemsButton, descriptionButton, actionCollisionsButton, toolsButton, stagesButton, jsonButton];
 
         // function that makes all buttons disabled
         const setAllButtonsDisabled = (): void => {
@@ -106,6 +118,10 @@ export class Inspect {
         setActiveSection(checkboxesButton);
         setActiveSection(itemsButton);
         setActiveSection(descriptionButton);
+        setActiveSection(actionCollisionsButton);
+        setActiveSection(toolsButton);
+        setActiveSection(stagesButton);
+        setActiveSection(jsonButton);
     }
 
     private hideAllSections(): void {
@@ -113,6 +129,7 @@ export class Inspect {
         this.checkboxesSection.classList.add('hide');
         this.dropItemsSection.classList.add('hide');
         this.descriptionSection.classList.add('hide');
+        this.actionCollisionsSection.classList.add('hide');
     }
 
     private buildGeneralDataSection(engineObject: EngineObject): void {
@@ -171,6 +188,11 @@ export class Inspect {
                                 voluptatum!!`);
     }
 
+    private buildActionCollisionsSection(): void {
+        this.hideAllSections();
+        this.actionCollisionsSection.classList.remove('hide');
+    }
+
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
@@ -184,6 +206,9 @@ export class Inspect {
                 break;
             case INSPECT_SECTIONS_NAMES.DESCRIPTION:
                 this.buildDescriptionSection();
+                break;
+            case INSPECT_SECTIONS_NAMES.ACTION_COLLISIONS:
+                this.buildActionCollisionsSection();
                 break;
             default:
                 break;
