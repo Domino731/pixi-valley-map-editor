@@ -166,3 +166,9 @@ export enum GAME_SEASONS {
 }
 
 export type GameSeasonsUnion = keyof typeof GAME_SEASONS;
+
+export interface DropItemInterface {
+    id: string | number,
+    chance: [number, number] | number;
+    amount: number;
+}

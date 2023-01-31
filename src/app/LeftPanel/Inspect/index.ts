@@ -1,10 +1,11 @@
 import {GAME_DATA} from "../../../data";
-import {EngineObject, SpriteSize} from "../../../data/types";
+import {DropItemInterface, EngineObject, SpriteSize} from "../../../data/types";
 import {SpritesConfig} from "../../../data/spritesConfig";
 import {GeneralData} from "./GeneralData";
 import {INSPECT_SECTIONS_NAMES, InspectSectionsNamesUnion} from "./const";
 import {Collision} from "./Components/Collision";
-import {DropItems} from "./Components/InspectItems";
+import {DropItems} from "./Components/DropIItems";
+import {RESOURCES_32_NAMES} from "../../../data/resources/const";
 
 export class Inspect {
     private readonly inspect: {
@@ -35,11 +36,12 @@ export class Inspect {
         return SpritesConfig.find(({sprite}) => sprite === objectSpriteSrc)?.size;
     }
 
+    // TODO: move to utils class
     /**
      * Find game object by id
      * @param objectId - object id
      * */
-    public static findEngineObjectById(objectId: string): EngineObject {
+    public static findEngineObjectById(objectId: string | number): EngineObject {
         return Object.values(GAME_DATA.objects).flat().find(({id}: { id: string }) => id === objectId);
     }
 
@@ -128,7 +130,25 @@ export class Inspect {
         this.hideAllSections();
         this.dropItemsSection.classList.remove('hide');
 
-        this.inspect.dropItems.build();
+        const example: Array<DropItemInterface> = [
+            {
+                id: RESOURCES_32_NAMES.LOG,
+                chance: [20, 70],
+                amount: 3
+            },
+            {
+                id: RESOURCES_32_NAMES.BLUE_GEM,
+                chance: 100,
+                amount: 5
+            },
+            {
+                id: RESOURCES_32_NAMES.ANDRONITE,
+                chance: 0.9,
+                amount: 5
+            },
+        ]
+
+        this.inspect.dropItems.build(example);
     }
 
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
