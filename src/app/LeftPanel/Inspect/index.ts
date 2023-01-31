@@ -7,12 +7,14 @@ import {Collision} from "./Components/Collision";
 import {DropItems} from "./Components/DropIItems";
 import {RESOURCES_32_NAMES} from "../../../data/resources/const";
 import {Description} from "./Components/Description";
+import {InspectJson} from "./Components/JSON";
 
 export class Inspect {
     private readonly inspect: {
         generalData: GeneralData,
         dropItems: DropItems,
-        description: Description
+        description: Description,
+        inspectJson: InspectJson
     };
     private readonly generalDataSection: HTMLElement;
     private readonly checkboxesSection: HTMLElement;
@@ -27,7 +29,8 @@ export class Inspect {
         this.inspect = {
             generalData: new GeneralData(),
             dropItems: new DropItems(),
-            description: new Description()
+            description: new Description(),
+            inspectJson: new InspectJson()
         }
         this.generalDataSection = document.querySelector('#inspect-sections-general-data');
         this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
@@ -173,6 +176,12 @@ export class Inspect {
         this.actionCollisionsSection.classList.remove('hide');
     }
 
+    private buildInspectJsonSection(engineObject: EngineObject): void {
+        this.hideAllSections();
+        this.jsonSection.classList.remove('hide');
+        this.inspect.inspectJson.build(engineObject)
+    }
+
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
@@ -189,6 +198,9 @@ export class Inspect {
                 break;
             case INSPECT_SECTIONS_NAMES.ACTION_COLLISIONS:
                 this.buildActionCollisionsSection();
+                break;
+            case INSPECT_SECTIONS_NAMES.JSON:
+                this.buildInspectJsonSection(GAME_DATA.objects.Trees[0]);
                 break;
             default:
                 break;
