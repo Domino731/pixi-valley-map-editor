@@ -82,46 +82,26 @@ export class Inspect {
     private panelButtons(): void {
         // general constants
         const activeButtonClass: string = 'inspect__panelButton--active';
-        const disabledButtonClass: string = 'inspect__panelButton--disabled'
+        const disabledButtonClass: string = 'inspect__panelButton--disabled';
 
         // gather button elements in order to apply click events that will be responsible for toggling inspection section
-        const dataButton: HTMLButtonElement = document.querySelector('#inspect-data-button');
-        const checkboxesButton: HTMLButtonElement = document.querySelector('#inspect-checkboxes-button');
-        const itemsButton: HTMLButtonElement = document.querySelector('#inspect-items-button');
-        const descriptionButton: HTMLButtonElement = document.querySelector('#inspect-description-button');
-        const actionCollisionsButton: HTMLButtonElement = document.querySelector('#inspect-action-collisions-button');
-        const toolsButton: HTMLButtonElement = document.querySelector('#inspect-tools-button');
-        const stagesButton: HTMLButtonElement = document.querySelector('#inspect-stages-button');
-        const jsonButton: HTMLButtonElement = document.querySelector('#inspect-json-button');
-
-        // put all buttons into array, so it will be easy to change their styles (active or disabled)
-        const allButtons: Array<HTMLButtonElement> = [dataButton, checkboxesButton, itemsButton, descriptionButton, actionCollisionsButton, toolsButton, stagesButton, jsonButton];
+        const buttons: Array<HTMLButtonElement> = document.querySelectorAll('#inspect-buttons button') as unknown as Array<HTMLButtonElement>;
 
         // function that makes all buttons disabled
         const setAllButtonsDisabled = (): void => {
-            allButtons.forEach((button: HTMLButtonElement): void => button.classList.add(disabledButtonClass));
+            buttons.forEach((button: HTMLButtonElement): void => button.classList.add(disabledButtonClass));
         }
 
-        // set section
-        const setActiveSection = (button: HTMLButtonElement): void => {
-            button.addEventListener('click', (e) => {
+        // apply click event on each event in order to give ability to change inspect section
+        buttons.forEach((buttonElement: HTMLButtonElement) => {
+            buttonElement.addEventListener('click', (e) => {
                 setAllButtonsDisabled();
-                button.classList.remove(disabledButtonClass);
-                button.classList.add(activeButtonClass);
+                buttonElement.classList.remove(disabledButtonClass);
+                buttonElement.classList.add(activeButtonClass);
 
-                this.buildSection(button.dataset.sectionName as InspectSectionsNamesUnion, GAME_DATA.objects.crops[0])
+                this.buildSection(buttonElement.dataset.sectionName as InspectSectionsNamesUnion, GAME_DATA.objects.crops[0])
             });
-        }
-
-        // apply event on each button
-        setActiveSection(dataButton);
-        setActiveSection(checkboxesButton);
-        setActiveSection(itemsButton);
-        setActiveSection(descriptionButton);
-        setActiveSection(actionCollisionsButton);
-        setActiveSection(toolsButton);
-        setActiveSection(stagesButton);
-        setActiveSection(jsonButton);
+        });
     }
 
     private hideAllSections(): void {
