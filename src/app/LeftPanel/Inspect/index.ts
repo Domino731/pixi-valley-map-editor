@@ -9,6 +9,7 @@ import {RESOURCES_16_NAMES, RESOURCES_32_NAMES} from "../../../data/resources/co
 import {Description} from "./Components/Description";
 import {InspectJson} from "./Components/JSON";
 import {InspectTools} from "./Components/Tools";
+import {ActionCollisionProps} from "./Components/types";
 
 export class Inspect {
     private readonly inspect: {
@@ -178,6 +179,15 @@ export class Inspect {
     private buildActionCollisionsSection(): void {
         this.hideAllSections();
         this.actionCollisionsSection.classList.remove('hide');
+        document.querySelector('#inspect-checkboxes-list').innerHTML = '';
+        const exampleCollisions: Array<Partial<ActionCollisionProps>> = [{
+            width: 40,
+            height: 40,
+            xPosition: 14,
+            yPosition: 19,
+            actionId: 'ATTACK'
+        }]
+        exampleCollisions.forEach((el, index) => new Collision('#inspect-tools-list', {...el, index}, true).build());
     }
 
     private buildInspectJsonSection(engineObject: EngineObject): void {

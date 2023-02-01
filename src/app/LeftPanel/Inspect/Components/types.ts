@@ -1,3 +1,5 @@
+import {GameActionsUnion} from "../../../../data/actions/const";
+
 export interface CollisionComponentProps {
     width: number;
     height: number;
@@ -7,5 +9,5 @@ export interface CollisionComponentProps {
 }
 
 export interface ActionCollisionProps extends CollisionComponentProps {
-    actionId: string;
+    actionId: GameActionsUnion;
 }
