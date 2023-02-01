@@ -1,23 +1,23 @@
-import {CollisionComponentProps} from "./types";
+import {ActionCollisionProps, CollisionComponentProps} from "./types";
 import {CollisionColors} from "./const";
 
 export class Collision {
     private readonly collisionElement: HTMLElement;
     private readonly parentElement: HTMLElement;
-    private readonly props: CollisionComponentProps;
+    private readonly props: CollisionComponentProps | ActionCollisionProps;
     private readonly objectImageElement: HTMLElement;
     private readonly color: string;
+    private readonly isActionCollision: boolean;
     private collisionAreaElement: HTMLElement | null;
 
-    constructor(parentSelector: string, props: CollisionComponentProps) {
+    constructor(parentSelector: string, props: CollisionComponentProps, isActionCollision?: boolean) {
         this.parentElement = document.querySelector(parentSelector)
         this.collisionElement = document.querySelector('#example-inspect-collision').cloneNode(true) as HTMLElement
         this.objectImageElement = document.querySelector('#inspect-blueprint');
         this.collisionAreaElement = null;
         this.color = CollisionColors[props.index];
+        this.isActionCollision = isActionCollision ?? false;
         this.props = props;
-
-        this.init();
     }
 
     private setCollisionArea(): void {
@@ -150,7 +150,7 @@ export class Collision {
         })
     }
 
-    private build(): void {
+    public buildActionCollision(): void {
         this.setTitle();
         this.setStyles();
         this.setIndexBox();
@@ -160,8 +160,13 @@ export class Collision {
         this.parentElement.appendChild(this.collisionElement);
     }
 
-    private init(): void {
-        this.build();
+    public build(): void {
+        this.setTitle();
+        this.setStyles();
+        this.setIndexBox();
+        this.setCollisionArea();
+        this.setButton();
+        this.setInputs();
+        this.parentElement.appendChild(this.collisionElement);
     }
-
 }

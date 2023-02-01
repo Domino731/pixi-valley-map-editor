@@ -16,7 +16,7 @@ export class Inspect {
         dropItems: DropItems,
         description: Description,
         inspectJson: InspectJson,
-        inspectTools: InspectTools
+        inspectTools: InspectTools,
     };
     private readonly generalDataSection: HTMLElement;
     private readonly checkboxesSection: HTMLElement;
@@ -135,7 +135,7 @@ export class Inspect {
             xPosition: 14,
             yPosition: 19
         }]
-        exampleCollisions.forEach((el, index) => new Collision('#inspect-checkboxes-list', {...el, index}));
+        exampleCollisions.forEach((el, index) => new Collision('#inspect-checkboxes-list', {...el, index}).build());
     }
 
     private buildDropItemsSection(): void {
