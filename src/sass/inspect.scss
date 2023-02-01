@@ -1,8 +1,6 @@
 .inspect {
   padding-top: 42px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  height: 100%;
 
   &__graphic {
 
@@ -35,6 +33,7 @@
     margin-top: 40px;
     border-radius: 2px;
     overflow: hidden;
+    height: calc(100% - 300px);
   }
 
   &__panelButtons {
@@ -81,6 +80,14 @@
     align-items: center;
     // same as .inspect__panelButton class
     height: 50px;
+  }
+
+  &__code {
+    background-color: #0a0908;
+    color: green;
+    padding: 16px;
+    border-radius: 6px;
+    line-height: 1.4em;
   }
 }
 
@@ -209,4 +216,5 @@
       }
     }
   }
+
 }

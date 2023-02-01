@@ -172,3 +172,9 @@ export interface DropItemInterface {
     chance: [number, number] | number;
     amount: number;
 }
+
+export interface ObjectToolInterface {
+    id: string | number,
+    damage: [number, number] | number;
+    usage: number;
+}

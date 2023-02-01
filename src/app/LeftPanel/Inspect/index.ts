@@ -1,20 +1,22 @@
 import {GAME_DATA} from "../../../data";
-import {DropItemInterface, EngineObject, SpriteSize} from "../../../data/types";
+import {DropItemInterface, EngineObject, ObjectToolInterface, SpriteSize} from "../../../data/types";
 import {SpritesConfig} from "../../../data/spritesConfig";
 import {GeneralData} from "./GeneralData";
 import {INSPECT_SECTIONS_NAMES, InspectSectionsNamesUnion} from "./const";
 import {Collision} from "./Components/Collision";
 import {DropItems} from "./Components/DropIItems";
-import {RESOURCES_32_NAMES} from "../../../data/resources/const";
+import {RESOURCES_16_NAMES, RESOURCES_32_NAMES} from "../../../data/resources/const";
 import {Description} from "./Components/Description";
 import {InspectJson} from "./Components/JSON";
+import {InspectTools} from "./Components/Tools";
 
 export class Inspect {
     private readonly inspect: {
         generalData: GeneralData,
         dropItems: DropItems,
         description: Description,
-        inspectJson: InspectJson
+        inspectJson: InspectJson,
+        inspectTools: InspectTools
     };
     private readonly generalDataSection: HTMLElement;
     private readonly checkboxesSection: HTMLElement;
@@ -30,7 +32,8 @@ export class Inspect {
             generalData: new GeneralData(),
             dropItems: new DropItems(),
             description: new Description(),
-            inspectJson: new InspectJson()
+            inspectJson: new InspectJson(),
+            inspectTools: new InspectTools()
         }
         this.generalDataSection = document.querySelector('#inspect-sections-general-data');
         this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
@@ -113,6 +116,7 @@ export class Inspect {
         this.dropItemsSection.classList.add('hide');
         this.descriptionSection.classList.add('hide');
         this.actionCollisionsSection.classList.add('hide');
+        this.toolsSection.classList.add('hide');
     }
 
     private buildGeneralDataSection(engineObject: EngineObject): void {
@@ -182,6 +186,29 @@ export class Inspect {
         this.inspect.inspectJson.build(engineObject)
     }
 
+    private buildInspectToolsSection(): void {
+        this.hideAllSections();
+        this.toolsSection.classList.remove('hide');
+        const example: Array<ObjectToolInterface> = [
+            {
+                id: RESOURCES_32_NAMES.LOG,
+                damage: 50,
+                usage: 1
+            },
+            {
+                id: RESOURCES_32_NAMES.BLUE_GEM,
+                damage: 10,
+                usage: 4
+            },
+            {
+                id: RESOURCES_16_NAMES.TOPAZ,
+                damage: 6,
+                usage: 10
+            }
+        ]
+        this.inspect.inspectTools.build(example);
+    }
+
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
@@ -202,6 +229,9 @@ export class Inspect {
             case INSPECT_SECTIONS_NAMES.JSON:
                 this.buildInspectJsonSection(GAME_DATA.objects.Trees[0]);
                 break;
+            case INSPECT_SECTIONS_NAMES.TOOLS:
+                this.buildInspectToolsSection();
+                break;
             default:
                 break;
         }
@@ -212,3 +242,6 @@ export class Inspect {
     }
 
 }
+
+// TODO: features
+// - Dodać opisy do każdej z sekcji inspekcji

@@ -24,152 +24,159 @@
                     <div id="inspect-blueprint"></div>
                 </div>
                 <p class="text text--grey text--center pt--4" id="inspect-blueprint-label">Chose object to inspect</p>
+                <div class="inspect__panel">
+                    <div class="inspect__panelButtons" id="inspect-buttons">
+                        <button class="inspect__panelButton inspect__panelButton--disabled" id="inspect-data-button"
+                                data-section-name="GENERAL_DATA">
+                            <i class="fa-solid fa-database"></i>
+                        </button>
+                        <button class="inspect__panelButton inspect__panelButton--active"
+                                data-section-name="CHECKBOXES"
+                                id="inspect-checkboxes-button">
+                            <i class="fa-solid fa-border-all"></i>
+                        </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-items-button"
+                                data-section-name="DROP_ITEMS">
+                            <i class="fa-regular fa-gem"></i>
+                        </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-description-button"
+                                data-section-name="DESCRIPTION">
+                            <i class="fa-solid fa-message"></i>
+                        </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-action-collisions-button"
+                                data-section-name="ACTION_COLLISIONS">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-tools-button"
+                                data-section-name="TOOLS">
+                            <i class="fa-solid fa-hammer"></i>
+                        </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-stages-button"
+                                data-section-name="STAGES">
+                            <i class="fa-solid fa-seedling"></i>
+                        </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-json-button"
+                                data-section-name="JSON">
+                            <i class="fa-solid fa-file-code"></i>
+                        </button>
+                    </div>
 
-                <div class="flex__grow--1">
-                    <div class="inspect__panel">
-                        <div class="inspect__panelButtons" id="inspect-buttons">
-                            <button class="inspect__panelButton inspect__panelButton--disabled" id="inspect-data-button"
-                                    data-section-name="GENERAL_DATA">
-                                <i class="fa-solid fa-database"></i>
-                            </button>
-                            <button class="inspect__panelButton inspect__panelButton--active"
-                                    data-section-name="CHECKBOXES"
-                                    id="inspect-checkboxes-button">
-                                <i class="fa-solid fa-border-all"></i>
-                            </button>
-                            <button class="inspect__panelButton  inspect__panelButton--disabled"
-                                    id="inspect-items-button"
-                                    data-section-name="DROP_ITEMS">
-                                <i class="fa-regular fa-gem"></i>
-                            </button>
-                            <button class="inspect__panelButton  inspect__panelButton--disabled"
-                                    id="inspect-description-button"
-                                    data-section-name="DESCRIPTION">
-                                <i class="fa-solid fa-message"></i>
-                            </button>
-                            <button class="inspect__panelButton  inspect__panelButton--disabled"
-                                    id="inspect-action-collisions-button"
-                                    data-section-name="ACTION_COLLISIONS">
-                                <i class="fa-solid fa-bolt-lightning"></i>
-                            </button>
-                            <button class="inspect__panelButton  inspect__panelButton--disabled"
-                                    id="inspect-tools-button"
-                                    data-section-name="TOOLS">
-                                <i class="fa-solid fa-hammer"></i>
-                            </button>
-                            <button class="inspect__panelButton  inspect__panelButton--disabled"
-                                    id="inspect-stages-button"
-                                    data-section-name="STAGES">
-                                <i class="fa-solid fa-seedling"></i>
-                            </button>
-                            <button class="inspect__panelButton  inspect__panelButton--disabled"
-                                    id="inspect-json-button"
-                                    data-section-name="JSON">
-                                <i class="fa-solid fa-file-code"></i>
-                            </button>
-                        </div>
+                    <!-- inspect sections, the content is created by js -->
+                    <div class="inspect__panelContent hide" id="inspect-sections-general-data">
+                        <h2 class="text inspect__sectionTitle">GENERAL DATA</h2>
+                        <section>
+                            <table class="inspectTable" id="inspect-table">
+                                <tr>
+                                    <td class="inspectTable__tdName">NAME</td>
+                                    <td class="inspectTable__tdValue" data-inspect-table-object-attribute="name">
+                                        BUSH
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="inspectTable__tdName">ID</td>
+                                    <td class="inspectTable__tdValue" data-inspect-table-object-attribute="id">1
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="inspectTable__tdName">GROUP</td>
+                                    <td class="inspectTable__tdValue" data-inspect-table-object-attribute="group">
+                                        ENVIRONMENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="inspectTable__tdName">TYPE</td>
+                                    <td class="inspectTable__tdValue" data-inspect-table-object-attribute="type">
+                                        BUSHES
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="inspectTable__tdName">HP</td>
+                                    <td class="inspectTable__tdValue" data-inspect-table-object-attribute="hp">400
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="inspectTable__tdName">DESTROYABLE</td>
+                                    <td class="inspectTable__tdValue"
+                                        data-inspect-table-object-attribute="destroyable">
+                                        TRUE
+                                    </td>
+                                </tr>
+                            </table>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-checkboxes">
+                        <h2 class="text inspect__sectionTitle">CHECKBOXES</h2>
+                        <section>
+                            <ul id="inspect-checkboxes-list"></ul>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-drop-items">
+                        <h2 class="text inspect__sectionTitle">DROP ITEMS</h2>
+                        <section>
+                            <table class="table">
+                                <thead class="table__thead table__thead--alignLeft">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Chance</th>
+                                </tr>
+                                </thead>
+                                <tbody class="table__tbody" id="inspect-sections-drop-items-table-body">
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent" id="inspect-sections-description">
+                        <h2 class="text inspect__sectionTitle">DESCRIPTION</h2>
+                        <section>
+                            <p class="text text--grey text--justify text--15 text--lineHeight-md"
+                               id="inspect-description-text">Lorem ipsum
+                            </p>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-action-collisions">
+                        <h2 class="text inspect__sectionTitle">ACTION COLLISIONS</h2>
+                        <section>
 
-                        <!-- inspect sections, the content is created by js -->
-                        <div class="inspect__panelContent hide" id="inspect-sections-general-data">
-                            <h2 class="text inspect__sectionTitle">GENERAL DATA</h2>
-                            <section>
-                                <table class="inspectTable" id="inspect-table">
-                                    <tr>
-                                        <td class="inspectTable__tdName">NAME</td>
-                                        <td class="inspectTable__tdValue" data-inspect-table-object-attribute="name">
-                                            BUSH
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="inspectTable__tdName">ID</td>
-                                        <td class="inspectTable__tdValue" data-inspect-table-object-attribute="id">1
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="inspectTable__tdName">GROUP</td>
-                                        <td class="inspectTable__tdValue" data-inspect-table-object-attribute="group">
-                                            ENVIRONMENT
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="inspectTable__tdName">TYPE</td>
-                                        <td class="inspectTable__tdValue" data-inspect-table-object-attribute="type">
-                                            BUSHES
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="inspectTable__tdName">HP</td>
-                                        <td class="inspectTable__tdValue" data-inspect-table-object-attribute="hp">400
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="inspectTable__tdName">DESTROYABLE</td>
-                                        <td class="inspectTable__tdValue"
-                                            data-inspect-table-object-attribute="destroyable">
-                                            TRUE
-                                        </td>
-                                    </tr>
-                                </table>
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent hide" id="inspect-sections-checkboxes">
-                            <h2 class="text inspect__sectionTitle">CHECKBOXES</h2>
-                            <section>
-                                <ul id="inspect-checkboxes-list"></ul>
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent hide" id="inspect-sections-drop-items">
-                            <h2 class="text inspect__sectionTitle">DROP ITEMS</h2>
-                            <section>
-                                <table class="table">
-                                    <thead class="table__thead table__thead--alignLeft">
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Amount</th>
-                                        <th>Chance</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="table__tbody" id="inspect-sections-drop-items-table-body">
-                                    </tbody>
-                                </table>
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent" id="inspect-sections-description">
-                            <h2 class="text inspect__sectionTitle">DESCRIPTION</h2>
-                            <section>
-                                <p class="text text--grey text--justify text--15 text--lineHeight-md"
-                                   id="inspect-description-text">Lorem ipsum
-                                </p>
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent hide" id="inspect-sections-action-collisions">
-                            <h2 class="text inspect__sectionTitle">ACTION COLLISIONS</h2>
-                            <section>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-tools">
+                        <h2 class="text inspect__sectionTitle">TOOLS</h2>
+                        <section>
+                            <table class="table">
+                                <thead class="table__thead table__thead--alignLeft">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Damage</th>
+                                    <th>Usage</th>
+                                </tr>
+                                </thead>
+                                <tbody class="table__tbody" id="inspect-sections-tools-table-body">
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-stages">
+                        <h2 class="text inspect__sectionTitle">STAGES</h2>
+                        <section>
 
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent hide" id="inspect-sections-tools">
-                            <h2 class="text inspect__sectionTitle">TOOLS</h2>
-                            <section>
-
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent hide" id="inspect-sections-stages">
-                            <h2 class="text inspect__sectionTitle">STAGES</h2>
-                            <section>
-
-                            </section>
-                        </div>
-                        <div class="inspect__panelContent hide" id="inspect-sections-json">
-                            <h2 class="text inspect__sectionTitle">JSON</h2>
-                            <section>
-                                <div id="inspect-json-container"></div>
-                            </section>
-                        </div>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-json">
+                        <h2 class="text inspect__sectionTitle">JSON</h2>
+                        <section>
+                            <div id="inspect-json-container" class="inspect__code"></div>
+                        </section>
                     </div>
                 </div>
-
             </div>
         </div>
 
