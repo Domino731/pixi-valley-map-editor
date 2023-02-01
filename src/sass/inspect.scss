@@ -61,6 +61,8 @@
       &:hover {
         color: $white;
         cursor: pointer;
+        -webkit-text-stroke: 1px black;
+        background: lighten($blue, 7%);
       }
 
     }

@@ -1,5 +1,7 @@
 import {ActionCollisionProps, CollisionComponentProps} from "./types";
 import {CollisionColors} from "./const";
+import {GameActions} from "../../../../data/actions";
+import {GameActionsUnion} from "../../../../data/actions/const";
 
 export class Collision {
     private readonly collisionElement: HTMLElement;
@@ -41,7 +43,19 @@ export class Collision {
 
     private setTitle(): void {
         const titleElement: HTMLElement = this.collisionElement.querySelector('.inspectCollision__coordinates');
-        titleElement.innerText = `w: ${this.props.width}; h: ${this.props.height}; x: ${this.props.xPosition}; y: ${this.props.yPosition};`;
+
+        let title: string = '';
+
+        // @ts-ignore
+        if (this.isActionCollision && this.props.actionId) {
+            // @ts-ignore
+            const actionName: string | undefined = GameActions.find(({id}: { id: GameActionsUnion }) => id === this.props.actionId)?.name;
+            title = `${actionName ?? 'None'}`;
+        } else {
+            title = `w: ${this.props.width}; h: ${this.props.height}; x: ${this.props.xPosition}; y: ${this.props.yPosition};`
+        }
+
+        titleElement.innerText = title;
     }
 
     private setStyles(): void {

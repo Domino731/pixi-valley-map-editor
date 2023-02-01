@@ -179,7 +179,7 @@ export class Inspect {
     private buildActionCollisionsSection(): void {
         this.hideAllSections();
         this.actionCollisionsSection.classList.remove('hide');
-        document.querySelector('#inspect-checkboxes-list').innerHTML = '';
+        document.querySelector('#inspect-tools-list').innerHTML = '';
         const exampleCollisions: Array<Partial<ActionCollisionProps>> = [{
             width: 40,
             height: 40,
@@ -187,6 +187,7 @@ export class Inspect {
             yPosition: 19,
             actionId: 'ATTACK'
         }]
+        // @ts-ignore
         exampleCollisions.forEach((el, index) => new Collision('#inspect-tools-list', {...el, index}, true).build());
     }
 
