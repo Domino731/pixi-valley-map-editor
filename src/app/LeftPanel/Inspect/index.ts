@@ -10,6 +10,7 @@ import {Description} from "./Components/Description";
 import {InspectJson} from "./Components/JSON";
 import {InspectTools} from "./Components/Tools";
 import {ActionCollisionProps} from "./Components/types";
+import {InspectStages} from "./Components/Stages";
 
 export class Inspect {
     private readonly inspect: {
@@ -18,6 +19,7 @@ export class Inspect {
         description: Description,
         inspectJson: InspectJson,
         inspectTools: InspectTools,
+        inspectStages: InspectStages
     };
     private readonly generalDataSection: HTMLElement;
     private readonly checkboxesSection: HTMLElement;
@@ -34,7 +36,8 @@ export class Inspect {
             dropItems: new DropItems(),
             description: new Description(),
             inspectJson: new InspectJson(),
-            inspectTools: new InspectTools()
+            inspectTools: new InspectTools(),
+            inspectStages: new InspectStages()
         }
         this.generalDataSection = document.querySelector('#inspect-sections-general-data');
         this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
@@ -118,6 +121,7 @@ export class Inspect {
         this.descriptionSection.classList.add('hide');
         this.actionCollisionsSection.classList.add('hide');
         this.toolsSection.classList.add('hide');
+        this.jsonSection.classList.add('hide');
     }
 
     private buildGeneralDataSection(engineObject: EngineObject): void {
@@ -220,6 +224,12 @@ export class Inspect {
         this.inspect.inspectTools.build(example);
     }
 
+    private buildInspectStagesSection(): void {
+        this.hideAllSections();
+        this.stagesSection.classList.remove('hide');
+        this.inspect.inspectStages.build(GAME_DATA.objects.Trees[0].stages)
+    }
+
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
@@ -243,6 +253,9 @@ export class Inspect {
             case INSPECT_SECTIONS_NAMES.TOOLS:
                 this.buildInspectToolsSection();
                 break;
+            case INSPECT_SECTIONS_NAMES.STAGES:
+                this.buildInspectStagesSection();
+                break;
             default:
                 break;
         }
@@ -256,3 +269,4 @@ export class Inspect {
 
 // TODO: features
 // - Dodać opisy do każdej z sekcji inspekcji
+// - Dodać sekcję z wariantami (zima, lato)

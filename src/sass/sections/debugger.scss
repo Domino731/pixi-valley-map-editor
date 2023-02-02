@@ -1,0 +1,13 @@
+.debugger {
+  &__panel {
+    display: flex;
+  }
+
+  &__buttonsColumn {
+    width: 50px;
+  }
+
+  &__panelContent {
+    background: $section;
+  }
+}

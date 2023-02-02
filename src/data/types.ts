@@ -178,3 +178,7 @@ export interface ObjectToolInterface {
     damage: [number, number] | number;
     usage: number;
 }
+
+export interface ObjectStageInterface extends EngineObject {
+    stage: number;
+}
