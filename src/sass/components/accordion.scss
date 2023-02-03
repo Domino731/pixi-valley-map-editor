@@ -1,0 +1,41 @@
+.accordion {
+  &__button {
+    height: 45px;
+    width: 100%;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #3c3939;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+
+      p {
+        color: $pink !important;
+      }
+
+      i {
+        color: $white;
+      }
+    }
+
+  }
+
+  &__buttonText {
+    color: $white;
+  }
+
+  &__buttonIcon {
+    transition: 0.2s;
+    position: absolute;
+    right: 16px;
+    color: $graySecondary;
+    transition: 0.2s;
+
+    &--active {
+      color: $gray;
+      transform: rotate(180deg);
+    }
+  }
+}
