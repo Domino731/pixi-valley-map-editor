@@ -1,6 +1,7 @@
 .debugger {
   &__panel {
     display: flex;
+    height: 300px;
   }
 
   &__buttonsColumn {
@@ -13,7 +14,7 @@
     border: 1px solid $graySecondary;
     padding: 0 12px 12px;
   }
-  
+
   &__sectionTitle {
     color: $pink;
     font-size: 18px;
