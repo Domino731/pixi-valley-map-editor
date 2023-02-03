@@ -22,13 +22,15 @@
             <div class="inspect">
                 <div class="debugger__panel">
                     <div class="debugger__buttonsColumn">
-                        <button class="inspect__panelButton inspect__panelButton--disabled">
+                        <button class="inspect__panelButton inspect__panelButton--disabled"
+                                id="toggle-debugger-sections-button-objects">
                             <i class="fa-solid fa-vector-square"></i>
                         </button>
-                        <button class="inspect__panelButton inspect__panelButton--disabled" id="layers">
+                        <button class="inspect__panelButton inspect__panelButton--disabled"
+                                id="toggle-debugger-sections-button-world">
                             <i class="fa-solid fa-layer-group"></i>
                         </button>
-                        <button class="inspect__panelButton inspect__panelButton--disabled" id="layers">
+                        <button class="inspect__panelButton inspect__panelButton--disabled">
                             <i class="fa-regular fa-floppy-disk"></i>
                         </button>
                     </div>
@@ -42,7 +44,10 @@
                 </div>
 
                 <p class="text text--grey text--center pt--4" id="inspect-blueprint-label">Chose object to inspect</p>
-                <div class="inspect__panel">
+
+
+                <!--                sections-->
+                <div class="inspect__panel" id="inspect-objects-section">
                     <div class="inspect__panelButtons" id="inspect-buttons">
                         <button class="inspect__panelButton inspect__panelButton--disabled" id="inspect-data-button"
                                 data-section-name="GENERAL_DATA">
@@ -195,6 +200,20 @@
                         </section>
                     </div>
                 </div>
+                <div class="inspect__panel hide" id="inspect-world-section">
+                    <div class="inspect__panelButtons" id="inspect-world-buttons">
+                        <button class="inspect__panelButton inspect__panelButton--disabled"
+                                data-section-name="GENERAL_DATA">
+                            <i class="fa-solid fa-database"></i>
+                        </button>
+                    </div>
+
+                    <div class="inspect__panelContent">
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

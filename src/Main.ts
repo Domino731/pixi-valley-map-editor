@@ -9,6 +9,8 @@ import {SpritesConfig} from "./data/spritesConfig";
 import {LeftPanel} from "./app/LeftPanel/LeftPanel";
 import {CropObject} from "./data/crops/types";
 import {Inspect} from "./app/LeftPanel/Inspect";
+import {InspectWorld} from "./app/LeftPanel/InspectWorld";
+import {ToggleDebuggerMode} from "./app/LeftPanel/ToggleDebuggerMode";
 
 export class Main {
     dom: DOM;
@@ -31,6 +33,9 @@ export class Main {
         this.engineObject = null;
 
         new Inspect();
+        new InspectWorld();
+        new ToggleDebuggerMode();
+        
         this.init();
     }
 
