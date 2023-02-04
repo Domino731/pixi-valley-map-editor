@@ -5,6 +5,8 @@ import {ENGINE_OBJECTS_TYPES, EngineObject, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {CROPS_PER_PANEL} from "../../data/crops/const";
 import {CropObject} from "../../data/crops/types";
+import {InspectWorldObjects} from "../LeftPanel/InspectWorld/components/InspectWorldObjects";
+import {v4 as uuidv4} from 'uuid';
 
 export class Map {
     readonly cellSize: number;
@@ -12,8 +14,10 @@ export class Map {
     private main: Main;
     private size: Vector;
     private hoverPosition: Vector;
+    private readonly inspectWorldObjects: InspectWorldObjects;
 
     constructor(main: Main) {
+        this.inspectWorldObjects = new InspectWorldObjects();
         this.main = main;
         this.size = {
             x: 60,
@@ -68,6 +72,7 @@ export class Map {
                 if (spriteSize) {
                     const object: HTMLDivElement = document.createElement('div');
 
+                    const mapId = uuidv4();
 
                     object.dataset.objectName = this.main.getEngineObject().name;
                     object.style.position = "absolute";
@@ -79,6 +84,7 @@ export class Map {
                     object.dataset.objectId = engineObject.id;
                     object.dataset.objectGroup = engineObject.group;
                     object.dataset.objectType = engineObject.type;
+                    object.dataset.id = mapId;
 
                     object.style.width = `${spriteSize.cellWidth}px`;
                     object.style.height = `${spriteSize.cellHeight}px`;
@@ -88,6 +94,7 @@ export class Map {
                     object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
                     object.style.backgroundRepeat = 'no-repeat'
 
+
                     if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS && engineObject.stages?.length) {
                         const cropObject: CropObject = engineObject as CropObject;
                         object.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * cropObject.spriteIndex.x}px -${0}px`;
@@ -96,6 +103,8 @@ export class Map {
                     }
 
                     this.main.dom.map.appendChild(object);
+                    this.main.pushToDataObjects({...engineObject, mapId: mapId});
+                    this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
                 }
             }
         });

@@ -147,6 +147,9 @@ export enum ENGINE_OBJECTS_TYPES {
     BUSHES = 'BUSHES'
 }
 
+export type EngineObjectTypesUnion = keyof typeof ENGINE_OBJECTS_TYPES;
+
+
 export interface MapJsonData {
     ground: Array<GroundData>;
     objects: {

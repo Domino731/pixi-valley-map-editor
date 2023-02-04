@@ -1,4 +1,4 @@
-import {SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector} from "./types";
+import {ExtendedEngineObject, SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector} from "./types";
 import {SPRITE_TYPES, SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
 import {Map} from "./app/Map/Map";
@@ -11,6 +11,7 @@ import {CropObject} from "./data/crops/types";
 import {Inspect} from "./app/LeftPanel/Inspect";
 import {InspectWorld} from "./app/LeftPanel/InspectWorld";
 import {ToggleDebuggerMode} from "./app/LeftPanel/ToggleDebuggerMode";
+import {InspectWorldObjects} from "./app/LeftPanel/InspectWorld/components/InspectWorldObjects";
 
 export class Main {
     dom: DOM;
@@ -22,6 +23,10 @@ export class Main {
     private spriteType: keyof typeof SPRITE_TYPES;
 
     private engineObject: EngineObject | CropObject | null;
+    private readonly inspectWorldObjects: InspectWorldObjects;
+    private data: {
+        objects: Array<ExtendedEngineObject>;
+    }
 
     constructor() {
         this.dom = new DOM();
@@ -31,13 +36,25 @@ export class Main {
         this.rightPanel = new RightPanel(this);
         this.spriteType = SPRITE_TYPES.GROUND_TILE;
         this.engineObject = null;
+        this.data = {
+            objects: []
+        }
 
         new Inspect();
         new InspectWorld();
         new ToggleDebuggerMode();
-        
+
         this.init();
     }
+
+    public pushToDataObjects(object: ExtendedEngineObject): void {
+        this.data.objects.push(object);
+    }
+
+    public getDataObjects(): Array<ExtendedEngineObject> {
+        return this.data.objects;
+    }
+
 
     public getEngineObject(): EngineObject | null {
         return this.engineObject;

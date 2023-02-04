@@ -3,12 +3,15 @@ import {SpritesConfig} from "../../data/spritesConfig";
 import {Main} from "../../Main";
 import {CropObject} from "../../data/crops/types";
 import {CROPS_PER_PANEL} from "../../data/crops/const";
+import {Inspect} from "../LeftPanel/Inspect";
+import {InspectWorldObjects} from "../LeftPanel/InspectWorld/components/InspectWorldObjects";
 
 export class ObjectsListBuilder {
     private DOM: {
         objectsContainer: HTMLDivElement
     }
     private main: Main;
+    private readonly inspectWorldObjects: InspectWorldObjects;
 
     constructor(main: Main) {
         this.DOM = {
@@ -100,6 +103,7 @@ export class ObjectsListBuilder {
 
                         mainObjectWrapper.addEventListener('click', () => {
                             this.main.setEngineObject(stage);
+                            console.log('trees');
                         });
 
                         list.appendChild(mainObjectWrapper)

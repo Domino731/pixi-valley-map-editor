@@ -1,3 +1,5 @@
+import {EngineObject} from "./data/types";
+
 export interface SpriteDim {
     cellWidth: number;
     cellHeight: number;
@@ -15,4 +17,8 @@ export type SpriteNamesUnion = keyof typeof SPRITE_NAMES;
 export interface Vector {
     x: number;
     y: number;
+}
+
+export interface ExtendedEngineObject extends EngineObject {
+    mapId: string;
 }
