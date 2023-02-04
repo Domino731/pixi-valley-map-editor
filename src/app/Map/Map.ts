@@ -84,7 +84,7 @@ export class Map {
                     object.dataset.objectId = engineObject.id;
                     object.dataset.objectGroup = engineObject.group;
                     object.dataset.objectType = engineObject.type;
-                    object.dataset.id = mapId;
+                    object.id = mapId;
 
                     object.style.width = `${spriteSize.cellWidth}px`;
                     object.style.height = `${spriteSize.cellHeight}px`;

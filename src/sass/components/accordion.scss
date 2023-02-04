@@ -37,4 +37,25 @@
       transform: rotate(180deg);
     }
   }
+
+  &__list {
+    padding-left: 12px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  &__listItem {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    letter-spacing: 0.05em;
+    position: relative;
+    border-bottom: 1px solid #2c2d2e;
+    color: $gray;
+
+    &:hover {
+      color: $white;
+    }
+  }
 }

@@ -12,8 +12,20 @@ export class InspectWorldObjects {
         console.log(1);
     }
 
-    private createObjectsListItem() {
+    private createObjectsListItem({name, mapId}: ExtendedEngineObject): HTMLLIElement {
+        const liElement: HTMLLIElement = document.createElement('li');
+        const mapObject: HTMLDivElement | null = document.getElementById(mapId) as HTMLDivElement | null;
 
+        liElement.innerText = name;
+        liElement.className = 'accordion__listItem';
+        liElement.addEventListener('mouseenter', () => {
+            console.log(mapObject);
+            mapObject.classList.add('mapObject__active')
+        });
+        liElement.addEventListener('mouseleave', () => {
+            mapObject.classList.remove('mapObject__active')
+        });
+        return liElement;
     }
 
     private createAccordion({name}: ExtendedEngineObject, objectsByName: Array<ExtendedEngineObject>): HTMLLIElement {
@@ -27,9 +39,9 @@ export class InspectWorldObjects {
         `
 
         const objectsList: HTMLUListElement = document.createElement('ul');
-        objectsList.className = 'hide';
-        objectsByName.forEach(() => {
-            objectsList.innerHTML = `<li>TEST</li>`
+        objectsList.className = 'accordion__list';
+        objectsByName.forEach((el: ExtendedEngineObject) => {
+            objectsList.appendChild(this.createObjectsListItem(el))
         }, [])
 
         accordionButton.addEventListener('click', () => {
