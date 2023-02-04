@@ -12,17 +12,37 @@ export class InspectWorldObjects {
         console.log(1);
     }
 
-    private createAccordion({name}: ExtendedEngineObject): HTMLLIElement {
+    private createObjectsListItem() {
+
+    }
+
+    private createAccordion({name}: ExtendedEngineObject, objectsByName: Array<ExtendedEngineObject>): HTMLLIElement {
         const liElement: HTMLLIElement = document.createElement('li');
-        
+
         const accordionButton: HTMLDivElement = document.createElement('div');
         accordionButton.className = 'accordion__button';
         accordionButton.innerHTML = `
-          <p class="accordion__buttonText">${name}</p>
+          <p class="accordion__buttonText">${name} (${objectsByName.length})</p>
           <i class="fa-solid fa-chevron-down accordion__buttonIcon"></i>
         `
 
+        const objectsList: HTMLUListElement = document.createElement('ul');
+        objectsList.className = 'hide';
+        objectsByName.forEach(() => {
+            objectsList.innerHTML = `<li>TEST</li>`
+        }, [])
+
+        accordionButton.addEventListener('click', () => {
+            if (objectsList.classList.contains('hide')) {
+                objectsList.classList.remove('hide')
+            } else {
+                objectsList.classList.add('hide')
+            }
+        })
+
         liElement.appendChild(accordionButton);
+        liElement.appendChild(objectsList);
+
         return liElement;
     }
 
@@ -36,7 +56,8 @@ export class InspectWorldObjects {
                 return false;
             } else {
                 availableObjects.push(el.name);
-                objectsList.appendChild(this.createAccordion(el));
+                const objectsByName: Array<ExtendedEngineObject> = objects.filter(({name}: { name: string }) => el.name === name);
+                objectsList.appendChild(this.createAccordion(el, objectsByName));
             }
         })
 
