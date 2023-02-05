@@ -51,4 +51,14 @@
 
     }
   }
+
+  &__table {
+    font-size: 17px;
+    color: $gray;
+
+    th, td {
+      padding-bottom: 6px;
+      padding-right: 6px;
+    }
+  }
 }
