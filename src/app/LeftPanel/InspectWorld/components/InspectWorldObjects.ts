@@ -15,11 +15,20 @@ export class InspectWorldObjects {
     private createObjectsListItem({name, mapId}: ExtendedEngineObject): HTMLLIElement {
         const liElement: HTMLLIElement = document.createElement('li');
         const mapObject: HTMLDivElement | null = document.getElementById(mapId) as HTMLDivElement | null;
+        const objectNameElement: HTMLParagraphElement = document.createElement('p');
+        const checkboxWrapperElement: HTMLDivElement = document.createElement('div');
+        const checkboxElement: HTMLInputElement = document.createElement('input');
+        
+        checkboxWrapperElement.className = 'inspect__listCheckbox';
+        checkboxElement.type = 'checkbox';
+        objectNameElement.innerText = name;
+        checkboxWrapperElement.appendChild(checkboxElement);
 
-        liElement.innerText = name;
+        liElement.appendChild(checkboxWrapperElement);
+        liElement.appendChild(objectNameElement);
+
         liElement.className = 'accordion__listItem';
         liElement.addEventListener('mouseenter', () => {
-            console.log(mapObject);
             mapObject.classList.add('mapObject__active')
         });
         liElement.addEventListener('mouseleave', () => {

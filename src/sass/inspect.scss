@@ -2,6 +2,11 @@
   padding-top: 42px;
   height: 100%;
 
+  &__listCheckbox {
+    position: absolute;
+    left: -15px;
+  }
+
   &__graphic {
 
   }
