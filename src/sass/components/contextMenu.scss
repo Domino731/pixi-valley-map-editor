@@ -1,0 +1,46 @@
+.contextMenu {
+  &__button {
+    height: 100%;
+    padding: 0 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    background: #252526;
+    border: 1px solid $gray;
+    border-radius: 2px;
+    padding: 6px;
+
+    li:last-child {
+      border-bottom: none !important;
+    }
+  }
+
+  &__listItem {
+    border-bottom: 1px solid $graySecondary;
+
+    button {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+      color: gray;
+      padding: 6px 4px;
+
+      &:hover {
+        cursor: pointer;
+        color: $yellow;
+      }
+    }
+  }
+
+  &__portal {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

@@ -1,5 +1,6 @@
 import {EngineObject, EngineObjectTypesUnion} from "../../../../data/types";
 import {ExtendedEngineObject} from "../../../../types";
+import {ContextMenu} from "../../../utils/ContextMenu";
 
 export class InspectWorldObjects {
     private readonly MapObjectsElements: Array<HTMLDivElement>;
@@ -18,15 +19,20 @@ export class InspectWorldObjects {
         const objectNameElement: HTMLParagraphElement = document.createElement('p');
         const checkboxWrapperElement: HTMLDivElement = document.createElement('div');
         const checkboxElement: HTMLInputElement = document.createElement('input');
-        
+        const contextMenuWrapperElement: HTMLDivElement = document.createElement('div');
+
+
         checkboxWrapperElement.className = 'inspect__listCheckbox';
         checkboxElement.type = 'checkbox';
         objectNameElement.innerText = name;
         checkboxWrapperElement.appendChild(checkboxElement);
 
+        contextMenuWrapperElement.className = 'inspect__listContextMenu'
+        new ContextMenu(contextMenuWrapperElement);
+
         liElement.appendChild(checkboxWrapperElement);
         liElement.appendChild(objectNameElement);
-
+        liElement.appendChild(contextMenuWrapperElement);
         liElement.className = 'accordion__listItem';
         liElement.addEventListener('mouseenter', () => {
             mapObject.classList.add('mapObject__active')
