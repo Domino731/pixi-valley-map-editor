@@ -14,14 +14,21 @@ export class InspectWorldObjects {
         console.log(1);
     }
 
-    private findObjectElement(objectMapId: string): HTMLDivElement | null {
-        return document.getElementById(`${objectMapId}`);
+    public static findObjectElement(objectMapId: string): HTMLDivElement | null {
+        return document.getElementById(`${objectMapId}`) as HTMLDivElement | null;
     }
 
-    private hideObjectOnMap(objectMapId: string): void {
-        const target: HTMLDivElement | null = this.findObjectElement(objectMapId);
+    public hideObjectOnMap(objectMapId: string): void {
+        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
         if (target) {
             target.classList.add('hide');
+        }
+    }
+
+    public deleteObjectFromMap(objectMapId: string): void {
+        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
+        if (target) {
+            target.remove();
         }
     }
 
@@ -48,7 +55,7 @@ export class InspectWorldObjects {
             },
             {
                 label: 'Delete',
-                onClick: () => console.log('hide')
+                onClick: () => this.deleteObjectFromMap(mapId)
             },
         ]
 
