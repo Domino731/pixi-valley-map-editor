@@ -1,14 +1,17 @@
 import {list} from "postcss";
 import {DetectOutsideClick} from "./DetectOutsideClick";
+import {ContextMenuOption} from "./types";
 
 export class ContextMenu {
     private readonly parentElement: HTMLElement;
     private readonly portalElement: HTMLElement;
+    private readonly options: Array<ContextMenuOption>;
     private isOpen: boolean;
 
-    constructor(parentElement: HTMLElement | string) {
+    constructor(parentElement: HTMLElement | string, options: Array<ContextMenuOption>) {
         this.parentElement = parentElement;
         this.portalElement = document.querySelector('#context-menu-portal');
+        this.options = options;
         this.isOpen = false;
         this.init();
     }
@@ -28,17 +31,27 @@ export class ContextMenu {
     private createListElement(left: number, top: number): void {
         this.cleanPortal();
 
+        // create list element and add correct position
         const listElement: HTMLUListElement = document.createElement('ul');
         listElement.className = 'contextMenu__list';
-        listElement.innerHTML = '<li class="contextMenu__listItem"><button>TEST</button></li> <li class="contextMenu__listItem"><button>TEST</button></li>';
         listElement.style.top = `${top}px`;
-        listElement.style.left = `${left}px`
+        listElement.style.left = `${left}px`;
 
-        // new DetectOutsideClick(listElement, () => {
-        //     if (this.isOpen) {
-        //         this.cleanPortal();
-        //     }
-        // });
+        // create options
+        this.options.forEach(({onClick, label}: ContextMenuOption) => {
+            const listItemElement: HTMLLIElement = document.createElement('li');
+            const buttonElement: HTMLButtonElement = document.createElement('button');
+
+            listItemElement.className = "contextMenu__listItem";
+            buttonElement.innerText = label;
+
+            buttonElement.addEventListener('click', () => {
+                onClick();
+            });
+
+            listItemElement.appendChild(buttonElement);
+            listElement.appendChild(listItemElement);
+        });
 
         this.portalElement.appendChild(listElement);
     }

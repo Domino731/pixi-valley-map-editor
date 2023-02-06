@@ -1,6 +1,7 @@
 import {EngineObject, EngineObjectTypesUnion} from "../../../../data/types";
 import {ExtendedEngineObject} from "../../../../types";
 import {ContextMenu} from "../../../utils/ContextMenu";
+import {ContextMenuOption} from "../../../utils/types";
 
 export class InspectWorldObjects {
     private readonly MapObjectsElements: Array<HTMLDivElement>;
@@ -27,8 +28,16 @@ export class InspectWorldObjects {
         objectNameElement.innerText = name;
         checkboxWrapperElement.appendChild(checkboxElement);
 
-        contextMenuWrapperElement.className = 'inspect__listContextMenu'
-        new ContextMenu(contextMenuWrapperElement);
+        contextMenuWrapperElement.className = 'inspect__listContextMenu';
+
+        const options: Array<ContextMenuOption> = [
+            {
+                label: 'Hide',
+                onClick: () => console.log('hide')
+            }
+        ]
+
+        new ContextMenu(contextMenuWrapperElement, options);
 
         liElement.appendChild(checkboxWrapperElement);
         liElement.appendChild(objectNameElement);

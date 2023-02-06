@@ -12,9 +12,11 @@ export class DetectOutsideClick {
             let targetEl = evt.target as HTMLElement;
             do {
                 if (targetEl == flyoutEl) {
+                    console.log(1);
                     onOutsideClick();
                     return;
                 }
+                console.log(2);
                 onOutsideClick();
                 targetEl = targetEl.parentNode as HTMLElement;
             } while (targetEl);
