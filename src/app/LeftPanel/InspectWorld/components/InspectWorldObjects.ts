@@ -14,6 +14,17 @@ export class InspectWorldObjects {
         console.log(1);
     }
 
+    private findObjectElement(objectMapId: string): HTMLDivElement | null {
+        return document.getElementById(`${objectMapId}`);
+    }
+
+    private hideObjectOnMap(objectMapId: string): void {
+        const target: HTMLDivElement | null = this.findObjectElement(objectMapId);
+        if (target) {
+            target.classList.add('hide');
+        }
+    }
+
     private createObjectsListItem({name, mapId}: ExtendedEngineObject): HTMLLIElement {
         const liElement: HTMLLIElement = document.createElement('li');
         const mapObject: HTMLDivElement | null = document.getElementById(mapId) as HTMLDivElement | null;
@@ -33,8 +44,12 @@ export class InspectWorldObjects {
         const options: Array<ContextMenuOption> = [
             {
                 label: 'Hide',
+                onClick: () => this.hideObjectOnMap(mapId)
+            },
+            {
+                label: 'Delete',
                 onClick: () => console.log('hide')
-            }
+            },
         ]
 
         new ContextMenu(contextMenuWrapperElement, options);
