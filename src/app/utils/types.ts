@@ -3,7 +3,13 @@ export interface SelectOption {
     value: any;
 }
 
+export type ContextMenuOptionElements = {
+    listItem: HTMLLIElement;
+    button: HTMLButtonElement;
+}
+
 export interface ContextMenuOption {
     label: string;
-    onClick: () => void;
+    onClick: (elements?: ContextMenuOptionElements) => void;
+    hideOnClick?: boolean;
 }

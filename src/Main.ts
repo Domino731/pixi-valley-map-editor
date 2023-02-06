@@ -12,6 +12,7 @@ import {Inspect} from "./app/LeftPanel/Inspect";
 import {InspectWorld} from "./app/LeftPanel/InspectWorld";
 import {ToggleDebuggerMode} from "./app/LeftPanel/ToggleDebuggerMode";
 import {InspectWorldObjects} from "./app/LeftPanel/InspectWorld/components/InspectWorldObjects";
+import {DetectOutsideClick} from "./app/utils/DetectOutsideClick";
 
 export class Main {
     dom: DOM;
@@ -90,5 +91,6 @@ export class Main {
     init(): void {
         this.map.init();
         new LeftPanel();
+        new DetectOutsideClick();
     }
 }

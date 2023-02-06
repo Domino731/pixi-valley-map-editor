@@ -55,7 +55,10 @@ export class InspectWorldObjects {
             },
             {
                 label: 'Delete',
-                onClick: () => this.deleteObjectFromMap(mapId)
+                onClick: () => {
+                    this.deleteObjectFromMap(mapId);
+                    liElement.remove();
+                }
             },
         ]
 

@@ -38,7 +38,7 @@ export class ContextMenu {
         listElement.style.left = `${left}px`;
 
         // create options
-        this.options.forEach(({onClick, label}: ContextMenuOption) => {
+        this.options.forEach(({onClick, label, hideOnClick}: ContextMenuOption) => {
             const listItemElement: HTMLLIElement = document.createElement('li');
             const buttonElement: HTMLButtonElement = document.createElement('button');
 
@@ -46,7 +46,9 @@ export class ContextMenu {
             buttonElement.innerText = label;
 
             buttonElement.addEventListener('click', () => {
-                onClick();
+                // pass button & list item element, so you can change button text for example on after click hide option
+                onClick({button: buttonElement, listItem: listItemElement});
+                this.cleanPortal();
             });
 
             listItemElement.appendChild(buttonElement);

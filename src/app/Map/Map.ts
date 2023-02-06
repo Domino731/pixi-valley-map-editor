@@ -17,8 +17,8 @@ export class Map {
     private readonly inspectWorldObjects: InspectWorldObjects;
 
     constructor(main: Main) {
-        this.inspectWorldObjects = new InspectWorldObjects();
         this.main = main;
+        this.inspectWorldObjects = new InspectWorldObjects();
         this.size = {
             x: 60,
             y: 60
