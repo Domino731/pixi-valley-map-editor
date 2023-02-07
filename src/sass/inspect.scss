@@ -2,6 +2,20 @@
   padding-top: 42px;
   height: 100%;
 
+  &__visibilityButton {
+    position: absolute;
+    right: 31px;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: $graySecondary;
+
+    &:hover {
+      color: $gray;
+      cursor: pointer;
+    }
+  }
+
   &__listCheckbox {
     position: absolute;
     left: -15px;

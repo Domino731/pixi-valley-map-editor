@@ -37,16 +37,18 @@ export class InspectWorldObjects {
         return checkedObjectsIds;
     }
 
-    public toggleMapObjectVisibility(objectMapId: string, objectId: string, contextMenuButton: HTMLButtonElement): void {
+    public toggleMapObjectVisibility(objectMapId: string, objectId: string, contextMenuButton: HTMLButtonElement, visibilityButton: HTMLButtonElement): void {
         const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
 
         const toggleVisibility = (mapId: string, isVisible: boolean) => {
             const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(mapId);
             if (target) {
                 if (isVisible) {
+                    visibilityButton.classList.remove('hide');
                     target.classList.add('hide');
                     contextMenuButton.innerText = 'Show';
                 } else {
+                    visibilityButton.classList.add('hide');
                     target.classList.remove('hide');
                     contextMenuButton.innerText = 'Hide';
                 }
@@ -70,7 +72,17 @@ export class InspectWorldObjects {
         const checkboxWrapperElement: HTMLDivElement = document.createElement('div');
         const checkboxElement: HTMLInputElement = document.createElement('input');
         const contextMenuWrapperElement: HTMLDivElement = document.createElement('div');
+        const visibilityButton: HTMLButtonElement = document.createElement('button');
 
+        visibilityButton.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+        visibilityButton.className = 'inspect__visibilityButton hide'
+        visibilityButton.addEventListener('click', () => {
+            const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(mapId);
+            if (target) {
+                visibilityButton.classList.add('hide');
+                target.classList.remove('hide');
+            }
+        })
 
         checkboxWrapperElement.className = 'inspect__listCheckbox';
         checkboxElement.type = 'checkbox';
@@ -87,7 +99,7 @@ export class InspectWorldObjects {
         const options: Array<ContextMenuOption> = [
             {
                 label: getLabel,
-                onClick: ({button}) => this.toggleMapObjectVisibility(mapId, id, button),
+                onClick: ({button}) => this.toggleMapObjectVisibility(mapId, id, button, visibilityButton),
                 hideOnClick: false
             },
             {
@@ -104,6 +116,8 @@ export class InspectWorldObjects {
         liElement.appendChild(checkboxWrapperElement);
         liElement.appendChild(objectNameElement);
         liElement.appendChild(contextMenuWrapperElement);
+        liElement.appendChild(visibilityButton);
+
         liElement.className = 'accordion__listItem';
         liElement.addEventListener('mouseenter', () => {
             mapObject.classList.add('mapObject__active')
