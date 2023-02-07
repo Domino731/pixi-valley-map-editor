@@ -40,10 +40,9 @@ export class InspectWorldObjects {
     public toggleMapObjectVisibility(objectMapId: string, objectId: string, contextMenuButton: HTMLButtonElement): void {
         const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
 
-        const toggleVisibility = (mapId: string) => {
+        const toggleVisibility = (mapId: string, isVisible: boolean) => {
             const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(mapId);
             if (target) {
-                const isVisible = !InspectWorldObjects.findObjectElement(objectMapId).classList.contains('hide');
                 if (isVisible) {
                     target.classList.add('hide');
                     contextMenuButton.innerText = 'Show';
@@ -54,10 +53,11 @@ export class InspectWorldObjects {
             }
         }
 
+        const isVisible = !InspectWorldObjects.findObjectElement(objectMapId).classList.contains('hide');
         if (checkedObjects.includes(objectMapId)) {
-            checkedObjects.forEach((el) => toggleVisibility(el))
+            checkedObjects.forEach((el) => toggleVisibility(el, isVisible))
         } else {
-            toggleVisibility(objectMapId)
+            toggleVisibility(objectMapId, isVisible)
         }
     }
 
