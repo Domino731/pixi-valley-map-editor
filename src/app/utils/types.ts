@@ -9,7 +9,7 @@ export type ContextMenuOptionElements = {
 }
 
 export interface ContextMenuOption {
-    label: string;
+    label: string | Function;
     onClick: (elements?: ContextMenuOptionElements) => void;
     hideOnClick?: boolean;
 }

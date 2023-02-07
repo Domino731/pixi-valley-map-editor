@@ -21,4 +21,7 @@ export interface Vector {
 
 export interface ExtendedEngineObject extends EngineObject {
     mapId: string;
+    map: {
+        cord: Vector;
+    }
 }

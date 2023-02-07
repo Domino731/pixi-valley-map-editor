@@ -43,12 +43,14 @@ export class ContextMenu {
             const buttonElement: HTMLButtonElement = document.createElement('button');
 
             listItemElement.className = "contextMenu__listItem";
-            buttonElement.innerText = label;
+            buttonElement.innerText = typeof label === 'function' ? label() : label;
 
             buttonElement.addEventListener('click', () => {
                 // pass button & list item element, so you can change button text for example on after click hide option
                 onClick({button: buttonElement, listItem: listItemElement});
-                this.cleanPortal();
+                if (hideOnClick === undefined) {
+                    this.cleanPortal();
+                }
             });
 
             listItemElement.appendChild(buttonElement);

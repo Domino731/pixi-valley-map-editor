@@ -18,13 +18,6 @@ export class InspectWorldObjects {
         return document.getElementById(`${objectMapId}`) as HTMLDivElement | null;
     }
 
-    public hideObjectOnMap(objectMapId: string): void {
-        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
-        if (target) {
-            target.classList.add('hide');
-        }
-    }
-
     public deleteObjectFromMap(objectMapId: string): void {
         const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
         if (target) {
@@ -32,7 +25,23 @@ export class InspectWorldObjects {
         }
     }
 
-    private createObjectsListItem({name, mapId}: ExtendedEngineObject): HTMLLIElement {
+    public toggleMapObjectVisibility(objectMapId: string, contextMenuButton: HTMLButtonElement): void {
+        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
+        if (target) {
+            const isVisible = !target.classList.contains('hide');
+            if (isVisible) {
+                target.classList.add('hide');
+                contextMenuButton.innerText = 'Show';
+            } else {
+                target.classList.remove('hide');
+                contextMenuButton.innerText = 'Hide';
+            }
+        }
+    }
+
+    private createObjectsListItem({name, mapId, map}: ExtendedEngineObject): HTMLLIElement {
+        const {cord} = map;
+
         const liElement: HTMLLIElement = document.createElement('li');
         const mapObject: HTMLDivElement | null = document.getElementById(mapId) as HTMLDivElement | null;
         const objectNameElement: HTMLParagraphElement = document.createElement('p');
@@ -43,15 +52,20 @@ export class InspectWorldObjects {
 
         checkboxWrapperElement.className = 'inspect__listCheckbox';
         checkboxElement.type = 'checkbox';
-        objectNameElement.innerText = name;
+        objectNameElement.innerText = `${cord.x}x - ${cord.y}y`;
         checkboxWrapperElement.appendChild(checkboxElement);
 
         contextMenuWrapperElement.className = 'inspect__listContextMenu';
 
+        const getLabel = (): string => {
+            return InspectWorldObjects.findObjectElement(mapId)?.classList.contains('hide') ? 'Show' : 'Hide';
+        }
+
         const options: Array<ContextMenuOption> = [
             {
-                label: 'Hide',
-                onClick: () => this.hideObjectOnMap(mapId)
+                label: getLabel,
+                onClick: ({button}) => this.toggleMapObjectVisibility(mapId, button),
+                hideOnClick: false
             },
             {
                 label: 'Delete',

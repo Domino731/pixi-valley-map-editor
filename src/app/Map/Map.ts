@@ -103,7 +103,11 @@ export class Map {
                     }
 
                     this.main.dom.map.appendChild(object);
-                    this.main.pushToDataObjects({...engineObject, mapId: mapId});
+                    this.main.pushToDataObjects({
+                        ...engineObject, mapId: mapId, map: {
+                            cord: {...position}
+                        }
+                    });
                     this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
                 }
             }
