@@ -10,9 +10,6 @@ export class InspectWorldObjects {
 
     }
 
-    public test(): void {
-        console.log(1);
-    }
 
     public static findObjectElement(objectMapId: string): HTMLDivElement | null {
         return document.getElementById(`${objectMapId}`) as HTMLDivElement | null;
@@ -25,21 +22,43 @@ export class InspectWorldObjects {
         }
     }
 
-    public toggleMapObjectVisibility(objectMapId: string, contextMenuButton: HTMLButtonElement): void {
-        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
-        if (target) {
-            const isVisible = !target.classList.contains('hide');
-            if (isVisible) {
-                target.classList.add('hide');
-                contextMenuButton.innerText = 'Show';
-            } else {
-                target.classList.remove('hide');
-                contextMenuButton.innerText = 'Hide';
-            }
+    private getCheckedObjects(objectName: string) {
+        const accordionElement: HTMLDivElement | null = document.querySelector(`#${this.getObjectsAccordionElementId(objectName)}`)
+        const checkedObjectsIds: Array<string> = [];
+
+        if (accordionElement) {
+            const checkboxes: Array<HTMLInputElement> = accordionElement.querySelectorAll('input[type="checkbox"]') as unknown as Array<HTMLInputElement>;
+            checkboxes.forEach(({dataset, checked}: HTMLInputElement) => {
+                if (checked) {
+                    checkedObjectsIds.push(dataset.mapId);
+                }
+            });
         }
+        return checkedObjectsIds;
     }
 
-    private createObjectsListItem({name, mapId, map}: ExtendedEngineObject): HTMLLIElement {
+    public toggleMapObjectVisibility(objectMapId: string, objectId: string, contextMenuButton: HTMLButtonElement): void {
+        const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
+
+        const toggleVisibility = (mapId: string) => {
+            const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(mapId);
+            if (target) {
+                const isVisible = !target.classList.contains('hide');
+                if (isVisible) {
+                    target.classList.add('hide');
+                    contextMenuButton.innerText = 'Show';
+                } else {
+                    target.classList.remove('hide');
+                    contextMenuButton.innerText = 'Hide';
+                }
+            }
+        }
+
+        checkedObjects.forEach((el) => toggleVisibility(el))
+
+    }
+
+    private createObjectsListItem({name, mapId, map, id}: ExtendedEngineObject): HTMLLIElement {
         const {cord} = map;
 
         const liElement: HTMLLIElement = document.createElement('li');
@@ -52,6 +71,7 @@ export class InspectWorldObjects {
 
         checkboxWrapperElement.className = 'inspect__listCheckbox';
         checkboxElement.type = 'checkbox';
+        checkboxElement.dataset.mapId = mapId;
         objectNameElement.innerText = `${cord.x}x - ${cord.y}y`;
         checkboxWrapperElement.appendChild(checkboxElement);
 
@@ -64,7 +84,7 @@ export class InspectWorldObjects {
         const options: Array<ContextMenuOption> = [
             {
                 label: getLabel,
-                onClick: ({button}) => this.toggleMapObjectVisibility(mapId, button),
+                onClick: ({button}) => this.toggleMapObjectVisibility(mapId, id, button),
                 hideOnClick: false
             },
             {
@@ -91,15 +111,23 @@ export class InspectWorldObjects {
         return liElement;
     }
 
-    private createAccordion({name}: ExtendedEngineObject, objectsByName: Array<ExtendedEngineObject>): HTMLLIElement {
-        const liElement: HTMLLIElement = document.createElement('li');
+    public getObjectsAccordionElementId(objectID: string): string {
+        return `inspect-world-objects-accordion-${objectID}`;
+    }
 
+    private createAccordion({
+                                name,
+                                id
+                            }: ExtendedEngineObject, objectsByName: Array<ExtendedEngineObject>): HTMLLIElement {
+        const liElement: HTMLLIElement = document.createElement('li');
         const accordionButton: HTMLDivElement = document.createElement('div');
+
         accordionButton.className = 'accordion__button';
         accordionButton.innerHTML = `
           <p class="accordion__buttonText">${name} (${objectsByName.length})</p>
           <i class="fa-solid fa-chevron-down accordion__buttonIcon"></i>
         `
+        liElement.id = this.getObjectsAccordionElementId(id);
 
         const objectsList: HTMLUListElement = document.createElement('ul');
         objectsList.className = 'accordion__list';
@@ -140,7 +168,6 @@ export class InspectWorldObjects {
 
 
     public build(objectsType: EngineObjectTypesUnion, allObjects: Array<ExtendedEngineObject>): void {
-        const allObjectsElements = document.querySelectorAll(`#map div[data-object-type="${objectsType}"]`);
         const objectsByType: Array<ExtendedEngineObject> = allObjects.filter(({type}: { type: EngineObjectTypesUnion }) => type === objectsType);
         this.buildObjectsAccordionButtons(objectsByType);
     }
