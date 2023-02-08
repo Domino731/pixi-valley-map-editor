@@ -1,14 +1,14 @@
-import {SPRITE_TYPES} from "../../const/types";
-import {DOM} from "../DOM";
-import {Map} from "../Map/Map";
-import {Main} from "../../Main";
-import {Select} from "../utils/Select";
-import {tiles} from "../../data/tiles/tiles";
-import {GAME_DATA} from "../../data";
-import {EngineObject} from "../../data/types";
-import {ObjectsListBuilder} from "./ObjectsListBuilder";
+import {Map} from "../../../Map/Map";
+import {Main} from "../../../../Main";
+import {EngineObject} from "../../../../data/types";
+import {ObjectsListBuilder} from "../../ObjectsListBuilder";
+import {tiles} from "../../../../data/tiles/tiles";
+import {GAME_DATA} from "../../../../data";
+import {SPRITE_TYPES} from "../../../../const/types";
+import {Select} from "../../../utils/Select";
+import {DOM} from "../../../DOM";
 
-export class RightPanel {
+export class ObjectsContent {
     private dom: DOM;
     private map: Map;
     private main: Main;

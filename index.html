@@ -364,12 +364,14 @@
             Content
         </h2>
         <section class="debugger__panel">
-            <div class="debugger__panelContent">
+            <div class="debugger__panelContent" id="content-objects-section">
                 <h3 class="debugger__sectionTitle">Select object</h3>
-
+            </div>
+            <div class="debugger__panelContent hide" id="content-tile-sets-section">
+                <h3 class="debugger__sectionTitle">Select tile sets</h3>
             </div>
             <div class="debugger__buttonsColumn">
-                <button class="inspect__panelButton inspect__panelButton--disabled"
+                <button class="inspect__panelButton inspect__panelButton--active"
                         id="context-toggle-objects-button">
                     <i class="fa-solid fa-vector-square"></i>
                 </button>

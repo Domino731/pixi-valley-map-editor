@@ -2,7 +2,7 @@ import {ExtendedEngineObject, SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector}
 import {SPRITE_TYPES, SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
 import {Map} from "./app/Map/Map";
-import {RightPanel} from "./app/RightPanel/RightPanel";
+import {Content} from "./app/RightPanel";
 import {tiles} from "./data/tiles/tiles";
 import {EngineObject, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
@@ -20,7 +20,7 @@ export class Main {
     public sprite: SpriteData | Array<EngineObject>;
     private currentSprite: SpriteNamesUnion;
     public mapSize: Vector;
-    private rightPanel: RightPanel;
+    private rightPanel: Content;
     private spriteType: keyof typeof SPRITE_TYPES;
 
     private engineObject: EngineObject | CropObject | null;
@@ -34,7 +34,7 @@ export class Main {
         this.currentSprite = SPRITE_NAMES.OUTDOOR_SPRING;
         this.sprite = tiles[0];
         this.map = new Map(this);
-        this.rightPanel = new RightPanel(this);
+        this.rightPanel = new Content(this);
         this.spriteType = SPRITE_TYPES.GROUND_TILE;
         this.engineObject = null;
         this.data = {
