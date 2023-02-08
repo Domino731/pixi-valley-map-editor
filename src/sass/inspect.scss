@@ -1,6 +1,11 @@
 .inspect {
-  padding-top: 42px;
   height: 100%;
+
+  &__title {
+    font-size: 40px;
+    color: $blue;
+    padding-bottom: 42px;
+  }
 
   &__visibilityButton {
     position: absolute;

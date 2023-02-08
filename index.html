@@ -16,7 +16,7 @@
 <div class="container">
     <div class="column debugger">
         <div class="debugger__content">
-            <h2 class="text text--blue text--xxl mb--16">
+            <h2 class="inspect__title">
                 DEBUGGER
             </h2>
             <div class="inspect">
@@ -107,7 +107,6 @@
                             </table>
                         </section>
                     </div>
-
                 </div>
 
                 <p class="text text--grey text--center pt--4" id="inspect-blueprint-label"></p>
@@ -339,8 +338,6 @@
                         </section>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -363,10 +360,26 @@
     </div>
 
     <div id="editor" class="column">
-        <h2 class="text text--blue text--xxl mb--16">
-            SPRITE SHEET
+        <h2 class="inspect__title">
+            Content
         </h2>
-        <div class="select border__primary p--8 flex__grow--1 flex flex__direction--column">
+        <section class="debugger__panel">
+            <div class="debugger__panelContent">
+                <h3 class="debugger__sectionTitle">Select object</h3>
+
+            </div>
+            <div class="debugger__buttonsColumn">
+                <button class="inspect__panelButton inspect__panelButton--disabled"
+                        id="context-toggle-objects-button">
+                    <i class="fa-solid fa-vector-square"></i>
+                </button>
+                <button class="inspect__panelButton inspect__panelButton--disabled"
+                        id="context-toggle-tile-sets-button">
+                    <i class="fa-solid fa-layer-group"></i>
+                </button>
+            </div>
+        </section>
+        <div class="select border__primary p--8 flex__grow--1 flex flex__direction--column hide">
             <section>
                 <p class="text text--xl text--pink mb--10">Sprite</p>
                 <div id="select-sprite-sheet">
