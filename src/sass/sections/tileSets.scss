@@ -2,5 +2,19 @@
   &__container {
     height: calc(100% - 115px);
     overflow: auto;
+
+    div {
+      position: relative;
+    }
+  }
+
+  &__currentTile {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid red;
   }
 }
