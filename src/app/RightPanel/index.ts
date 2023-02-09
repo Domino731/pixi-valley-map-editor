@@ -44,7 +44,7 @@ export class Content {
     /** init logic */
     private init(): void {
         this.buttonsOnClick();
-        new TileSets();
         new ObjectsContent(this.main);
+        new TileSets(this.main.map);
     }
 }

@@ -7,6 +7,8 @@ import {CROPS_PER_PANEL} from "../../data/crops/const";
 import {CropObject} from "../../data/crops/types";
 import {InspectWorldObjects} from "../LeftPanel/InspectWorld/components/InspectWorldObjects";
 import {v4 as uuidv4} from 'uuid';
+import {CONTENT_TYPE} from "./const";
+import {TILE_SIZE} from "../../const";
 
 export class Map {
     readonly cellSize: number;
@@ -15,6 +17,11 @@ export class Map {
     private size: Vector;
     private hoverPosition: Vector;
     private readonly inspectWorldObjects: InspectWorldObjects;
+    private contentType: CONTENT_TYPE;
+    private tile: {
+        src: string;
+        position: Vector;
+    }
 
     constructor(main: Main) {
         this.main = main;
@@ -32,11 +39,23 @@ export class Map {
             x: 0,
             y: 0
         }
+        this.contentType = CONTENT_TYPE.TILE_SETS;
+        this.tile = {
+            src: '',
+            position: {x: 0, y: 0}
+        }
     }
 
     ////
     // class setters
     ////
+
+    public setTile(src: string, position: Vector): void {
+        console.log('setTile');
+        this.contentType = CONTENT_TYPE.TILE_SETS;
+        this.tile = {src, position};
+        console.log(this.tile);
+    }
 
     // set spriteCell
     public setSpriteCell(vector: Vector): void {
@@ -46,16 +65,10 @@ export class Map {
         }
     }
 
-    /** set cell graphics */
     private setGroundTile(cell: HTMLDivElement) {
-        // TODO: fix
-        if ("src" in this.main.sprite) {
-            cell.style.backgroundImage = this.main.sprite.src;
-        }
-        if ("size" in this.main.sprite) {
-            cell.style.backgroundPosition = `-${this.spriteCell.y * this.main.sprite.size.cellHeight}px -${this.spriteCell.x * this.main.sprite.size.cellWidth}px`;
-        }
-
+        const {src, position: {x, y}} = this.tile;
+        cell.style.backgroundImage = `url("./src/sprites/${src}")`;
+        cell.style.backgroundPosition = `-${x * TILE_SIZE}px -${y * TILE_SIZE}px`;
     }
 
     private setObject() {
@@ -132,7 +145,7 @@ export class Map {
 
                 // add click event in order to set specific tile on map
                 cell.addEventListener('click', () => {
-                    if (this.main.getSpriteType() === SPRITE_TYPES.GROUND_TILE) {
+                    if (this.contentType === CONTENT_TYPE.TILE_SETS) {
                         this.setGroundTile(cell);
                     }
                 })

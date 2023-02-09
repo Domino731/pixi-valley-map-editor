@@ -4,16 +4,20 @@ import {TileSets as TileSetsArray} from "../../../../data/tileSets";
 import {TileSetInterface} from "../../../../data/tileSets/types";
 import {TILE_SIZE} from "../../../../const";
 import {Vector} from "../../../../types";
+import {Map} from "../../../Map/Map";
 
 export class TileSets {
+    public readonly map: Map;
     private readonly elements: {
         container: HTMLDivElement;
         currentTile: HTMLDivElement;
     }
     private cellPosition: Vector;
     private currentTileRect: DOMRect | null;
+    private tileSetsSrc: string;
 
-    constructor() {
+    constructor(map: Map) {
+        this.map = map;
         this.elements = {
             container: document.querySelector('#content-tile-sets-container'),
             currentTile: document.querySelector('#content-current-tile')
@@ -23,11 +27,13 @@ export class TileSets {
             y: 0
         }
         this.currentTileRect = null;
+        this.tileSetsSrc = '';
         this.init();
     }
 
     private setTileSetsContainer(): void {
         const {size: {x, y}, src} = TileSetsArray[0];
+        this.tileSetsSrc = src;
         this.elements.container.style.width = `${x}px`;
         this.elements.container.style.height = `${y}px`;
         this.elements.container.style.backgroundImage = `url("./src/sprites/${src}")`;
@@ -46,17 +52,15 @@ export class TileSets {
         })
     }
 
+    private currentTileOnClick(): void {
+        this.elements.currentTile.addEventListener('click', () => {
+            this.map.setTile(this.tileSetsSrc, this.cellPosition);
+        })
+    }
+
     private setCurrentTilePosition(): void {
         const {x, y} = this.cellPosition;
         this.elements.currentTile.style.transform = `translate(${x * TILE_SIZE}px, ${y * TILE_SIZE}px)`
-    }
-
-    private setHoverElement(): void {
-//   // e = Mouse click event.
-//       var rect = e.target.getBoundingClientRect();
-//       var x = e.clientX - rect.left; //x position within the element.
-//       var y = e.clientY - rect.top;  //y position within the element.
-//       console.log("Left? : " + x + " ; Top? : " + y + ".");
     }
 
     private createSelect(): void {
@@ -73,6 +77,7 @@ export class TileSets {
     }
 
     private init() {
+        this.currentTileOnClick();
         this.setTileSetsContainer();
         this.createSelect();
     }
