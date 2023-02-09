@@ -1,6 +1,6 @@
 import {TileSetInterface} from "./types";
 
-export const tileSets: Array<TileSetInterface> = [
+export const TileSets: Array<TileSetInterface> = [
     // Outdoors
     {
         name: 'Outdoors summer',

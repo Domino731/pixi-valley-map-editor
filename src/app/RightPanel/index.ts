@@ -2,6 +2,7 @@ import {Main} from "../../Main";
 import {ObjectsContent} from "./components/objects";
 import {hide, show} from "../utils/toggleElementVisibility";
 import {setPanelButtonActive, setPanelButtonDisabled} from "../utils/setPanelButton";
+import {TileSets} from "./components/tileSets";
 
 export class Content {
     private readonly main: Main;
@@ -43,6 +44,7 @@ export class Content {
     /** init logic */
     private init(): void {
         this.buttonsOnClick();
+        new TileSets();
         new ObjectsContent(this.main);
     }
 }

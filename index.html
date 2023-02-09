@@ -363,12 +363,23 @@
         <h2 class="inspect__title">
             Content
         </h2>
-        <section class="debugger__panel">
+        <section class="debugger__panel content__panel">
             <div class="debugger__panelContent" id="content-objects-section">
                 <h3 class="debugger__sectionTitle">Select object</h3>
             </div>
             <div class="debugger__panelContent hide" id="content-tile-sets-section">
                 <h3 class="debugger__sectionTitle">Select tile sets</h3>
+                <div id="content-tile-sets-select" class="select">
+                    <label class="input__label">Select from list</label>
+                    <button class="select__button">
+                        TEST
+                    </button>
+                    <ul class="select__list p--8 border__secondary hide border__radius--md hide">
+                    </ul>
+                </div>
+                <div class="tileSets__container">
+                    <div id="content-tile-sets-container"></div>
+                </div>
             </div>
             <div class="debugger__buttonsColumn">
                 <button class="inspect__panelButton inspect__panelButton--active"
