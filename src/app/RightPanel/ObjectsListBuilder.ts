@@ -1,9 +1,7 @@
-import {ENGINE_OBJECTS_TYPES, EngineObjectWithStages, SpriteSize} from "../../data/types";
+import {EngineObjectWithStages, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {Main} from "../../Main";
 import {CropObject} from "../../data/crops/types";
-import {CROPS_PER_PANEL} from "../../data/crops/const";
-import {Inspect} from "../LeftPanel/Inspect";
 import {InspectWorldObjects} from "../LeftPanel/InspectWorld/components/InspectWorldObjects";
 
 export class ObjectsListBuilder {

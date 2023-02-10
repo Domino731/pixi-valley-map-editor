@@ -2,11 +2,13 @@ import {Map} from "../../../Map/Map";
 import {Main} from "../../../../Main";
 import {EngineObject} from "../../../../data/types";
 import {ObjectsListBuilder} from "../../ObjectsListBuilder";
-import {tiles} from "../../../../data/tiles/tiles";
-import {GAME_DATA} from "../../../../data";
-import {SPRITE_TYPES} from "../../../../const/types";
-import {Select} from "../../../utils/Select";
 import {DOM} from "../../../DOM";
+import {SelectOption} from "../../../utils/types";
+import {TileSets as TileSetsArray} from "../../../../data/tileSets";
+import {TileSetInterface} from "../../../../data/tileSets/types";
+import {Select} from "../../../utils/Select";
+import {GAME_DATA} from "../../../../data";
+import {GAME_OBJECTS_OPTIONS} from "./const";
 
 export class ObjectsContent {
     private dom: DOM;
@@ -30,61 +32,16 @@ export class ObjectsContent {
         this.init();
     }
 
-    renderEditorSpriteGrid(): void {
-        const rows: number = this.main.sprite.size.spriteHeight / this.main.sprite.size.cellHeight;
-        const columns: number = this.main.sprite.size.spriteWidth / this.main.sprite.size.cellWidth;
 
-        // clear previous
-        this.dom.currentSprite.innerHTML = ""
-
-        for (let i = 0; i < rows; i++) {
-            const row: HTMLDivElement = document.createElement('div');
-            row.className = `row`;
-            row.style.height = `${this.main.sprite.size.cellHeight}px`
-            for (let j = 0; j < columns; j++) {
-                const cell: HTMLDivElement = document.createElement('div');
-                cell.className = `cell`;
-                cell.style.height = '100%'
-                cell.style.width = `${this.main.sprite.size.cellWidth}px`
-                cell.addEventListener('click', () => {
-                    this.map.setSpriteCell({x: i, y: j});
-                    this.dom.panelCellPosition.innerText = `{x: ${i}, y: ${j}}`;
-                })
-                row.appendChild(cell)
-            }
-            this.dom.currentSprite.appendChild(row);
-        }
-    }
-
-    initSpriteSelect(): void {
-        const tileSetsOptions = tiles.map(({label}) => ({label, value: label}));
-        const gameObjects = Object.entries(GAME_DATA.objects).map(([key]) => ({label: key, value: key}));
-        const options = [...tileSetsOptions, ...gameObjects];
-
-        const handleChange = ({value}: { value: string }) => {
-            // @ts-ignore
-            const objects = GAME_DATA.objects[value as keyof typeof GAME_DATA];
-            if (objects) {
-                this.objects = objects;
-                this.main.setSpriteType(SPRITE_TYPES.OBJECT);
-                this.dom.currentSprite.style.width = 'auto';
-            }
-
-            this.objectsListBuilder.objectsListWithStages(objects)
+    private createSelect(): void {
+        const onChange = ({value}: SelectOption) => {
+            console.log(1);
         }
 
-        new Select("select-sprite-sheet", options, handleChange);
-    }
-
-    setSpriteBgImage(): void {
-        this.dom.currentSprite.style.backgroundImage = this.main.sprite.src;
-        this.dom.currentSprite.style.width = `${this.main.sprite.size.spriteWidth}px`;
-        this.dom.currentSprite.style.height = `${this.main.sprite.size.spriteHeight}px`;
+        new Select('content-objects-select', GAME_OBJECTS_OPTIONS, onChange)
     }
 
     private init(): void {
-        this.setSpriteBgImage();
-        this.renderEditorSpriteGrid();
-        this.initSpriteSelect();
+        this.createSelect();
     }
 }
