@@ -374,7 +374,16 @@
                     <ul class="select__list p--8 border__secondary hide border__radius--md hide">
                     </ul>
                 </div>
+                <section class="flex__grow--1 flex flex__direction--column">
+                    <p class="text text--xl text--pink mb--10 mt--20">Choose object</p>
+                    <div class="editor__sprite styled-scrollbars flex__grow--1">
+                        <div class="editor__currentSprite border__primary objectContainer__objects"
+                             id="current-sprite-container"></div>
+                    </div>
+                </section>
             </div>
+
+
             <div class="debugger__panelContent hide" id="content-tile-sets-section">
                 <h3 class="debugger__sectionTitle">Select tile sets</h3>
                 <div id="content-tile-sets-select" class="select">
@@ -392,7 +401,6 @@
                 </div>
             </div>
 
-
             <div class="debugger__buttonsColumn">
                 <button class="inspect__panelButton inspect__panelButton--active"
                         id="context-toggle-objects-button">
@@ -404,30 +412,8 @@
                 </button>
             </div>
         </section>
-
-
-        <div class="select border__primary p--8 flex__grow--1 flex flex__direction--column hide">
-            <section>
-                <p class="text text--xl text--pink mb--10">Sprite</p>
-                <div id="select-sprite-sheet">
-                    <label class="input__label">Select from list</label>
-                    <button class="select__button" id="select-sprite-sheet-button">
-                        TEST
-                    </button>
-                    <ul class="select__list p--8 border__secondary hide border__radius--md hide"
-                        id="select-sprite-sheet-list">
-                    </ul>
-                </div>
-            </section>
-            <span class="divider divider--md"></span>
-            <section class="flex__grow--1 flex flex__direction--column">
-                <p class="text text--xl text--pink mb--10 mt--20">Choose object</p>
-                <div class="editor__sprite styled-scrollbars flex__grow--1">
-                    <div class="editor__currentSprite border__primary" id="current-sprite-container"></div>
-                </div>
-            </section>
-        </div>
     </div>
+
 
     <div class="hide">
         <ul>
