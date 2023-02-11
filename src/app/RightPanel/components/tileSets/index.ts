@@ -31,8 +31,8 @@ export class TileSets {
         this.init();
     }
 
-    private setTileSetsContainer(): void {
-        const {size: {x, y}, src} = TileSetsArray[0];
+    private setTileSetsContainer(tileSet: TileSetInterface): void {
+        const {size: {x, y}, src} = tileSet;
         this.tileSetsSrc = src;
         this.elements.container.style.width = `${x}px`;
         this.elements.container.style.height = `${y}px`;
@@ -65,12 +65,12 @@ export class TileSets {
 
     private createSelect(): void {
         const onChange = ({value}: SelectOption) => {
-            console.log(1);
+            this.setTileSetsContainer(value);
         }
 
-        const options: Array<SelectOption> = TileSetsArray.map(({src, name}: TileSetInterface) => ({
-            label: name,
-            value: src
+        const options: Array<SelectOption> = TileSetsArray.map((tileSet: TileSetInterface) => ({
+            label: tileSet.name,
+            value: tileSet
         }));
 
         new Select('content-tile-sets-select', options, onChange)
@@ -78,7 +78,7 @@ export class TileSets {
 
     private init() {
         this.currentTileOnClick();
-        this.setTileSetsContainer();
+        this.setTileSetsContainer(TileSetsArray[0]);
         this.createSelect();
     }
 }
