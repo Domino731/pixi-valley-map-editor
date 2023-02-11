@@ -1,11 +1,17 @@
 .tileSets {
   &__container {
-    height: calc(100% - 115px);
+    height: 100%;
     overflow: auto;
 
     div {
       position: relative;
     }
+  }
+
+  &__wrapper {
+    height: 100%;
+    width: 100%;
+    background: green;
   }
 
   &__currentTile {

@@ -2,6 +2,11 @@
   &__panel {
     display: flex;
     height: 300px;
+
+    &--content {
+      height: 100px;
+      flex-grow: 0;
+    }
   }
 
   &__buttonsColumn {
@@ -13,6 +18,21 @@
     background: $section;
     border: 1px solid $graySecondary;
     padding: 0 12px 12px;
+
+    &--noBottomBorder {
+      border-bottom: none;
+    }
+
+    &--content {
+      overflow: auto;
+      height: calc(100% - 100px);
+      border: 1px solid $graySecondary;
+      border-top: none;
+      padding: 0 12px 12px;
+      display: flex;
+      flex-direction: column;
+      background: $section;
+    }
   }
 
   &__sectionTitle {

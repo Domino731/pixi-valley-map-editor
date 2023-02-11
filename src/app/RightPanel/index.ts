@@ -11,6 +11,8 @@ export class Content {
         tileSetsButton: HTMLButtonElement;
         objectsSection: HTMLDivElement;
         tileSetsSection: HTMLDivElement;
+        objectsContainer: HTMLDivElement;
+        tileSetsContainer: HTMLDivElement;
     }
 
     constructor(main: Main) {
@@ -19,7 +21,9 @@ export class Content {
             objectsButton: document.querySelector('#context-toggle-objects-button'),
             tileSetsButton: document.querySelector('#context-toggle-tile-sets-button'),
             objectsSection: document.querySelector('#content-objects-section'),
-            tileSetsSection: document.querySelector('#content-tile-sets-section')
+            tileSetsSection: document.querySelector('#content-tile-sets-section'),
+            objectsContainer: document.querySelector('#content-objects-list-container'),
+            tileSetsContainer: document.querySelector('#content-tiles-container'),
         }
 
         // init logic
@@ -29,13 +33,17 @@ export class Content {
     private buttonsOnClick(): void {
         this.elements.objectsButton.addEventListener('click', () => {
             hide(this.elements.tileSetsSection);
+            hide(this.elements.tileSetsContainer);
             show(this.elements.objectsSection);
+            show(this.elements.objectsContainer);
             setPanelButtonDisabled(this.elements.tileSetsButton);
             setPanelButtonActive(this.elements.objectsButton);
         });
         this.elements.tileSetsButton.addEventListener('click', () => {
             hide(this.elements.objectsSection);
+            hide(this.elements.objectsContainer);
             show(this.elements.tileSetsSection);
+            show(this.elements.tileSetsContainer);
             setPanelButtonDisabled(this.elements.objectsButton);
             setPanelButtonActive(this.elements.tileSetsButton);
         });

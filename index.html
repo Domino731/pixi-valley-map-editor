@@ -363,8 +363,9 @@
         <h2 class="inspect__title">
             Content
         </h2>
-        <section class="debugger__panel content__panel">
-            <div class="debugger__panelContent" id="content-objects-section">
+        <span class="divider divider--md"></span>
+        <section class="debugger__panel debugger__panel--content">
+            <div class="debugger__panelContent debugger__panelContent--noBottomBorder" id="content-objects-section">
                 <h3 class="debugger__sectionTitle">Select object</h3>
                 <div id="content-objects-select" class="select">
                     <label class="input__label">Select objects</label>
@@ -374,17 +375,9 @@
                     <ul class="select__list p--8 border__secondary hide border__radius--md hide">
                     </ul>
                 </div>
-                <section class="flex__grow--1 flex flex__direction--column">
-                    <p class="text text--xl text--pink mb--10 mt--20">Choose object</p>
-                    <div class="editor__sprite styled-scrollbars flex__grow--1">
-                        <div class="editor__currentSprite border__primary objectContainer__objects"
-                             id="current-sprite-container"></div>
-                    </div>
-                </section>
             </div>
-
-
-            <div class="debugger__panelContent hide" id="content-tile-sets-section">
+            <div class="debugger__panelContent debugger__panelContent--noBottomBorder hide"
+                 id="content-tile-sets-section">
                 <h3 class="debugger__sectionTitle">Select tile sets</h3>
                 <div id="content-tile-sets-select" class="select">
                     <label class="input__label">Select from list</label>
@@ -394,13 +387,7 @@
                     <ul class="select__list p--8 border__secondary hide border__radius--md hide">
                     </ul>
                 </div>
-                <div class="tileSets__container">
-                    <div id="content-tile-sets-container">
-                        <span class="tileSets__currentTile" id="content-current-tile"></span>
-                    </div>
-                </div>
             </div>
-
             <div class="debugger__buttonsColumn">
                 <button class="inspect__panelButton inspect__panelButton--active"
                         id="context-toggle-objects-button">
@@ -410,6 +397,22 @@
                         id="context-toggle-tile-sets-button">
                     <i class="fa-solid fa-layer-group"></i>
                 </button>
+            </div>
+        </section>
+
+
+        <section class="debugger__panelContent--content hide" id="content-tiles-container">
+            <div class="tileSets__container">
+                <div id="content-tile-sets-container">
+                    <span class="tileSets__currentTile" id="content-current-tile"></span>
+                </div>
+            </div>
+        </section>
+        <section class="debugger__panelContent--content" id="content-objects-list-container">
+            <p class="debugger__sectionTitle">Choose object</p>
+            <div class="editor__sprite styled-scrollbars flex__grow--1">
+                <div class="editor__currentSprite objectContainer__objects"
+                     id="current-sprite-container"></div>
             </div>
         </section>
     </div>
