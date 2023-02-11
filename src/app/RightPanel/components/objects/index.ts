@@ -6,6 +6,7 @@ import {Select} from "../../../utils/Select";
 import {GAME_OBJECTS_OPTIONS} from "./const";
 import {CropObject} from "../../../../data/crops/types";
 import {SpritesConfig} from "../../../../data/spritesConfig";
+import {GAME_DATA} from "../../../../data";
 
 export class ObjectsContent {
     private main: Main;
@@ -140,10 +141,11 @@ export class ObjectsContent {
             this.createObjectsList(value);
         }
 
-        new Select('content-objects-select', GAME_OBJECTS_OPTIONS, onChange)
+        new Select('content-objects-select', GAME_OBJECTS_OPTIONS, onChange, 'Trees')
     }
 
     private init(): void {
+        this.createObjectsList(GAME_DATA.objects.Trees);
         this.createSelect();
     }
 }

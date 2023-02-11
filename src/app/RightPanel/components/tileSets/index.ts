@@ -73,7 +73,7 @@ export class TileSets {
             value: tileSet
         }));
 
-        new Select('content-tile-sets-select', options, onChange)
+        new Select('content-tile-sets-select', options, onChange, 'Outdoors summer')
     }
 
     private init() {

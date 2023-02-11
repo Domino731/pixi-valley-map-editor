@@ -6,11 +6,13 @@ export class Select {
     private options: Array<{ label: string, value: string }>;
     private button: HTMLButtonElement;
     private list: HTMLDivElement;
+    private readonly startOption: string | null;
 
-    constructor(listId: string, options: Array<SelectOption>, onChange: (v: SelectOption) => void) {
+    constructor(listId: string, options: Array<SelectOption>, onChange: (v: SelectOption) => void, startOption?: string) {
         this.listId = listId;
         this.button = document.querySelector(`#${listId} button`);
         this.list = document.querySelector(`#${listId} ul`);
+        this.startOption = startOption ?? null;
         this.options = options;
         this.init(onChange);
     }
@@ -39,7 +41,7 @@ export class Select {
     }
 
     private setButtonPlaceholder(): void {
-        this.button.innerText = 'Choose from list'
+        this.button.innerText = this.startOption ?? 'Choose from list'
     }
 
     private init(onChange: (v: { label: string, value: string }) => void): void {
