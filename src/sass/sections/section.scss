@@ -1,0 +1,9 @@
+.section {
+  &__header {
+    font-size: 40px;
+    color: $blue;
+    border-bottom: 1px solid $graySecondary;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+}

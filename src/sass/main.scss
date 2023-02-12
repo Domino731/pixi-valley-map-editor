@@ -17,6 +17,7 @@
 @import "components/contextMenu";
 @import "sections/tileSets";
 @import "sections/content";
+@import "sections/section";
 
 * {
   box-sizing: border-box;
@@ -36,7 +37,7 @@ body {
   &__map {
     position: relative;
     background: #252526;
-    flex-grow: 1;
+    width: calc(100% - 800px);
     overflow: auto;
     display: flex;
     align-items: center;
