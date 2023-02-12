@@ -1,4 +1,4 @@
-import {SelectOption} from "../../../utils/types";
+import {SelectOption} from "../../../../utils/types";
 import {GAME_DATA} from "../../../../data";
 
 export const GAME_OBJECTS_OPTIONS: Array<SelectOption> = [

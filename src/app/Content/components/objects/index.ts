@@ -1,8 +1,8 @@
 import {Map} from "../../../Map/Map";
 import {Main} from "../../../../Main";
 import {EngineObjectWithStages, SpriteSize} from "../../../../data/types";
-import {SelectOption} from "../../../utils/types";
-import {Select} from "../../../utils/Select";
+import {SelectOption} from "../../../../utils/types";
+import {Select} from "../../../../utils/Select";
 import {GAME_OBJECTS_OPTIONS} from "./const";
 import {CropObject} from "../../../../data/crops/types";
 import {SpritesConfig} from "../../../../data/spritesConfig";

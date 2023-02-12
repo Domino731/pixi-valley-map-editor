@@ -2,17 +2,17 @@ import {ExtendedEngineObject, SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector}
 import {SPRITE_TYPES, SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
 import {Map} from "./app/Map/Map";
-import {Content} from "./app/RightPanel";
+import {Content} from "./app/Content";
 import {tiles} from "./data/tiles/tiles";
 import {EngineObject, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
-import {LeftPanel} from "./app/LeftPanel/LeftPanel";
+import {LeftPanel} from "./app/Inspect/LeftPanel";
 import {CropObject} from "./data/crops/types";
-import {Inspect} from "./app/LeftPanel/Inspect";
-import {InspectWorld} from "./app/LeftPanel/InspectWorld";
-import {ToggleDebuggerMode} from "./app/LeftPanel/ToggleDebuggerMode";
-import {InspectWorldObjects} from "./app/LeftPanel/InspectWorld/components/InspectWorldObjects";
-import {DetectOutsideClick} from "./app/utils/DetectOutsideClick";
+import {Inspect} from "./app/Inspect/Inspect";
+import {InspectWorld} from "./app/Inspect/InspectWorld";
+import {ToggleDebuggerMode} from "./app/Inspect/ToggleDebuggerMode";
+import {InspectWorldObjects} from "./app/Inspect/InspectWorld/components/InspectWorldObjects";
+import {DetectOutsideClick} from "./utils/DetectOutsideClick";
 
 export class Main {
     dom: DOM;

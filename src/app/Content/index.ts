@@ -1,7 +1,7 @@
 import {Main} from "../../Main";
 import {ObjectsContent} from "./components/objects";
-import {hide, show} from "../utils/toggleElementVisibility";
-import {setPanelButtonActive, setPanelButtonDisabled} from "../utils/setPanelButton";
+import {hide, show} from "../../utils/toggleElementVisibility";
+import {setPanelButtonActive, setPanelButtonDisabled} from "../../utils/setPanelButton";
 import {TileSets} from "./components/tileSets";
 
 export class Content {

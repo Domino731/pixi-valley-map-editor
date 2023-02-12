@@ -1,7 +1,7 @@
 import {EngineObject, EngineObjectTypesUnion} from "../../../../data/types";
 import {ExtendedEngineObject} from "../../../../types";
-import {ContextMenu} from "../../../utils/ContextMenu";
-import {ContextMenuOption} from "../../../utils/types";
+import {ContextMenu} from "../../../../utils/ContextMenu";
+import {ContextMenuOption} from "../../../../utils/types";
 
 export class InspectWorldObjects {
     private readonly MapObjectsElements: Array<HTMLDivElement>;

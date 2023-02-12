@@ -2,7 +2,7 @@ import {EngineObjectWithStages, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {Main} from "../../Main";
 import {CropObject} from "../../data/crops/types";
-import {InspectWorldObjects} from "../LeftPanel/InspectWorld/components/InspectWorldObjects";
+import {InspectWorldObjects} from "../Inspect/InspectWorld/components/InspectWorldObjects";
 
 export class ObjectsListBuilder {
     private DOM: {

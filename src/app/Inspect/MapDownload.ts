@@ -1,5 +1,5 @@
 import {ENGINE_OBJECTS_TYPES, EngineObjectsTypesUnion, GroundData, MapJsonData, MapObjectData} from "../../data/types";
-import {getSpriteSrc} from "../utils/getSpriteSrc";
+import {getSpriteSrc} from "../../utils/getSpriteSrc";
 
 export class MapDownload {
     private DOM: {
@@ -39,7 +39,7 @@ export class MapDownload {
         const trees: Array<MapObjectData> = MapDownload.getObjectsData(ENGINE_OBJECTS_TYPES.TREES)
         groundCells.forEach(el => {
             const bgPosition: Array<string> = el.style.backgroundPosition.split(' ');
-           
+
             groundData.push({
                 spriteSrc: getSpriteSrc(el.style.backgroundImage),
                 spriteCords: {

@@ -1,5 +1,5 @@
-import {Select} from "../../../utils/Select";
-import {SelectOption} from "../../../utils/types";
+import {Select} from "../../../../utils/Select";
+import {SelectOption} from "../../../../utils/types";
 import {TileSets as TileSetsArray} from "../../../../data/tileSets";
 import {TileSetInterface} from "../../../../data/tileSets/types";
 import {TILE_SIZE} from "../../../../const";

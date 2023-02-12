@@ -5,7 +5,7 @@ import {ENGINE_OBJECTS_TYPES, EngineObject, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {CROPS_PER_PANEL} from "../../data/crops/const";
 import {CropObject} from "../../data/crops/types";
-import {InspectWorldObjects} from "../LeftPanel/InspectWorld/components/InspectWorldObjects";
+import {InspectWorldObjects} from "../Inspect/InspectWorld/components/InspectWorldObjects";
 import {v4 as uuidv4} from 'uuid';
 import {CONTENT_TYPE} from "./const";
 import {TILE_SIZE} from "../../const";
