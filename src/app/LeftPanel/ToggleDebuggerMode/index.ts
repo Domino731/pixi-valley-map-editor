@@ -1,7 +1,10 @@
+import {hide, show} from "../../utils/toggleElementVisibility";
+
 export class ToggleDebuggerMode {
     private readonly buttons: {
         objects: HTMLButtonElement;
         world: HTMLButtonElement;
+        saveLoad: HTMLButtonElement;
     }
     private readonly inspectSections: {
         objects: HTMLDivElement;
@@ -10,6 +13,7 @@ export class ToggleDebuggerMode {
     private readonly inspectOverview: {
         objects: HTMLDivElement;
         world: HTMLDivElement;
+        saveLoad: HTMLDivElement;
     }
 
 
@@ -17,7 +21,8 @@ export class ToggleDebuggerMode {
     constructor() {
         this.buttons = {
             objects: document.querySelector('#toggle-debugger-sections-button-objects'),
-            world: document.querySelector('#toggle-debugger-sections-button-world')
+            world: document.querySelector('#toggle-debugger-sections-button-world'),
+            saveLoad: document.querySelector('#toggle-debugger-sections-button-save-load')
         }
         this.inspectSections = {
             objects: document.querySelector('#inspect-objects-section'),
@@ -25,7 +30,8 @@ export class ToggleDebuggerMode {
         }
         this.inspectOverview = {
             objects: document.querySelector('#inspect-object-overview'),
-            world: document.querySelector('#inspect-world-overview')
+            world: document.querySelector('#inspect-world-overview'),
+            saveLoad: document.querySelector('#inspect-save-load-overview')
         }
 
         this.init();
@@ -44,6 +50,11 @@ export class ToggleDebuggerMode {
             this.inspectSections.world.classList.add('hide');
             this.inspectOverview.world.classList.add('hide');
         });
+        this.buttons.saveLoad.addEventListener('click', () => {
+            hide(this.inspectOverview.world);
+            hide(this.inspectOverview.objects);
+            show(this.inspectOverview.saveLoad)
+        })
     }
 
     private init(): void {
