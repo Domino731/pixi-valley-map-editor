@@ -16,7 +16,6 @@ export class DetectOutsideClick {
             if (!isInside) {
                 menuElement.remove();
             }
-
         }
 
     }

@@ -35,7 +35,7 @@
                             <i class="fa-regular fa-floppy-disk"></i>
                         </button>
                     </div>
-                    <div class="debugger__panelContent" id="inspect-object-overview">
+                    <div class="debugger__panelContent hide" id="inspect-object-overview">
                         <h3 class="debugger__sectionTitle">Inspect object</h3>
                         <div class="inspect__blueprint">
                             <div id="inspect-blueprint"></div>
@@ -110,6 +110,14 @@
                     </div>
                     <div class="debugger__panelContent" id="inspect-save-load-overview">
                         <h3 class="debugger__sectionTitle">Save Or Load</h3>
+                        <div>
+                            <div class="inspect__dropFile">
+                                <span class="fake-btn">Choose files</span>
+                                <span class="file-msg">or drag and drop files here</span>
+                                <input class="file-input" type="file" multiple>
+                            </div>
+                            <button class="button">Download map (.json)</button>
+                        </div>
                     </div>
                 </div>
 
