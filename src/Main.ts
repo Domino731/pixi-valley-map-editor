@@ -4,7 +4,7 @@ import {DOM} from "./app/DOM";
 import {Map} from "./app/Map/Map";
 import {Content} from "./app/Content";
 import {tiles} from "./data/tiles/tiles";
-import {EngineObject, GameMapData, GameMapTileData, SpriteSize} from "./data/types";
+import {EngineObject, EngineObjectTypesUnion, GameMapData, GameMapTileData, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
 import {LeftPanel} from "./app/Inspect/LeftPanel";
 import {CropObject} from "./data/crops/types";
@@ -62,10 +62,20 @@ export class Main {
         this.data.objects.push(object);
     }
 
-    public getDataObjects(): Array<ExtendedEngineObject> {
+    //
+    // Getters
+    //
+
+    public getDataObjects(type?: EngineObjectTypesUnion): Array<ExtendedEngineObject> {
+        if (type) {
+            return this.data.objects.filter((el) => el.type === type);
+        }
         return this.data.objects;
     }
 
+    public getDataTiles(): Array<GameMapTileData> {
+        return this.data.tiles;
+    }
 
     public getEngineObject(): EngineObject | null {
         return this.engineObject;

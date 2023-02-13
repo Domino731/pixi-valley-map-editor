@@ -126,6 +126,11 @@ export interface GameMapData {
     tiles: Array<GameMapTileData>;
 }
 
+export interface GameMapDataJson {
+    tiles: Array<GameMapTileData>;
+    objects: Record<EngineObjectTypesUnion, Array<ExtendedEngineObject>>;
+}
+
 export interface GameMapTileData {
     spriteName: string;
     cords: Vector;
