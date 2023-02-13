@@ -13,6 +13,7 @@ import {InspectWorld} from "./app/Inspect/InspectWorld";
 import {ToggleDebuggerMode} from "./app/Inspect/ToggleDebuggerMode";
 import {InspectWorldObjects} from "./app/Inspect/InspectWorld/components/InspectWorldObjects";
 import {DetectOutsideClick} from "./utils/DetectOutsideClick";
+import {SaveAndLoad} from "./app/Inspect/SaveAndLoad";
 
 export class Main {
     dom: DOM;
@@ -44,6 +45,7 @@ export class Main {
         new Inspect();
         new InspectWorld();
         new ToggleDebuggerMode();
+        new SaveAndLoad();
 
         this.init();
     }
