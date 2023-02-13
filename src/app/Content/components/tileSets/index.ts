@@ -15,6 +15,7 @@ export class TileSets {
     private cellPosition: Vector;
     private currentTileRect: DOMRect | null;
     private tileSetsSrc: string;
+    private tileSpriteName: string;
 
     constructor(map: Map) {
         this.map = map;
@@ -27,13 +28,15 @@ export class TileSets {
             y: 0
         }
         this.currentTileRect = null;
-        this.tileSetsSrc = '';
+        this.tileSetsSrc = TileSetsArray[0].src;
+        this.tileSpriteName = TileSetsArray[0].name
         this.init();
     }
 
     private setTileSetsContainer(tileSet: TileSetInterface): void {
-        const {size: {x, y}, src} = tileSet;
+        const {size: {x, y}, src, name} = tileSet;
         this.tileSetsSrc = src;
+        this.tileSpriteName = name;
         this.elements.container.style.width = `${x}px`;
         this.elements.container.style.height = `${y}px`;
         this.elements.container.style.backgroundImage = `url("./src/sprites/${src}")`;
@@ -54,7 +57,7 @@ export class TileSets {
 
     private currentTileOnClick(): void {
         this.elements.currentTile.addEventListener('click', () => {
-            this.map.setTile(this.tileSetsSrc, this.cellPosition);
+            this.map.setTile(this.tileSetsSrc, this.cellPosition, this.tileSpriteName);
         })
     }
 

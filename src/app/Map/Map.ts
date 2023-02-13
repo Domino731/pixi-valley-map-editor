@@ -1,7 +1,7 @@
 import {Vector} from "../../types";
 import {SPRITE_TYPES} from "../../const/types";
 import {Main} from "../../Main";
-import {ENGINE_OBJECTS_TYPES, EngineObject, SpriteSize} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObject, GameMapTileData, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {CROPS_PER_PANEL} from "../../data/crops/const";
 import {CropObject} from "../../data/crops/types";
@@ -21,6 +21,7 @@ export class Map {
     private tile: {
         src: string;
         position: Vector;
+        spriteName: string;
     }
 
     constructor(main: Main) {
@@ -42,7 +43,8 @@ export class Map {
         this.contentType = CONTENT_TYPE.TILE_SETS;
         this.tile = {
             src: '',
-            position: {x: 0, y: 0}
+            position: {x: 0, y: 0},
+            spriteName: ''
         }
     }
 
@@ -50,11 +52,9 @@ export class Map {
     // class setters
     ////
 
-    public setTile(src: string, position: Vector): void {
-        console.log('setTile');
+    public setTile(src: string, position: Vector, spriteName: string): void {
         this.contentType = CONTENT_TYPE.TILE_SETS;
-        this.tile = {src, position};
-        console.log(this.tile);
+        this.tile = {src, position, spriteName};
     }
 
     // set spriteCell
@@ -66,7 +66,16 @@ export class Map {
     }
 
     private setGroundTile(cell: HTMLDivElement) {
-        const {src, position: {x, y}} = this.tile;
+        const {src, position: {x, y}, spriteName} = this.tile;
+        const {dataset: {cordX, cordY}} = cell;
+        const tileData: GameMapTileData = {
+            spriteName,
+            cords: {
+                x: Number(cordX),
+                y: Number(cordY)
+            }
+        }
+        this.main.pushToDataTiles(tileData)
         cell.style.backgroundImage = `url("./src/sprites/${src}")`;
         cell.style.backgroundPosition = `-${x * TILE_SIZE}px -${y * TILE_SIZE}px`;
     }

@@ -11,9 +11,11 @@ export class LoadMap {
     }
 
     private inputOnChange(): void {
-        const onLoad = (event) => {
+        const onLoad = (event: ProgressEvent<FileReader>) => {
             try {
-                console.log(JSON.parse(event.target.result));
+                if (typeof event.target.result === "string") {
+                    console.log(JSON.parse(event.target.result));
+                }
             } catch (e) {
                 console.error('An error occurred while trying to read the json file');
             }

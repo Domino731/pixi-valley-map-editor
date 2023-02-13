@@ -1,7 +1,15 @@
 .inspect {
+  &__title {
+    color: $gray;
+    border-bottom: 1px solid $gray;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
   &__dropFile {
     position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
     width: 100%;
     max-width: 100%;

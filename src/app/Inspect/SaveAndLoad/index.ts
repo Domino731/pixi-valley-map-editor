@@ -1,12 +1,11 @@
 import {LoadMap} from "./components/LoadMap";
+import {DownloadMap} from "./components/DownloadMap";
+import {Main} from "../../../Main";
 
 
 export class SaveAndLoad {
-    constructor() {
-        this.init();
-    }
-
-    private init() {
+    constructor(main: Main) {
         new LoadMap();
+        new DownloadMap(main);
     }
 }

@@ -4,7 +4,7 @@ import {DOM} from "./app/DOM";
 import {Map} from "./app/Map/Map";
 import {Content} from "./app/Content";
 import {tiles} from "./data/tiles/tiles";
-import {EngineObject, SpriteSize} from "./data/types";
+import {EngineObject, GameMapData, GameMapTileData, SpriteSize} from "./data/types";
 import {SpritesConfig} from "./data/spritesConfig";
 import {LeftPanel} from "./app/Inspect/LeftPanel";
 import {CropObject} from "./data/crops/types";
@@ -26,9 +26,7 @@ export class Main {
 
     private engineObject: EngineObject | CropObject | null;
     private readonly inspectWorldObjects: InspectWorldObjects;
-    private data: {
-        objects: Array<ExtendedEngineObject>;
-    }
+    private data: GameMapData
 
     constructor() {
         this.dom = new DOM();
@@ -39,15 +37,25 @@ export class Main {
         this.spriteType = SPRITE_TYPES.GROUND_TILE;
         this.engineObject = null;
         this.data = {
-            objects: []
+            objects: [],
+            tiles: []
         }
 
         new Inspect();
         new InspectWorld();
         new ToggleDebuggerMode();
-        new SaveAndLoad();
+        new SaveAndLoad(this);
 
         this.init();
+    }
+
+    public pushToDataTiles(tile: GameMapTileData): void {
+        const index: number = this.data.tiles.findIndex(({cords}) => tile.cords.x === cords.x && tile.cords.y === cords.y);
+        if (index !== -1) {
+            this.data.tiles[index] = tile;
+        } else {
+            this.data.tiles.push(tile);
+        }
     }
 
     public pushToDataObjects(object: ExtendedEngineObject): void {

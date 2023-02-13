@@ -1,6 +1,6 @@
 import {TREE_ITEMS, TREE_NAMES} from "./environment/types";
 import {TOOLS} from "./tools/types";
-import {Vector} from "../types";
+import {ExtendedEngineObject, Vector} from "../types";
 
 export interface Checkbox {
     x: number,
@@ -119,6 +119,16 @@ export const SPRITE_SRC = {
     CROPS: 'crops/crops-stages.png',
     CROPS_GIANT: 'crops/crops-giant.png'
 
+}
+
+export interface GameMapData {
+    objects: Array<ExtendedEngineObject>;
+    tiles: Array<GameMapTileData>;
+}
+
+export interface GameMapTileData {
+    spriteName: string;
+    cords: Vector;
 }
 
 export interface GroundData {
