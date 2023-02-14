@@ -134,6 +134,7 @@ export interface GameMapDataJson {
 export interface GameMapTileData {
     spriteName: string;
     cords: Vector;
+    spriteCords: Vector;
 }
 
 export interface GroundData {

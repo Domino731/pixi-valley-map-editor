@@ -1,3 +1,5 @@
+import {Map} from "../../../Map/Map";
+
 export class LoadMap {
     private readonly elements: {
         input: HTMLInputElement;
@@ -14,7 +16,7 @@ export class LoadMap {
         const onLoad = (event: ProgressEvent<FileReader>) => {
             try {
                 if (typeof event.target.result === "string") {
-                    console.log(JSON.parse(event.target.result));
+                    Map.loadMap(JSON.parse(event.target.result));
                 }
             } catch (e) {
                 console.error('An error occurred while trying to read the json file');

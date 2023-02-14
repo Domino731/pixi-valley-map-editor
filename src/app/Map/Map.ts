@@ -1,7 +1,7 @@
 import {Vector} from "../../types";
 import {SPRITE_TYPES} from "../../const/types";
 import {Main} from "../../Main";
-import {ENGINE_OBJECTS_TYPES, EngineObject, GameMapTileData, SpriteSize} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObject, GameMapDataJson, GameMapTileData, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {CROPS_PER_PANEL} from "../../data/crops/const";
 import {CropObject} from "../../data/crops/types";
@@ -9,6 +9,7 @@ import {InspectWorldObjects} from "../Inspect/InspectWorld/components/InspectWor
 import {v4 as uuidv4} from 'uuid';
 import {CONTENT_TYPE} from "./const";
 import {TILE_SIZE} from "../../const";
+import {TileSets} from "../../data/tileSets";
 
 export class Map {
     readonly cellSize: number;
@@ -73,11 +74,29 @@ export class Map {
             cords: {
                 x: Number(cordX),
                 y: Number(cordY)
+            },
+            spriteCords: {
+                x, y
             }
         }
         this.main.pushToDataTiles(tileData)
         cell.style.backgroundImage = `url("./src/sprites/${src}")`;
         cell.style.backgroundPosition = `-${x * TILE_SIZE}px -${y * TILE_SIZE}px`;
+    }
+
+    public static loadMap({tiles}: GameMapDataJson) {
+        Map.loadTiles(tiles)
+    }
+
+    public static loadTiles(tiles: Array<GameMapTileData>) {
+        tiles.forEach(({cords, spriteCords, spriteName}: GameMapTileData) => {
+            const spriteSrc: string | undefined = TileSets.find(({name}) => name === spriteName)?.src;
+            const cell: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${cords.x}"][data-cord-y="${cords.y}"]`)
+            if (spriteName && spriteSrc) {
+                cell.style.backgroundImage = `url("./src/sprites/${spriteSrc}")`;
+                cell.style.backgroundPosition = `-${spriteCords.x * TILE_SIZE}px -${spriteCords.y * TILE_SIZE}px`;
+            }
+        })
     }
 
     private setObject() {
