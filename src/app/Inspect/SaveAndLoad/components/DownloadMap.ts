@@ -1,6 +1,6 @@
-import {Map} from "../../../Map/Map";
 import {Main} from "../../../../Main";
 import {ENGINE_OBJECTS_TYPES, GameMapDataJson} from "../../../../data/types";
+import {downloadJson} from "../../../../utils/downloadJson";
 
 export class DownloadMap {
     private readonly main: Main;
@@ -32,7 +32,7 @@ export class DownloadMap {
 
     private buttonOnClick(): void {
         this.elements.button.addEventListener('click', () => {
-            console.log(this.createMapJson())
+            downloadJson(this.createMapJson(), 'pixi-valley-map');
         });
     }
 
