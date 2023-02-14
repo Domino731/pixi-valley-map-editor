@@ -58,14 +58,6 @@ export class Map {
         this.tile = {src, position, spriteName};
     }
 
-    // set spriteCell
-    public setSpriteCell(vector: Vector): void {
-        this.spriteCell = {
-            x: vector.x,
-            y: vector.y
-        }
-    }
-
     private setGroundTile(cell: HTMLDivElement) {
         const {src, position: {x, y}, spriteName} = this.tile;
         const {dataset: {cordX, cordY}} = cell;
@@ -82,21 +74,6 @@ export class Map {
         this.main.pushToDataTiles(tileData)
         cell.style.backgroundImage = `url("./src/sprites/${src}")`;
         cell.style.backgroundPosition = `-${x * TILE_SIZE}px -${y * TILE_SIZE}px`;
-    }
-
-    public static loadMap({tiles}: GameMapDataJson) {
-        Map.loadTiles(tiles)
-    }
-
-    public static loadTiles(tiles: Array<GameMapTileData>) {
-        tiles.forEach(({cords, spriteCords, spriteName}: GameMapTileData) => {
-            const spriteSrc: string | undefined = TileSets.find(({name}) => name === spriteName)?.src;
-            const cell: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${cords.x}"][data-cord-y="${cords.y}"]`)
-            if (spriteName && spriteSrc) {
-                cell.style.backgroundImage = `url("./src/sprites/${spriteSrc}")`;
-                cell.style.backgroundPosition = `-${spriteCords.x * TILE_SIZE}px -${spriteCords.y * TILE_SIZE}px`;
-            }
-        })
     }
 
     private setObject() {
@@ -135,9 +112,11 @@ export class Map {
                     object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
                     object.style.backgroundRepeat = 'no-repeat'
 
-
+                    // TODO before release: fix ts
+                    // @ts-ignore
                     if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS && engineObject.stages?.length) {
                         const cropObject: CropObject = engineObject as CropObject;
+                        // @ts-ignore
                         object.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * cropObject.spriteIndex.x}px -${0}px`;
                     } else {
                         object.style.backgroundPosition = `-${engineObject.sprite.position.x * spriteSize.cellWidth}px -${engineObject.sprite.position.y * spriteSize.cellHeight}px`;

@@ -5,7 +5,7 @@ import {Main} from "../../../Main";
 
 export class SaveAndLoad {
     constructor(main: Main) {
-        new LoadMap();
+        new LoadMap(main);
         new DownloadMap(main);
     }
 }
