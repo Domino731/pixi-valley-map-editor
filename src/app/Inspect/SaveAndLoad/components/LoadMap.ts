@@ -1,8 +1,9 @@
 import {Map} from "../../../Map/Map";
-import {GameMapDataJson, GameMapTileData} from "../../../../data/types";
+import {EngineObjectTypesUnion, GameMapDataJson, GameMapTileData} from "../../../../data/types";
 import {TileSets} from "../../../../data/tileSets";
 import {TILE_SIZE} from "../../../../const";
 import {Main} from "../../../../Main";
+import {ExtendedEngineObject} from "../../../../types";
 
 export class LoadMap {
     private readonly elements: {
@@ -18,11 +19,13 @@ export class LoadMap {
         this.init();
     }
 
-    public loadMap({tiles}: GameMapDataJson) {
-        this.loadTiles(tiles)
+    private loadMap({tiles, objects}: GameMapDataJson): void {
+        // TODO: remove all objects before load
+        this.loadTiles(tiles);
+        this.loadObjects(objects);
     }
 
-    public loadTiles(tiles: Array<GameMapTileData>) {
+    private loadTiles(tiles: Array<GameMapTileData>): void {
         tiles.forEach((el: GameMapTileData) => {
             this.main.pushToDataTiles(el);
             const {cords, spriteCords, spriteName} = el;
@@ -35,17 +38,34 @@ export class LoadMap {
         })
     }
 
+    private loadObjects(objects: Record<EngineObjectTypesUnion, Array<ExtendedEngineObject>>): void {
+        const allObjects: Array<ExtendedEngineObject> = Object.values(objects).flat();
+        allObjects.forEach(({
+                                group, type, id,
+                                hp, name, sprite,
+                                tools, destroyable, checkboxes,
+                                items, map
+                            }) => {
+            this.main.map.createObject({
+                group,
+                type,
+                id,
+                name,
+                sprite,
+                hp,
+                tools,
+                destroyable,
+                checkboxes,
+                items
+            }, map.cord, false);
+        })
+    }
 
     private inputOnChange(): void {
         const onLoad = (event: ProgressEvent<FileReader>) => {
-            try {
-                if (typeof event.target.result === "string") {
-                    this.loadMap(JSON.parse(event.target.result));
-                }
-            } catch (e) {
-                console.error('An error occurred while trying to read the json file');
+            if (typeof event.target.result === "string") {
+                this.loadMap(JSON.parse(event.target.result));
             }
-
         }
 
         const onChange = (event: InputEvent) => {

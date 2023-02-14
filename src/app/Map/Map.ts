@@ -76,60 +76,65 @@ export class Map {
         cell.style.backgroundPosition = `-${x * TILE_SIZE}px -${y * TILE_SIZE}px`;
     }
 
+    public createObject(engineObject: EngineObject, position: Vector, inspect: boolean): void {
+        const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === engineObject.sprite.src)?.size
+        if (spriteSize) {
+            const object: HTMLDivElement = document.createElement('div');
+
+            const mapId = uuidv4();
+
+            object.dataset.objectName = engineObject.name;
+            object.style.position = "absolute";
+            object.dataset.spriteSrc = engineObject.sprite.src;
+            object.dataset.spritePositionX = String(engineObject.sprite.position.x);
+            object.dataset.spritePositionY = String(engineObject.sprite.position.y);
+            object.dataset.objectPositionX = `${position.x}`;
+            object.dataset.objectPositionY = `${position.y}`;
+            object.dataset.objectId = engineObject.id;
+            object.dataset.objectGroup = engineObject.group;
+            object.dataset.objectType = engineObject.type;
+            object.id = mapId;
+
+            object.style.width = `${spriteSize.cellWidth}px`;
+            object.style.height = `${spriteSize.cellHeight}px`;
+            object.style.left = `${this.cellSize * position.x}px`;
+            object.style.top = `${this.cellSize * position.y}px`;
+            object.style.zIndex = `${position.y}`;
+            object.style.backgroundImage = `url(./src/sprites/${engineObject.sprite.src})`;
+            object.style.backgroundRepeat = 'no-repeat'
+
+            // TODO before release: fix ts
+            // @ts-ignore
+            if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS && engineObject.stages?.length) {
+                const cropObject: CropObject = engineObject as CropObject;
+                // @ts-ignore
+                object.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * cropObject.spriteIndex.x}px -${0}px`;
+            } else {
+                object.style.backgroundPosition = `-${engineObject.sprite.position.x * spriteSize.cellWidth}px -${engineObject.sprite.position.y * spriteSize.cellHeight}px`;
+            }
+
+            this.main.dom.map.appendChild(object);
+            this.main.pushToDataObjects({
+                ...engineObject, mapId: mapId, map: {
+                    cord: {...position}
+                }
+            });
+            if (inspect) {
+                this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
+            }
+
+        }
+    }
+
     private setObject() {
-        this.main.dom.map.addEventListener('click', (e) => {
+        this.main.dom.map.addEventListener('click', ({clientX, clientY}) => {
             if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
-                const engineObject: EngineObject | CropObject = this.main.getEngineObject()
-                let rect: DOMRect = this.main.dom.map.getBoundingClientRect();
-
+                const {left, top}: DOMRect = this.main.dom.map.getBoundingClientRect();
                 const position: Vector = {
-                    x: Math.floor((e.clientX - rect.left) / this.cellSize),
-                    y: Math.floor((e.clientY - rect.top) / this.cellSize)
+                    x: Math.floor((clientX - left) / this.cellSize),
+                    y: Math.floor((clientY - top) / this.cellSize)
                 }
-                const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.main.getEngineObject().sprite.src)?.size
-                if (spriteSize) {
-                    const object: HTMLDivElement = document.createElement('div');
-
-                    const mapId = uuidv4();
-
-                    object.dataset.objectName = this.main.getEngineObject().name;
-                    object.style.position = "absolute";
-                    object.dataset.spriteSrc = engineObject.sprite.src;
-                    object.dataset.spritePositionX = String(engineObject.sprite.position.x);
-                    object.dataset.spritePositionY = String(engineObject.sprite.position.y);
-                    object.dataset.objectPositionX = `${position.x}`;
-                    object.dataset.objectPositionY = `${position.y}`;
-                    object.dataset.objectId = engineObject.id;
-                    object.dataset.objectGroup = engineObject.group;
-                    object.dataset.objectType = engineObject.type;
-                    object.id = mapId;
-
-                    object.style.width = `${spriteSize.cellWidth}px`;
-                    object.style.height = `${spriteSize.cellHeight}px`;
-                    object.style.left = `${this.cellSize * position.x}px`;
-                    object.style.top = `${this.cellSize * position.y}px`;
-                    object.style.zIndex = `${position.y}`;
-                    object.style.backgroundImage = `url(./src/sprites/${this.main.getEngineObject().sprite.src})`;
-                    object.style.backgroundRepeat = 'no-repeat'
-
-                    // TODO before release: fix ts
-                    // @ts-ignore
-                    if (engineObject.type === ENGINE_OBJECTS_TYPES.CROPS && engineObject.stages?.length) {
-                        const cropObject: CropObject = engineObject as CropObject;
-                        // @ts-ignore
-                        object.style.backgroundPosition = `-${(spriteSize.cellWidth * CROPS_PER_PANEL.x) * cropObject.spriteIndex.x}px -${0}px`;
-                    } else {
-                        object.style.backgroundPosition = `-${engineObject.sprite.position.x * spriteSize.cellWidth}px -${engineObject.sprite.position.y * spriteSize.cellHeight}px`;
-                    }
-
-                    this.main.dom.map.appendChild(object);
-                    this.main.pushToDataObjects({
-                        ...engineObject, mapId: mapId, map: {
-                            cord: {...position}
-                        }
-                    });
-                    this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
-                }
+                this.createObject(this.main.getEngineObject(), position, true);
             }
         });
     }
