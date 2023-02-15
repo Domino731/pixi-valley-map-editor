@@ -26,16 +26,32 @@ export class LoadMap {
     }
 
     private loadTiles(tiles: Array<GameMapTileData>): void {
-        tiles.forEach((el: GameMapTileData) => {
-            this.main.pushToDataTiles(el);
-            const {cords, spriteCords, spriteName} = el;
-            const spriteSrc: string | undefined = TileSets.find(({name}) => name === spriteName)?.src;
-            const cell: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${cords.x}"][data-cord-y="${cords.y}"]`)
-            if (spriteName && spriteSrc) {
+        const allCells: Array<HTMLDivElement> = document.querySelectorAll('#map .cell') as unknown as Array<HTMLDivElement>;
+        allCells.forEach((cell) => {
+            const {dataset: {cordX, cordY}} = cell;
+            const tileIndex: number = tiles.findIndex((el) => el.cords.x === Number(cordX) && el.cords.y === Number(cordY))
+            if (tileIndex !== -1) {
+                const {spriteCords, spriteName} = tiles[tileIndex];
+                const spriteSrc: string | undefined = TileSets.find(({name}) => name === spriteName)?.src;
                 cell.style.backgroundImage = `url("./src/sprites/${spriteSrc}")`;
                 cell.style.backgroundPosition = `-${spriteCords.x * TILE_SIZE}px -${spriteCords.y * TILE_SIZE}px`;
+            } else {
+                cell.style.backgroundImage = 'url(./src/sprites/outdoors_spring.png)';
+                cell.style.backgroundPosition = `-0px -112px`;
+                cell.style.backgroundRepeat = 'no-repeat'
             }
-        })
+        });
+
+        // tiles.forEach((el: GameMapTileData) => {
+        //     this.main.pushToDataTiles(el);
+        //     const {cords, spriteCords, spriteName} = el;
+        //     const spriteSrc: string | undefined = TileSets.find(({name}) => name === spriteName)?.src;
+        //     const cell: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${cords.x}"][data-cord-y="${cords.y}"]`)
+        //     // if (spriteName && spriteSrc) {
+        //     //     cell.style.backgroundImage = `url("./src/sprites/${spriteSrc}")`;
+        //     //     cell.style.backgroundPosition = `-${spriteCords.x * TILE_SIZE}px -${spriteCords.y * TILE_SIZE}px`;
+        //     // }
+        // })
     }
 
     private loadObjects(objects: Record<EngineObjectTypesUnion, Array<ExtendedEngineObject>>): void {
