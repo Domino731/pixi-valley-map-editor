@@ -55,6 +55,9 @@ export class LoadMap {
     }
 
     private loadObjects(objects: Record<EngineObjectTypesUnion, Array<ExtendedEngineObject>>): void {
+        const allPrevObjects: Array<HTMLDivElement> = document.querySelectorAll('#map div[data-object-name]') as unknown as Array<HTMLDivElement>;
+        allPrevObjects.forEach((el: HTMLDivElement) => el.remove())
+
         const allObjects: Array<ExtendedEngineObject> = Object.values(objects).flat();
         allObjects.forEach(({
                                 group, type, id,
@@ -98,3 +101,6 @@ export class LoadMap {
         this.inputOnChange();
     }
 }
+
+// TODO feature idea:
+// 1 - Dodać informację o tym, że poprzenia mapa zostania wyczyszczona
