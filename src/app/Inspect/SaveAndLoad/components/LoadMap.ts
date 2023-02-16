@@ -41,17 +41,6 @@ export class LoadMap {
                 cell.style.backgroundRepeat = 'no-repeat'
             }
         });
-
-        // tiles.forEach((el: GameMapTileData) => {
-        //     this.main.pushToDataTiles(el);
-        //     const {cords, spriteCords, spriteName} = el;
-        //     const spriteSrc: string | undefined = TileSets.find(({name}) => name === spriteName)?.src;
-        //     const cell: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${cords.x}"][data-cord-y="${cords.y}"]`)
-        //     // if (spriteName && spriteSrc) {
-        //     //     cell.style.backgroundImage = `url("./src/sprites/${spriteSrc}")`;
-        //     //     cell.style.backgroundPosition = `-${spriteCords.x * TILE_SIZE}px -${spriteCords.y * TILE_SIZE}px`;
-        //     // }
-        // })
     }
 
     private loadObjects(objects: Record<EngineObjectTypesUnion, Array<ExtendedEngineObject>>): void {
@@ -101,6 +90,3 @@ export class LoadMap {
         this.inputOnChange();
     }
 }
-
-// TODO feature idea:
-// 1 - Dodać informację o tym, że poprzenia mapa zostania wyczyszczona
