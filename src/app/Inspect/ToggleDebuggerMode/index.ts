@@ -35,8 +35,25 @@ export class ToggleDebuggerMode {
         this.init();
     }
 
+    /**
+     * Method to set active button
+     * @Param buttonKeyName - key of button that you want to set active
+     * */
+    private setButtonActive(buttonKeyName: 'objects' | 'world' | 'saveLoad'): void {
+        Object.entries(this.buttons).forEach(([key, value]) => {
+            let className = `inspect__panelButton `
+            if (key === buttonKeyName) {
+                className += `inspect__panelButton inspect__panelButton--active`;
+            } else {
+                className += `inspect__panelButton inspect__panelButton--disabled`;
+            }
+            value.className = className;
+        })
+    }
+
     private buttonEvents(): void {
         this.buttons.world.addEventListener('click', () => {
+            this.setButtonActive('world');
             show(this.sections.world)
             show(this.panels.world)
             hide(this.panels.saveLoad);
@@ -44,6 +61,7 @@ export class ToggleDebuggerMode {
             hide(this.panels.objects)
         });
         this.buttons.objects.addEventListener('click', () => {
+            this.setButtonActive('objects');
             show(this.sections.objects);
             show(this.panels.objects)
             hide(this.panels.saveLoad);
@@ -51,6 +69,7 @@ export class ToggleDebuggerMode {
             hide(this.panels.world)
         });
         this.buttons.saveLoad.addEventListener('click', () => {
+            this.setButtonActive('saveLoad');
             hide(this.panels.world);
             hide(this.panels.objects);
             hide(this.sections.world);
