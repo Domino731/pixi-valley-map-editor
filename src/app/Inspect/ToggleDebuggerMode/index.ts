@@ -1,15 +1,21 @@
 import {hide, show} from "../../../utils/toggleElementVisibility";
 
+/**
+ * Responsible for button by which user can toggle inspect section
+ * */
 export class ToggleDebuggerMode {
+    // buttons to toggle section
     private readonly buttons: {
         objects: HTMLButtonElement;
         world: HTMLButtonElement;
         saveLoad: HTMLButtonElement;
     }
+    // sections (down)
     private readonly sections: {
         objects: HTMLDivElement;
         world: HTMLDivElement;
     }
+    // panels (up)
     private readonly panels: {
         objects: HTMLDivElement;
         world: HTMLDivElement;
@@ -51,6 +57,9 @@ export class ToggleDebuggerMode {
         })
     }
 
+    /**
+     * Apply click event on each button to give ability to toggle section
+     * */
     private buttonEvents(): void {
         this.buttons.world.addEventListener('click', () => {
             this.setButtonActive('world');
@@ -78,6 +87,7 @@ export class ToggleDebuggerMode {
         })
     }
 
+    /** Initialise class functionality */
     private init(): void {
         this.buttonEvents();
     }
