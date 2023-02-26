@@ -3,10 +3,6 @@ import {GAME_DATA} from "../../../../data";
 
 export const GAME_OBJECTS_OPTIONS: Array<SelectOption> = [
     {
-        label: 'Trees stage 4',
-        value: GAME_DATA.objects.treesStage4
-    },
-    {
         label: 'Resources 32x',
         value: GAME_DATA.objects.resources32
     },

@@ -9,7 +9,7 @@ export class ContextMenu {
     private isOpen: boolean;
 
     constructor(parentElement: HTMLElement | string, options: Array<ContextMenuOption>) {
-        this.parentElement = parentElement;
+        this.parentElement = typeof parentElement === "string" ? document.querySelector(parentElement) : parentElement;
         this.portalElement = document.querySelector('#context-menu-portal');
         this.options = options;
         this.isOpen = false;

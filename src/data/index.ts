@@ -1,4 +1,3 @@
-import {treesStage4} from "./environment/treesStage4";
 import {resources32} from "./resources/resources32";
 import {resources16} from "./resources/resources16";
 import {fences} from "./environment/fences";
@@ -12,7 +11,6 @@ import {cropsGiant} from "./crops";
 
 export const GAME_DATA = {
     objects: {
-        treesStage4,
         bushes,
         resources32,
         resources16,

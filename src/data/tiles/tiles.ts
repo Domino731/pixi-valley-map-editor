@@ -7,7 +7,8 @@ export const tiles: Array<TilesSpriteSheet> = [
     {
         label: SPRITE_NAMES.OUTDOOR_SPRING,
         src: 'url(./src/sprites/outdoors_spring.png)',
-        appSrc: SPRITE_SRC.OUTDOORS_SPRING,
+        // TODO fix: idk why error occurs
+        appSrc: SPRITE_SRC.OUTDOORS_SPRING as keyof typeof SPRITE_SRC,
         size: {
             cellHeight: 16,
             cellWidth: 16,

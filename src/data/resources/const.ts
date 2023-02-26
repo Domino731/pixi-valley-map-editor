@@ -34,5 +34,4 @@ export enum RESOURCES_16_NAMES {
     QUARTZ = 'Quartz',
     FROZEN_TEAR = 'FROZEN_TEAR',
     FIRE_QUARTZ = 'Fire quartz',
-    STONE = 'STONE'
 }
