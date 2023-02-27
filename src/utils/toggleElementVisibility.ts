@@ -7,9 +7,9 @@ const HIDE_CLASS_NAME: string = 'hide';
  * */
 export const show = (element: HTMLElement | Array<HTMLElement>): void => {
     if (Array.isArray(element)) {
-        element.forEach(el => el.classList.add(HIDE_CLASS_NAME))
+        element.forEach(el => el.classList.remove(HIDE_CLASS_NAME))
     } else {
-        element.classList.add(HIDE_CLASS_NAME);
+        element.classList.remove(HIDE_CLASS_NAME);
     }
 }
 
