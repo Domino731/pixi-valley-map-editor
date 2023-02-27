@@ -77,6 +77,7 @@ export class Inspect {
         // get data - object, sprite size, dom element
         const {sprite}: EngineObject = this.findEngineObjectById(objectId);
         const {cellWidth, cellHeight}: SpriteSize = this.findObjectSize(sprite.src);
+        const blueprintContainer: HTMLParagraphElement = document.querySelector('#inspect-blueprint-container');
         const blueprint: HTMLDivElement = document.querySelector('#inspect-blueprint');
         const blueprintLabel: HTMLParagraphElement = document.querySelector('#inspect-blueprint-label');
 
@@ -87,7 +88,8 @@ export class Inspect {
         blueprint.style.backgroundPosition = `-${sprite.position.x * cellWidth}px -${sprite.position.y * cellHeight}px`;
 
         // hide label
-        blueprintLabel.classList.add('hide');
+        blueprintContainer.className = 'inspect__blueprint inspect__blueprint--active'
+
     }
 
     private panelButtons(): void {
