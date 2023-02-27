@@ -11,6 +11,7 @@ import {InspectJson} from "./Components/JSON";
 import {InspectTools} from "./Components/Tools";
 import {ActionCollisionProps} from "./Components/types";
 import {InspectStages} from "./Components/Stages";
+import {show} from "../../../utils/toggleElementVisibility";
 
 export class Inspect {
     private readonly inspect: {
@@ -226,7 +227,7 @@ export class Inspect {
 
     private buildInspectStagesSection(): void {
         this.hideAllSections();
-        this.stagesSection.classList.remove('hide');
+        show(this.stagesSection)
         this.inspect.inspectStages.build(GAME_DATA.objects.Trees[0].stages)
     }
 
