@@ -11,7 +11,7 @@ import {InspectJson} from "./Components/JSON";
 import {InspectTools} from "./Components/Tools";
 import {ActionCollisionProps} from "./Components/types";
 import {InspectStages} from "./Components/Stages";
-import {show} from "../../../utils/toggleElementVisibility";
+import {hide, show} from "../../../utils/toggleElementVisibility";
 
 export class Inspect {
     private readonly inspect: {
@@ -118,38 +118,36 @@ export class Inspect {
     }
 
     private hideAllSections(): void {
-        this.generalDataSection.classList.add('hide');
-        this.checkboxesSection.classList.add('hide');
-        this.dropItemsSection.classList.add('hide');
-        this.descriptionSection.classList.add('hide');
-        this.actionCollisionsSection.classList.add('hide');
-        this.toolsSection.classList.add('hide');
-        this.jsonSection.classList.add('hide');
+        hide([
+            this.generalDataSection, this.checkboxesSection,
+            this.dropItemsSection, this.descriptionSection,
+            this.actionCollisionsSection, this.toolsSection,
+            this.jsonSection
+        ]);
     }
 
     private buildGeneralDataSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.generalDataSection.classList.remove('hide');
+        show(this.generalDataSection)
         this.inspect.generalData.build(engineObject);
     }
 
-    private buildCheckboxesSection(): void {
+    private buildCheckboxesSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.checkboxesSection.classList.remove('hide');
+        show(this.checkboxesSection)
         document.querySelector('#inspect-checkboxes-list').innerHTML = '';
-        const exampleCollisions = [{
-            width: 40,
-            height: 40,
-            xPosition: 14,
-            yPosition: 19
-        }]
-        exampleCollisions.forEach((el, index) => new Collision('#inspect-checkboxes-list', {...el, index}).build());
+        engineObject.checkboxes.forEach((el, index) => new Collision('#inspect-checkboxes-list', {
+            index,
+            height: el.height,
+            width: el.width,
+            xPosition: el.x,
+            yPosition: el.y
+        }).build());
     }
 
-    private buildDropItemsSection(): void {
+    private buildDropItemsSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.dropItemsSection.classList.remove('hide');
-
+        show(this.dropItemsSection)
         const example: Array<DropItemInterface> = [
             {
                 id: RESOURCES_32_NAMES.LOG,
@@ -171,66 +169,46 @@ export class Inspect {
         this.inspect.dropItems.build(example);
     }
 
-    private buildDescriptionSection(): void {
+    private buildDescriptionSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.descriptionSection.classList.remove('hide');
-        this.inspect.description.build(`dolor sit
-                                amet,
-                                consectetur adipisicing elit.
-                                Dignissimos dolore et ex facere fugit iure magni odit recusandae temporibus vel. Animi
-                                aut consequuntur cum cupiditate earum esse est ex explicabo id in ipsam iusto labore
-                                laboriosam, nesciunt non odit omnis, quam qui reiciendis saepe velit voluptates
-                                voluptatum!!`);
+        show(this.descriptionSection);
+        this.inspect.description.build(engineObject.description);
     }
 
-    private buildActionCollisionsSection(): void {
+    private buildActionCollisionsSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.actionCollisionsSection.classList.remove('hide');
+        show(this.actionCollisionsSection)
         document.querySelector('#inspect-tools-list').innerHTML = '';
-        const exampleCollisions: Array<Partial<ActionCollisionProps>> = [{
-            width: 40,
-            height: 40,
-            xPosition: 14,
-            yPosition: 19,
-            actionId: 'ATTACK'
-        }]
-        // @ts-ignore
-        exampleCollisions.forEach((el, index) => new Collision('#inspect-tools-list', {...el, index}, true).build());
+        engineObject.checkboxes.forEach((el, index) => new Collision('#inspect-tools-list', {
+            index,
+            height: el.height,
+            width: el.width,
+            xPosition: el.x,
+            yPosition: el.y
+        }, true).build());
     }
 
     private buildInspectJsonSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.jsonSection.classList.remove('hide');
+        show(this.jsonSection)
         this.inspect.inspectJson.build(engineObject)
     }
 
-    private buildInspectToolsSection(): void {
+    private buildInspectToolsSection(engineObject: EngineObject): void {
         this.hideAllSections();
-        this.toolsSection.classList.remove('hide');
-        const example: Array<ObjectToolInterface> = [
-            {
-                id: RESOURCES_32_NAMES.LOG,
-                damage: 50,
-                usage: 1
-            },
-            {
-                id: RESOURCES_32_NAMES.BLUE_GEM,
-                damage: 10,
-                usage: 4
-            },
-            {
-                id: RESOURCES_16_NAMES.TOPAZ,
-                damage: 6,
-                usage: 10
-            }
-        ]
-        this.inspect.inspectTools.build(example);
+        show(this.toolsSection);
+        this.inspect.inspectTools.build(engineObject.toolsFor ?? []);
     }
 
-    private buildInspectStagesSection(): void {
+    private buildInspectStagesSection(engineObject: EngineObject): void {
         this.hideAllSections();
         show(this.stagesSection)
-        this.inspect.inspectStages.build(GAME_DATA.objects.Trees[0].stages)
+        if (engineObject.type === 'TREES') {
+            // TODO fix
+            // @ts-ignore
+            this.inspect.inspectStages.build(engineObject.stages)
+        }
+
     }
 
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
@@ -239,25 +217,25 @@ export class Inspect {
                 this.buildGeneralDataSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.CHECKBOXES:
-                this.buildCheckboxesSection();
+                this.buildCheckboxesSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.DROP_ITEMS:
-                this.buildDropItemsSection();
+                this.buildDropItemsSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.DESCRIPTION:
-                this.buildDescriptionSection();
+                this.buildDescriptionSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.ACTION_COLLISIONS:
-                this.buildActionCollisionsSection();
+                this.buildActionCollisionsSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.JSON:
-                this.buildInspectJsonSection(GAME_DATA.objects.Trees[0]);
+                this.buildInspectJsonSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.TOOLS:
-                this.buildInspectToolsSection();
+                this.buildInspectToolsSection(engineObject);
                 break;
             case INSPECT_SECTIONS_NAMES.STAGES:
-                this.buildInspectStagesSection();
+                this.buildInspectStagesSection(engineObject);
                 break;
             default:
                 break;

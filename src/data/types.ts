@@ -26,7 +26,9 @@ export interface EngineObject {
     tools: Array<keyof typeof TOOLS>,
     destroyable: boolean,
     checkboxes: Array<Checkbox>,
-    items: Array<string>
+    items: Array<string>;
+    description?: string;
+    toolsFor?: Array<ObjectToolInterface>
 }
 
 export interface EngineStageObject {
