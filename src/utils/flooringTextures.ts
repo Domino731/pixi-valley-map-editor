@@ -17,7 +17,24 @@ enum FLOORING_BORDERS {
     RIGHT_BOT = 'RIGHT_BOT',
 }
 
-const FLOORING_VECTORS = {}
+const FLOORING_VECTORS = {
+    [FLOORING_BORDERS.TOP_RIGHT_BOT_LEFT]: {x: 0, y: 0},
+    [FLOORING_BORDERS.TOP_RIGHT_LEFT]: {x: 0, y: 1},
+    [FLOORING_BORDERS.RIGHT_LEFT]: {x: 0, y: 2},
+    [FLOORING_BORDERS.RIGHT_BOT_LEFT]: {x: 0, y: 3},
+
+    [FLOORING_BORDERS.TOP_LEFT]: {x: 1, y: 0},
+    [FLOORING_BORDERS.LEFT]: {x: 1, y: 1},
+    [FLOORING_BORDERS.BOT_LEFT]: {x: 1, y: 2},
+
+    [FLOORING_BORDERS.TOP]: {x: 2, y: 0},
+    [FLOORING_BORDERS.NONE]: {x: 2, y: 1},
+    [FLOORING_BORDERS.BOT]: {x: 2, y: 2},
+
+    [FLOORING_BORDERS.TOP_RIGHT]: {x: 3, y: 0},
+    [FLOORING_BORDERS.RIGHT]: {x: 3, y: 1},
+    [FLOORING_BORDERS.RIGHT_BOT]: {x: 3, y: 2},
+}
 
 
 export const flooringTextures = () => {
