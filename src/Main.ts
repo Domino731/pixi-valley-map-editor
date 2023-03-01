@@ -11,8 +11,6 @@ import {CropObject} from "./data/crops/types";
 import {Inspect} from "./app/Inspect/Inspect";
 import {InspectWorld} from "./app/Inspect/InspectWorld";
 import {ToggleDebuggerMode} from "./app/Inspect/ToggleDebuggerMode";
-import {InspectWorldObjects} from "./app/Inspect/InspectWorld/components/InspectWorldObjects";
-import {DetectOutsideClick} from "./utils/DetectOutsideClick";
 import {SaveAndLoad} from "./app/Inspect/SaveAndLoad";
 
 export class Main {
@@ -109,6 +107,5 @@ export class Main {
     init(): void {
         this.map.init();
         new LeftPanel();
-        new DetectOutsideClick();
     }
 }
