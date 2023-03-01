@@ -6,7 +6,8 @@ export enum INSPECT_SECTIONS_NAMES {
     ACTION_COLLISIONS = 'ACTION_COLLISIONS',
     JSON = 'JSON',
     TOOLS = 'TOOLS',
-    STAGES = 'STAGES'
+    STAGES = 'STAGES',
+    LOCATIONS = 'LOCATIONS'
 }
 
 export type InspectSectionsNamesUnion = keyof typeof INSPECT_SECTIONS_NAMES;

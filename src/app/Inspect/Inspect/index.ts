@@ -30,6 +30,7 @@ export class Inspect {
     private readonly stagesSection: HTMLElement;
     private readonly toolsSection: HTMLElement;
     private readonly jsonSection: HTMLElement;
+    private readonly locationsSection: HTMLElement;
 
     constructor() {
         this.inspect = {
@@ -48,6 +49,7 @@ export class Inspect {
         this.stagesSection = document.querySelector('#inspect-sections-stages');
         this.toolsSection = document.querySelector('#inspect-sections-tools');
         this.jsonSection = document.querySelector('#inspect-sections-json');
+        this.locationsSection = document.querySelector('#inspect-sections-location');
         this.init();
     }
 
@@ -122,7 +124,7 @@ export class Inspect {
             this.generalDataSection, this.checkboxesSection,
             this.dropItemsSection, this.descriptionSection,
             this.actionCollisionsSection, this.toolsSection,
-            this.jsonSection
+            this.jsonSection, this.stagesSection, this.locationsSection
         ]);
     }
 
@@ -211,6 +213,11 @@ export class Inspect {
 
     }
 
+    private buildLocationsSection(): void {
+        this.hideAllSections();
+        show(this.locationsSection);
+    }
+
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
         switch (sectionName) {
             case INSPECT_SECTIONS_NAMES.GENERAL_DATA:
@@ -236,6 +243,9 @@ export class Inspect {
                 break;
             case INSPECT_SECTIONS_NAMES.STAGES:
                 this.buildInspectStagesSection(engineObject);
+                break;
+            case INSPECT_SECTIONS_NAMES.LOCATIONS:
+                this.buildLocationsSection();
                 break;
             default:
                 break;

@@ -170,6 +170,11 @@
                                 data-section-name="JSON">
                             <i class="fa-solid fa-file-code"></i>
                         </button>
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
+                                id="inspect-locations-button"
+                                data-section-name="LOCATIONS">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </button>
                     </div>
 
                     <!-- inspect sections, the content is created by js -->
@@ -238,7 +243,7 @@
                             </table>
                         </section>
                     </div>
-                    <div class="inspect__panelContent" id="inspect-sections-description">
+                    <div class="inspect__panelContent hide" id="inspect-sections-description">
                         <h2 class="text inspect__sectionTitle">DESCRIPTION</h2>
                         <section>
                             <p class="text text--grey text--justify text--15 text--lineHeight-md"
@@ -279,6 +284,12 @@
                         <h2 class="text inspect__sectionTitle">JSON</h2>
                         <section>
                             <div id="inspect-json-container" class="inspect__code"></div>
+                        </section>
+                    </div>
+                    <div class="inspect__panelContent hide" id="inspect-sections-location">
+                        <h2 class="text inspect__sectionTitle">LOCATIONS</h2>
+                        <section>
+
                         </section>
                     </div>
                 </div>
