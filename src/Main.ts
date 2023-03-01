@@ -23,9 +23,7 @@ export class Main {
     public mapSize: Vector;
     private rightPanel: Content;
     private spriteType: keyof typeof SPRITE_TYPES;
-
     private engineObject: EngineObject | CropObject | null;
-    private readonly inspectWorldObjects: InspectWorldObjects;
     private data: GameMapData
 
     constructor() {
