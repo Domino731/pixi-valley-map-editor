@@ -12,6 +12,7 @@ import {InspectTools} from "./Components/Tools";
 import {ActionCollisionProps} from "./Components/types";
 import {InspectStages} from "./Components/Stages";
 import {hide, show} from "../../../utils/toggleElementVisibility";
+import {Locations} from "./Components/Locations";
 
 export class Inspect {
     private readonly inspect: {
@@ -21,6 +22,7 @@ export class Inspect {
         inspectJson: InspectJson,
         inspectTools: InspectTools,
         inspectStages: InspectStages
+        locations: Locations
     };
     private readonly generalDataSection: HTMLElement;
     private readonly checkboxesSection: HTMLElement;
@@ -39,7 +41,8 @@ export class Inspect {
             description: new Description(),
             inspectJson: new InspectJson(),
             inspectTools: new InspectTools(),
-            inspectStages: new InspectStages()
+            inspectStages: new InspectStages(),
+            locations: new Locations()
         }
         this.generalDataSection = document.querySelector('#inspect-sections-general-data');
         this.checkboxesSection = document.querySelector('#inspect-sections-checkboxes');
@@ -216,6 +219,7 @@ export class Inspect {
     private buildLocationsSection(): void {
         this.hideAllSections();
         show(this.locationsSection);
+        this.inspect.locations.build();
     }
 
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
