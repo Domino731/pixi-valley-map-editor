@@ -2,6 +2,7 @@ import {EngineObject, EngineObjectTypesUnion} from "../../../../data/types";
 import {ExtendedEngineObject} from "../../../../types";
 import {ContextMenu} from "../../../../utils/ContextMenu";
 import {ContextMenuOption} from "../../../../utils/types";
+import {hide, show} from "../../../../utils/toggleElementVisibility";
 
 export class InspectWorldObjects {
     private readonly MapObjectsElements: Array<HTMLDivElement>;
@@ -154,9 +155,10 @@ export class InspectWorldObjects {
 
         accordionButton.addEventListener('click', () => {
             if (objectsList.classList.contains('hide')) {
+                show(objectsList)
                 objectsList.classList.remove('hide')
             } else {
-                objectsList.classList.add('hide')
+                hide(objectsList)
             }
         })
 
@@ -184,7 +186,7 @@ export class InspectWorldObjects {
     }
 
 
-    public build(objectsType: EngineObjectTypesUnion, allObjects: Array<ExtendedEngineObject>): void {
+    public build(objectsType: EngineObjectTypesUnion, allObjects: Array<ExtendedEngineObject>, containerId: string): void {
         const objectsByType: Array<ExtendedEngineObject> = allObjects.filter(({type}: { type: EngineObjectTypesUnion }) => type === objectsType);
         this.buildObjectsAccordionButtons(objectsByType);
     }
