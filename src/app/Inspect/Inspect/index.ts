@@ -219,7 +219,7 @@ export class Inspect {
     private buildLocationsSection(): void {
         this.hideAllSections();
         show(this.locationsSection);
-        this.inspect.locations.build();
+        // this.inspect.locations.build();
     }
 
     private buildSection(sectionName: InspectSectionsNamesUnion, engineObject: EngineObject): void {
