@@ -10,6 +10,7 @@ import {v4 as uuidv4} from 'uuid';
 import {CONTENT_TYPE} from "./const";
 import {TILE_SIZE} from "../../const";
 import {TileSets} from "../../data/tileSets";
+import {Locations} from "../Inspect/Inspect/Components/Locations";
 
 export class Map {
     readonly cellSize: number;
@@ -119,6 +120,8 @@ export class Map {
                     cord: {...position}
                 }
             });
+
+            new Locations().build(this.main.getDataObjects(), engineObject.id)
             if (inspect) {
                 this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
             }
