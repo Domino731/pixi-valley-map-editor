@@ -1,13 +1,20 @@
 import {ExtendedEngineObject} from "../../../../types";
-import {getObjectNameById} from "../../../../utils/objectUtils";
+import {findObjectOnMap} from "../../../../utils/objectUtils";
 import {ContextMenuOption} from "../../../../utils/types";
 import {ContextMenu} from "../../../../utils/ContextMenu";
 
 export class Locations {
-    constructor() {
+    private readonly elements: {
+        list: HTMLUListElement
     }
 
-    private createObjectsListItem({name, mapId, map, id}: ExtendedEngineObject): HTMLLIElement {
+    constructor() {
+        this.elements = {
+            list: document.querySelector('#inspect-locations-objects-list')
+        }
+    }
+
+    private createObjectsListItem({mapId, map}: ExtendedEngineObject): HTMLLIElement {
         const {cord} = map;
 
         const liElement: HTMLLIElement = document.createElement('li');
@@ -21,7 +28,7 @@ export class Locations {
         visibilityButton.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
         visibilityButton.className = 'inspect__visibilityButton hide'
         visibilityButton.addEventListener('click', () => {
-            const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(mapId);
+            const target: HTMLDivElement | null = findObjectOnMap(mapId);
             if (target) {
                 visibilityButton.classList.add('hide');
                 target.classList.remove('hide');
@@ -73,7 +80,16 @@ export class Locations {
         return liElement;
     }
 
+    private cleanList(): void {
+        this.elements.list.innerHTML = ''
+    }
+
     public build(allObjects: Array<ExtendedEngineObject>, objectId: string): void {
-        const targetObjects = allObjects.filter(({id}) => id === objectId);
+        this.cleanList();
+        const targetObjects: Array<ExtendedEngineObject> = allObjects.filter(({id}) => id === objectId);
+        targetObjects.forEach((object: ExtendedEngineObject) => {
+            const listItem = this.createObjectsListItem(object);
+            this.elements.list.appendChild(listItem);
+        })
     }
 }

@@ -123,6 +123,7 @@ export class Map {
 
             new Locations().build(this.main.getDataObjects(), engineObject.id)
             if (inspect) {
+                // @ts-ignore
                 this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
             }
 
