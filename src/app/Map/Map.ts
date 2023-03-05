@@ -132,7 +132,7 @@ export class Map {
 
     private setObject() {
         this.main.dom.map.addEventListener('click', ({clientX, clientY}) => {
-            if (this.main.getSpriteType() === SPRITE_TYPES.OBJECT) {
+            if (this.contentType === CONTENT_TYPE.OBJECTS) {
                 const {left, top}: DOMRect = this.main.dom.map.getBoundingClientRect();
                 const position: Vector = {
                     x: Math.floor((clientX - left) / this.cellSize),
