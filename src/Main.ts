@@ -1,4 +1,4 @@
-import {ExtendedEngineObject, SPRITE_NAMES, SpriteDim, SpriteNamesUnion, Vector} from "./types";
+import {ExtendedEngineObject, SPRITE_NAMES, SpriteNamesUnion, Vector} from "./types";
 import {SPRITE_TYPES, SpriteData} from "./const/types";
 import {DOM} from "./app/DOM";
 import {Map} from "./app/Map/Map";
@@ -12,6 +12,7 @@ import {Inspect} from "./app/Inspect/Inspect";
 import {InspectWorld} from "./app/Inspect/InspectWorld";
 import {ToggleDebuggerMode} from "./app/Inspect/ToggleDebuggerMode";
 import {SaveAndLoad} from "./app/Inspect/SaveAndLoad";
+import {CONTENT_TYPE} from "./app/Map/const";
 
 export class Main {
     dom: DOM;
@@ -78,6 +79,7 @@ export class Main {
     }
 
     public setEngineObject(payload: EngineObject | CropObject | null): void {
+        this.map.setContentType(CONTENT_TYPE.OBJECTS);
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
         Inspect.addImage(this.engineObject.id);

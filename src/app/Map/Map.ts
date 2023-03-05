@@ -1,7 +1,6 @@
 import {Vector} from "../../types";
-import {SPRITE_TYPES} from "../../const/types";
 import {Main} from "../../Main";
-import {ENGINE_OBJECTS_TYPES, EngineObject, GameMapDataJson, GameMapTileData, SpriteSize} from "../../data/types";
+import {ENGINE_OBJECTS_TYPES, EngineObject, GameMapTileData, SpriteSize} from "../../data/types";
 import {SpritesConfig} from "../../data/spritesConfig";
 import {CROPS_PER_PANEL} from "../../data/crops/const";
 import {CropObject} from "../../data/crops/types";
@@ -9,7 +8,6 @@ import {InspectWorldObjects} from "../Inspect/InspectWorld/components/InspectWor
 import {v4 as uuidv4} from 'uuid';
 import {CONTENT_TYPE} from "./const";
 import {TILE_SIZE} from "../../const";
-import {TileSets} from "../../data/tileSets";
 import {Locations} from "../Inspect/Inspect/Components/Locations";
 
 export class Map {
@@ -53,6 +51,10 @@ export class Map {
     ////
     // class setters
     ////
+
+    public setContentType(payload: CONTENT_TYPE): void {
+        this.contentType = payload
+    }
 
     public setTile(src: string, position: Vector, spriteName: string): void {
         this.contentType = CONTENT_TYPE.TILE_SETS;
@@ -189,14 +191,16 @@ export class Map {
 
         // apply mousemove event and calculate mouse position
         this.main.dom.map.addEventListener('mousemove', (({clientX, clientY}): void => {
-            const position: Vector = {
-                x: Math.floor((clientX - rect.left) / this.cellSize),
-                y: Math.floor((clientY - rect.top) / this.cellSize)
-            }
-            const engineObject: EngineObject | null = this.main.getEngineObject();
-            if (position.x >= 0 && position.y >= 0 && position.x <= this.size.x && position.y <= this.size.y && engineObject) {
-                this.main.dom.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
-                this.main.dom.hoverObject.style.top = `${(position.y * this.cellSize)}px`;
+            if (this.contentType === CONTENT_TYPE.OBJECTS) {
+                const position: Vector = {
+                    x: Math.floor((clientX - rect.left) / this.cellSize),
+                    y: Math.floor((clientY - rect.top) / this.cellSize)
+                }
+                const engineObject: EngineObject | null = this.main.getEngineObject();
+                if (position.x >= 0 && position.y >= 0 && position.x <= this.size.x && position.y <= this.size.y && engineObject) {
+                    this.main.dom.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
+                    this.main.dom.hoverObject.style.top = `${(position.y * this.cellSize)}px`;
+                }
             }
         }));
     }
