@@ -13,6 +13,7 @@ import {InspectWorld} from "./app/Inspect/InspectWorld";
 import {ToggleDebuggerMode} from "./app/Inspect/ToggleDebuggerMode";
 import {SaveAndLoad} from "./app/Inspect/SaveAndLoad";
 import {CONTENT_TYPE} from "./app/Map/const";
+import {findObjectSprite} from "./utils/sprites";
 
 export class Main {
     dom: DOM;
@@ -83,8 +84,9 @@ export class Main {
         this.map.setContentType(CONTENT_TYPE.OBJECTS);
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
-        Inspect.addImage(this.engineObject.id);
-        const spriteSize: SpriteSize | undefined = SpritesConfig.find(({sprite}) => sprite === this.engineObject.sprite.src)?.size
+        Inspect.addImage(payload);
+        const spriteSize: SpriteSize | undefined = findObjectSprite(payload)?.size;
+        console.log(spriteSize)
         if (spriteSize) {
             this.dom.hoverObject.dataset.objectName = this.engineObject.name;
             this.dom.hoverObject.style.position = "absolute";
@@ -97,14 +99,6 @@ export class Main {
             this.dom.hoverObject.style.backgroundRepeat = 'no-repeat'
 
         }
-    }
-
-    public getSpriteType(): keyof typeof SPRITE_TYPES {
-        return this.spriteType;
-    }
-
-    public setSpriteType(type: keyof typeof SPRITE_TYPES): void {
-        this.spriteType = type;
     }
 
     init(): void {

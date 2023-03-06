@@ -13,6 +13,7 @@ import {ActionCollisionProps} from "./Components/types";
 import {InspectStages} from "./Components/Stages";
 import {hide, show} from "../../../utils/toggleElementVisibility";
 import {Locations} from "./Components/Locations";
+import {findObjectSprite} from "../../../utils/sprites";
 
 export class Inspect {
     private readonly inspect: {
@@ -78,23 +79,25 @@ export class Inspect {
      * Add object image to blueprint
      * @param objectId - object's id needed to find the specific one data
      * */
-    public static addImage(objectId: string): void {
+    public static addImage(object: EngineObject): void {
         // get data - object, sprite size, dom element
-        const {sprite}: EngineObject = this.findEngineObjectById(objectId);
-        const {cellWidth, cellHeight}: SpriteSize = this.findObjectSize(sprite.src);
-        const blueprintContainer: HTMLParagraphElement = document.querySelector('#inspect-blueprint-container');
-        const blueprint: HTMLDivElement = document.querySelector('#inspect-blueprint');
-        const blueprintLabel: HTMLParagraphElement = document.querySelector('#inspect-blueprint-label');
+        const sprite = findObjectSprite(object);
+        console.log(sprite);
+        if (sprite) {
+            const {cellWidth, cellHeight}: SpriteSize = this.findObjectSize(sprite.sprite);
+            const blueprintContainer: HTMLParagraphElement = document.querySelector('#inspect-blueprint-container');
+            const blueprint: HTMLDivElement = document.querySelector('#inspect-blueprint');
+            const blueprintLabel: HTMLParagraphElement = document.querySelector('#inspect-blueprint-label');
 
-        // apply styles
-        blueprint.style.width = `${cellWidth}px`;
-        blueprint.style.height = `${cellHeight}px`;
-        blueprint.style.backgroundImage = `url(./src/sprites/${sprite.src})`;
-        blueprint.style.backgroundPosition = `-${sprite.position.x * cellWidth}px -${sprite.position.y * cellHeight}px`;
+            // apply styles
+            blueprint.style.width = `${cellWidth}px`;
+            blueprint.style.height = `${cellHeight}px`;
+            blueprint.style.backgroundImage = `url(./src/sprites/${object.sprite.src})`;
+            blueprint.style.backgroundPosition = `-${object.sprite.position.x * cellWidth}px -${object.sprite.position.y * cellHeight}px`;
 
-        // hide label
-        blueprintContainer.className = 'inspect__blueprint inspect__blueprint--active'
-
+            // hide label
+            blueprintContainer.className = 'inspect__blueprint inspect__blueprint--active'
+        }
     }
 
     private panelButtons(): void {

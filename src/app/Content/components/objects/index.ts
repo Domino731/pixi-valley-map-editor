@@ -102,7 +102,6 @@ export class ObjectsContent {
 
                         mainObjectWrapper.addEventListener('click', () => {
                             this.main.setEngineObject(stage);
-                            console.log('trees');
                         });
 
                         list.appendChild(mainObjectWrapper)
