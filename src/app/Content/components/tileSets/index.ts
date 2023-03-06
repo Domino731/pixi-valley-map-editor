@@ -55,7 +55,7 @@ export class TileSets {
         })
     }
 
-    private currentTileOnClick(): void {
+    private tileOnClick(): void {
         this.elements.currentTile.addEventListener('click', () => {
             this.map.setTile(this.tileSetsSrc, this.cellPosition, this.tileSpriteName);
         })
@@ -80,7 +80,7 @@ export class TileSets {
     }
 
     private init() {
-        this.currentTileOnClick();
+        this.tileOnClick();
         this.setTileSetsContainer(TileSetsArray[0]);
         this.createSelect();
     }

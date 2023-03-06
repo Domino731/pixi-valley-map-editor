@@ -58,10 +58,12 @@ export class Map {
     }
 
     public setTile(src: string, position: Vector, spriteName: string): void {
+        Map.hideHoverObject();
         this.contentType = CONTENT_TYPE.TILE_SETS;
         this.tile = {src, position, spriteName};
     }
 
+    
     private setGroundTile(cell: HTMLDivElement) {
         const {src, position: {x, y}, spriteName} = this.tile;
         const {dataset: {cordX, cordY}} = cell;

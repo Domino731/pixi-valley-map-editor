@@ -79,6 +79,7 @@ export class Main {
     }
 
     public setEngineObject(payload: EngineObject | CropObject | null): void {
+        Map.showHoverObject();
         this.map.setContentType(CONTENT_TYPE.OBJECTS);
         this.spriteType = SPRITE_TYPES.OBJECT;
         this.engineObject = payload;
