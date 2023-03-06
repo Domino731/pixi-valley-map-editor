@@ -13,7 +13,7 @@ import {ActionCollisionProps} from "./Components/types";
 import {InspectStages} from "./Components/Stages";
 import {hide, show} from "../../../utils/toggleElementVisibility";
 import {Locations} from "./Components/Locations";
-import {findObjectSprite} from "../../../utils/sprites";
+import {findObjectSprite, findObjectSpriteSize} from "../../../utils/sprites";
 
 export class Inspect {
     private readonly inspect: {
@@ -56,16 +56,7 @@ export class Inspect {
         this.locationsSection = document.querySelector('#inspect-sections-location');
         this.init();
     }
-
-
-    /**
-     * find object's size
-     * @param objectSpriteSrc - object sprite source needed to find the specific size
-     * */
-    private static findObjectSize(objectSpriteSrc: string): SpriteSize {
-        return SpritesConfig.find(({sprite}) => sprite === objectSpriteSrc)?.size;
-    }
-
+    
     // TODO: move to utils class
     /**
      * Find game object by id
@@ -84,7 +75,7 @@ export class Inspect {
         const sprite = findObjectSprite(object);
         console.log(sprite);
         if (sprite) {
-            const {cellWidth, cellHeight}: SpriteSize = this.findObjectSize(sprite.sprite);
+            const {cellWidth, cellHeight}: SpriteSize = findObjectSpriteSize(object);
             const blueprintContainer: HTMLParagraphElement = document.querySelector('#inspect-blueprint-container');
             const blueprint: HTMLDivElement = document.querySelector('#inspect-blueprint');
             const blueprintLabel: HTMLParagraphElement = document.querySelector('#inspect-blueprint-label');

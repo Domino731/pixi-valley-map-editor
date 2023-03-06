@@ -1,5 +1,6 @@
 import {DropItemInterface} from "../../../../data/types";
 import {Inspect} from "../index";
+import {findObject} from "../../../../utils/EngineObjects";
 
 export class DropItems {
     private readonly tableBodyElement: HTMLTableSectionElement;
@@ -10,7 +11,7 @@ export class DropItems {
 
     private createTableRow({id, chance, amount}: DropItemInterface): void {
         let tableBodyHTML = this.tableBodyElement.innerHTML;
-        const {name} = Inspect.findEngineObjectById(id);
+        const {name} = findObject(id) ?? {};
 
         tableBodyHTML += `
            <tr>
