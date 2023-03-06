@@ -37,3 +37,15 @@ export const toggleVisibility = (element: HTMLElement | Array<HTMLElement>, flag
         show(element)
     }
 }
+
+/**
+ * Checking if element is visible on page
+ * @Param element - html element that you want to check
+ * */
+export const isVisible = (element: HTMLElement): boolean => !element.classList.contains(HIDE_CLASS_NAME);
+
+/**
+ * Checking if element is hidden on page
+ * @Param element - html element that you want to check
+ * */
+export const isHidden = (element: HTMLElement): boolean => element.classList.contains(HIDE_CLASS_NAME);

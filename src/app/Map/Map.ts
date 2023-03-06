@@ -9,6 +9,7 @@ import {v4 as uuidv4} from 'uuid';
 import {CONTENT_TYPE} from "./const";
 import {TILE_SIZE} from "../../const";
 import {Locations} from "../Inspect/Inspect/Components/Locations";
+import {hide, show} from "../../utils/toggleElementVisibility";
 
 export class Map {
     readonly cellSize: number;
@@ -183,6 +184,18 @@ export class Map {
             tile.style.backgroundPosition = `-0px -112px`;
             tile.style.backgroundRepeat = 'no-repeat'
         })
+    }
+
+    public static getHoverObjectElement(): HTMLElement {
+        return document.querySelector('#container-hover-object')
+    }
+
+    public static showHoverObject(): void {
+        show(Map.getHoverObjectElement())
+    }
+
+    public static hideHoverObject(): void {
+        hide(Map.getHoverObjectElement())
     }
 
     // show selected object on map using mouse position
