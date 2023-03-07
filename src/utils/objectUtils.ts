@@ -31,6 +31,13 @@ export const findObjectOnMap = (objectMapId: string): HTMLDivElement | null => {
  * @Param object - object needed to assign id
  * */
 export const setObjectElementAttribute = (element: HTMLElement, section: string, object: EngineObject): void => {
-    element.dataset.engineObjectId = object.id;
+    element.dataset.engineObjectElementId = object.id;
 }
 
+/**
+ * find all elements on page where object is occurring
+ * @Param object - object needed to find elements
+ * */
+export const findAllObjectElements = ({id}: EngineObject): Array<HTMLElement> => {
+    return document.querySelectorAll(`[data-engine-object-element-id="${id}"]`) as unknown as Array<HTMLElement>
+}
