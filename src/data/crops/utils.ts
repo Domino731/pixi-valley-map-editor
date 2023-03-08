@@ -1,5 +1,5 @@
-import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, EngineObject, SPRITE_SRC} from "../types";
-import {TREE_ITEMS, TreeStageObject} from "../environment/types";
+import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../types";
+import {TREE_ITEMS} from "../environment/types";
 import {TOOLS} from "../tools/types";
 import {CropStageObject} from "./types";
 

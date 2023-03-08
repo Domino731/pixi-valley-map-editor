@@ -63,7 +63,7 @@ export class Map {
         this.tile = {src, position, spriteName};
     }
 
-    
+
     private setGroundTile(cell: HTMLDivElement) {
         const {src, position: {x, y}, spriteName} = this.tile;
         const {dataset: {cordX, cordY}} = cell;
@@ -128,6 +128,8 @@ export class Map {
 
             new Locations().build(this.main.getDataObjects(), engineObject.id)
             if (inspect) {
+                // console.log('engineObject: ', engineObject);
+                // console.log(engineObject.type);
                 // @ts-ignore
                 this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
             }
@@ -143,6 +145,7 @@ export class Map {
                     x: Math.floor((clientX - left) / this.cellSize),
                     y: Math.floor((clientY - top) / this.cellSize)
                 }
+                console.log('setObject: ', this.main.getEngineObject().type)
                 this.createObject(this.main.getEngineObject(), position, true);
             }
         });

@@ -168,8 +168,8 @@ export class InspectWorldObjects {
         return liElement;
     }
 
-    private buildObjectsAccordionButtons(objects: Array<ExtendedEngineObject>): void {
-        const objectsList = document.querySelector('#inspect-world-section ul[data-world-objects-list]');
+    private buildObjectsAccordionButtons(objects: Array<ExtendedEngineObject>, objectsType: EngineObjectTypesUnion): void {
+        const objectsList = document.querySelector(`#inspect-world-section ul[data-world-objects-list="${objectsType}"]`);
         const availableObjects: Array<string> = [];
         objectsList.innerHTML = ``;
 
@@ -186,8 +186,8 @@ export class InspectWorldObjects {
     }
 
 
-    public build(objectsType: EngineObjectTypesUnion, allObjects: Array<ExtendedEngineObject>, containerId: string): void {
+    public build(objectsType: EngineObjectTypesUnion, allObjects: Array<ExtendedEngineObject>): void {
         const objectsByType: Array<ExtendedEngineObject> = allObjects.filter(({type}: { type: EngineObjectTypesUnion }) => type === objectsType);
-        this.buildObjectsAccordionButtons(objectsByType);
+        this.buildObjectsAccordionButtons(objectsByType, objectsType);
     }
 }
