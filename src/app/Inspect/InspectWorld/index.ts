@@ -1,4 +1,5 @@
 import {EngineObjectTypesUnion} from "../../../data/types";
+import {INSPECT_WORLD_OBJECT_AMOUNT_ELEMENTS} from "./const";
 
 export class InspectWorld {
     private readonly buttonElements: Array<HTMLButtonElement>;
@@ -38,4 +39,12 @@ export class InspectWorld {
         this.buttonClickEvents();
         // new InspectWorldObjects().build();
     }
+
+
+    // STATIC METHODS
+
+    public static updateObjectAmountText(objectType: EngineObjectTypesUnion, amount: number): void {
+        INSPECT_WORLD_OBJECT_AMOUNT_ELEMENTS[objectType].innerText = `${amount}`;
+    }
+
 }

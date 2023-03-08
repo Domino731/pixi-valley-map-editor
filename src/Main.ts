@@ -56,7 +56,13 @@ export class Main {
         }
     }
 
+    public getObjectsAmountByType(objectType: EngineObjectTypesUnion): number {
+        return this.data.objects.filter(({type}) => type === objectType).length + 1;
+    }
+
     public pushToDataObjects(object: ExtendedEngineObject): void {
+        const {type} = object;
+        InspectWorld.updateObjectAmountText(type, this.getObjectsAmountByType(type))
         this.data.objects.push(object);
     }
 
