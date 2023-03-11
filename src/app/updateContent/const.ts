@@ -1,3 +1,0 @@
-export enum UPDATE_CONTENT_TYPE {
-    ADD, DELETE
-}

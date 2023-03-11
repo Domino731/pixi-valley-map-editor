@@ -26,11 +26,11 @@
                                 id="toggle-debugger-sections-button-objects">
                             <i class="fa-solid fa-vector-square"></i>
                         </button>
-                        <button class="inspect__panelButton  inspect__panelButton--active"
+                        <button class="inspect__panelButton  inspect__panelButton--disabled"
                                 id="toggle-debugger-sections-button-world">
                             <i class="fa-solid fa-layer-group"></i>
                         </button>
-                        <button class="inspect__panelButton inspect__panelButton--disabled"
+                        <button class="inspect__panelButton inspect__panelButton--active"
                                 id="toggle-debugger-sections-button-save-load">
                             <i class="fa-regular fa-floppy-disk"></i>
                         </button>
@@ -110,7 +110,7 @@
                             </table>
                         </section>
                     </div>
-                    <div class="debugger__panelContent" id="inspect-save-load-overview">
+                    <div class="debugger__panelContent " id="inspect-save-load-overview">
                         <h3 class="debugger__sectionTitle">Save Or Load</h3>
                         <div>
                             <p class="inspect__title">Load</p>
@@ -129,7 +129,7 @@
 
 
                 <!--                sections-->
-                <div class="inspect__panel" id="inspect-objects-section">
+                <div class="inspect__panel hide" id="inspect-objects-section">
                     <div class="inspect__panelButtons" id="inspect-buttons">
                         <button class="inspect__panelButton inspect__panelButton--disabled" id="inspect-data-button"
                                 data-section-name="GENERAL_DATA">
