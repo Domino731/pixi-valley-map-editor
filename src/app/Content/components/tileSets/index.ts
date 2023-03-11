@@ -87,10 +87,18 @@ export class TileSets {
         })
     }
 
+    /** add mouse leave event for container - hide current tile element  */
+    private containerOnMouseLeave(): void {
+        this.elements.container.addEventListener('mouseleave', () => {
+            hide(this.elements.currentTile);
+        })
+    }
+
     /** select specific tile - use map.setTile() method, so it will be possible to add this tile on the map */
     private tileOnClick(): void {
         this.elements.currentTile.addEventListener('click', () => {
             const {x, y} = this.tilePosition;
+            show(this.elements.selectedTile)
             this.elements.selectedTile.style.transform = `translate(${x * TILE_SIZE}px, ${y * TILE_SIZE}px)`
             this.map.setTile(this.tileSetsSrc, this.tilePosition, this.tileSpriteName);
         })
@@ -117,10 +125,17 @@ export class TileSets {
         new Select('content-tile-sets-select', options, onChange, 'Outdoors summer')
     }
 
+    /** hide selected and current tile elements */
+    private hideTileElements(): void {
+        hide([this.elements.selectedTile, this.elements.currentTile])
+    }
+
     /** invoke class logic */
     private init() {
+        this.hideTileElements();
         this.tileOnClick();
         this.createTileSetsContainer(TileSetsArray[0]);
         this.createSelect();
+        this.containerOnMouseLeave();
     }
 }
