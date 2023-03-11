@@ -5,6 +5,7 @@ import {TileSetInterface} from "../../../../data/tileSets/types";
 import {TILE_SIZE} from "../../../../const";
 import {Vector} from "../../../../types";
 import {Map} from "../../../Map/Map";
+import {hide, isVisible, show} from "../../../../utils/toggleElementVisibility";
 
 /** Class responsible for tile sets panel
  *  Display all available tile sets from assets and allow user to choose the specific tile and then add it to the map
@@ -16,6 +17,7 @@ export class TileSets {
     private readonly elements: {
         container: HTMLDivElement;
         currentTile: HTMLDivElement;
+        selectedTile: HTMLDivElement;
     }
     // position of tile
     private tilePosition: Vector;
@@ -33,7 +35,8 @@ export class TileSets {
         this.map = map;
         this.elements = {
             container: document.querySelector('#content-tile-sets-container'),
-            currentTile: document.querySelector('#content-current-tile')
+            currentTile: document.querySelector('#content-current-tile'),
+            selectedTile: document.querySelector('#content-selected-tile')
         }
         this.tilePosition = {
             x: 0,
@@ -59,14 +62,26 @@ export class TileSets {
         this.currentTileRect = this.elements.container.getBoundingClientRect();
         this.elements.container.addEventListener('mousemove', (e) => {
             if ((e.target as HTMLElement).id !== 'content-current-tile') {
-                const {left, top} = (e.target as HTMLElement).getBoundingClientRect();
-                const x = Math.floor((e.clientX - left) / TILE_SIZE); //x position within the element.
-                const y = Math.floor((e.clientY - top) / TILE_SIZE);  //y position within the element.
-                if (this.tilePosition.x !== x || this.tilePosition.y !== y) {
-                    // set the position of the tile so that it is clear which tile has been selected
-                    this.tilePosition = {x, y}
-                    this.setCurrentTilePosition();
+                const isSelectedTileElement: boolean = (e.target as HTMLElement).id === 'content-selected-tile';
+                if (isSelectedTileElement) {
+                    if (isVisible(this.elements.currentTile)) {
+                        hide(this.elements.currentTile)
+                    }
+                    return;
+                } else {
+                    if (!isVisible(this.elements.currentTile)) {
+                        show(this.elements.currentTile)
+                    }
+                    const {left, top} = (e.target as HTMLElement).getBoundingClientRect();
+                    const x = Math.floor((e.clientX - left) / TILE_SIZE); //x position within the element.
+                    const y = Math.floor((e.clientY - top) / TILE_SIZE);  //y position within the element.
+                    if (this.tilePosition.x !== x || this.tilePosition.y !== y) {
+                        // set the position of the tile so that it is clear which tile has been selected
+                        this.tilePosition = {x, y}
+                        this.setCurrentTilePosition();
+                    }
                 }
+
             }
 
         })
@@ -75,6 +90,8 @@ export class TileSets {
     /** select specific tile - use map.setTile() method, so it will be possible to add this tile on the map */
     private tileOnClick(): void {
         this.elements.currentTile.addEventListener('click', () => {
+            const {x, y} = this.tilePosition;
+            this.elements.selectedTile.style.transform = `translate(${x * TILE_SIZE}px, ${y * TILE_SIZE}px)`
             this.map.setTile(this.tileSetsSrc, this.tilePosition, this.tileSpriteName);
         })
     }
