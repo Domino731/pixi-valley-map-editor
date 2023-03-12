@@ -1,6 +1,7 @@
 import {SelectOption} from "../../../../utils/types";
 import {GAME_DATA} from "../../../../data";
 
+/** Array with available game objects sets */
 export const GAME_OBJECTS_OPTIONS: Array<SelectOption> = [
     {
         label: 'Resources 32x',
@@ -9,6 +10,10 @@ export const GAME_OBJECTS_OPTIONS: Array<SelectOption> = [
     {
         label: 'Resources 16x',
         value: GAME_DATA.objects.resources16
+    },
+    {
+        label: 'Bushes',
+        value: GAME_DATA.objects.bushes
     },
     {
         label: 'Fences',
