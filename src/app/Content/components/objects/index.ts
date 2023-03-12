@@ -14,13 +14,15 @@ export class ObjectsContent {
     /** Main class */
     private readonly main: Main;
     /** html elements */
-    private readonly elements: {
+    private elements: {
+        currentObjectListItem: HTMLElement | null;
         objectsContainer: HTMLDivElement;
     }
 
     constructor(main: Main) {
         this.main = main;
         this.elements = {
+            currentObjectListItem: null,
             objectsContainer: document.querySelector('#current-sprite-container')
         }
         this.init();
@@ -29,6 +31,17 @@ export class ObjectsContent {
     /** Remove all elements from objects container */
     private cleanObjectsContainer(): void {
         this.elements.objectsContainer.innerHTML = '';
+    }
+
+    /** set this.elements.currentObjectListItem and highlight him */
+    private setCurrentObjectListItemElement(element: HTMLElement): void {
+        const className: string = 'stageObject__listItem--active'
+        // mark selected object list item
+        if (this.elements.currentObjectListItem) {
+            this.elements.currentObjectListItem.classList.remove(className);
+        }
+        element.classList.add(className)
+        this.elements.currentObjectListItem = element;
     }
 
     /** create list with objects, user after object click can pass that object into the map */
@@ -98,6 +111,7 @@ export class ObjectsContent {
                         mainObjectWrapper.appendChild(title);
                         // add a click event so that the user can add this object to the map
                         mainObjectWrapper.addEventListener('click', () => {
+                            this.setCurrentObjectListItemElement(mainObjectWrapper);
                             this.main.setEngineObject(stage);
                         });
                         // add item to the list
@@ -114,6 +128,7 @@ export class ObjectsContent {
                 // add click event for wrapper, if object has stages then show stages list otherwise select object
                 mainObjectWrapper.addEventListener('click', () => {
                     if (!el.stages?.length) {
+                        this.setCurrentObjectListItemElement(mainObjectWrapper);
                         this.main.setEngineObject(el);
                     } else {
                         const isVisible: boolean = list.style.display === 'block';

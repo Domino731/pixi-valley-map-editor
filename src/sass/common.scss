@@ -110,6 +110,10 @@
     border-bottom: 1px solid #2c2d2e;
     padding: 4px 0;
 
+    &--active {
+      border-bottom: 1px solid $yellow;
+    }
+
     &:hover {
       p {
         color: $white !important;
