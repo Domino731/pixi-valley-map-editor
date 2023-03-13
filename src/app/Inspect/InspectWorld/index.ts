@@ -4,10 +4,14 @@ import {INSPECT_WORLD_OBJECT_AMOUNT_ELEMENTS} from "./const";
 export class InspectWorld {
     private readonly buttonElements: Array<HTMLButtonElement>;
     private readonly sectionElements: Array<HTMLDivElement>;
+    private readonly toggleBordersCheckbox: HTMLInputElement;
+    private readonly mapCells: Array<HTMLElement>;
 
     constructor() {
         this.buttonElements = document.querySelectorAll('#inspect-world-buttons button') as unknown as Array<HTMLButtonElement>;
         this.sectionElements = document.querySelectorAll('#inspect-world-section div[data-section-panel-name]') as unknown as Array<HTMLDivElement>;
+        this.toggleBordersCheckbox = document.querySelector('#inspect-world-overview-show-borders-checkbox')
+        this.mapCells = document.querySelectorAll('.map__cell') as unknown as Array<HTMLElement>;
         this.init();
     }
 
@@ -35,9 +39,23 @@ export class InspectWorld {
         })
     }
 
+    private toggleBordersCheckboxOnChange(): void {
+        this.toggleBordersCheckbox.addEventListener('click', (e) => {
+            const {checked} = (e.target as HTMLInputElement);
+            let className: string = 'map__cell';
+            if (checked) {
+                className += ' map__cell--border'
+            }
+            const mapCells: Array<HTMLElement> = document.querySelectorAll('.map__cell') as unknown as Array<HTMLElement>;
+            mapCells.forEach((cell: HTMLDivElement): void => {
+                cell.className = className
+            });
+        })
+    }
+
     private init(): void {
         this.buttonClickEvents();
-        // new InspectWorldObjects().build();
+        this.toggleBordersCheckboxOnChange();
     }
 
 

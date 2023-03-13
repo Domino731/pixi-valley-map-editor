@@ -4,6 +4,19 @@
   }
 }
 
+.map {
+  &__cell {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+
+    &--border {
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+  }
+}
+
 .mapObject__active {
   border: 2px solid red;
 }

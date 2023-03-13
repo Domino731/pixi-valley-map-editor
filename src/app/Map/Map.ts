@@ -165,7 +165,7 @@ export class Map {
                 // add custom dataset, so that it is clear what object is where
                 cell.dataset.cordX = String(j);
                 cell.dataset.cordY = String(i);
-                cell.className = `cell cell--${this.cellSize}`;
+                cell.className = `map__cell map__cell--border`;
 
                 // add click event in order to set specific tile on map
                 cell.addEventListener('click', () => {
