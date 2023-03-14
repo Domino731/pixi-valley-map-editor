@@ -10,12 +10,12 @@ export class ToggleDebuggerMode {
         world: HTMLButtonElement;
         saveLoad: HTMLButtonElement;
     }
-    // sections (down)
+    // content sections (down)
     private readonly sections: {
         objects: HTMLDivElement;
         world: HTMLDivElement;
     }
-    // panels (up)
+    // overview panels  (up)
     private readonly panels: {
         objects: HTMLDivElement;
         world: HTMLDivElement;
