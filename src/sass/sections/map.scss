@@ -39,14 +39,25 @@
   }
 
   &__currentCellInfo {
+    overflow: hidden;
     color: $gray;
     display: flex;
+    width: 110px;
+    padding-left: 10px;
 
-    span:first-child {
+    &--borderRight {
+      border-left: 1px solid $graySecondary;
+    }
+
+    &--blueColor {
+      color: #00bbf9;
+    }
+
+    &--greenColor {
       color: #00f5d4;
     }
 
-    span:last-child {
+    &--purpleColor {
       color: #9b5de5;
     }
   }

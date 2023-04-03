@@ -153,7 +153,6 @@ export class Map {
                     x: Math.floor((clientX - left) / this.cellSize),
                     y: Math.floor((clientY - top) / this.cellSize)
                 }
-                console.log('setObject: ', this.main.getEngineObject().type)
                 this.createObject(this.main.getEngineObject(), position, true);
             }
         });

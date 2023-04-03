@@ -25,6 +25,9 @@ export class Main {
     private spriteType: keyof typeof SPRITE_TYPES;
     private engineObject: EngineObject | CropObject | null;
     private data: GameMapData
+    private readonly elements: {
+        mapObjectsAmount: HTMLSpanElement;
+    }
 
     constructor() {
         this.dom = new DOM();
@@ -38,7 +41,9 @@ export class Main {
             objects: [],
             tiles: []
         }
-
+        this.elements = {
+            mapObjectsAmount: document.querySelector('#map-objects-amount')
+        }
         new Inspect();
         new InspectWorld();
         new ToggleDebuggerMode();
@@ -64,6 +69,7 @@ export class Main {
         const {type} = object;
         InspectWorld.updateObjectAmountText(type, this.getObjectsAmountByType(type))
         this.data.objects.push(object);
+        this.elements.mapObjectsAmount.innerText = `${this.data.objects.length}`
     }
 
     //
