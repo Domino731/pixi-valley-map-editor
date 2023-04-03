@@ -37,6 +37,19 @@
   &__text {
     color: $graySecondary;
   }
+
+  &__currentCellInfo {
+    color: $gray;
+    display: flex;
+
+    span:first-child {
+      color: #00f5d4;
+    }
+
+    span:last-child {
+      color: #9b5de5;
+    }
+  }
 }
 
 .mapObject__active {
