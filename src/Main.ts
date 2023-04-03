@@ -27,6 +27,7 @@ export class Main {
     private data: GameMapData
     private readonly elements: {
         mapObjectsAmount: HTMLSpanElement;
+        mapTilesAmount: HTMLSpanElement;
     }
 
     constructor() {
@@ -42,7 +43,8 @@ export class Main {
             tiles: []
         }
         this.elements = {
-            mapObjectsAmount: document.querySelector('#map-objects-amount')
+            mapObjectsAmount: document.querySelector('#map-objects-amount'),
+            mapTilesAmount: document.querySelector('#map-tiles-amount')
         }
         new Inspect();
         new InspectWorld();
@@ -59,6 +61,7 @@ export class Main {
         } else {
             this.data.tiles.push(tile);
         }
+        this.elements.mapTilesAmount.innerText = `${this.data.tiles.length}`;
     }
 
     public getObjectsAmountByType(objectType: EngineObjectTypesUnion): number {

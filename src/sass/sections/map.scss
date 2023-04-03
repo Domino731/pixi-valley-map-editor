@@ -45,7 +45,11 @@
     width: 110px;
     padding-left: 10px;
 
-    &--borderRight {
+    &--autoWidth {
+      width: auto;
+    }
+
+    &--borderLeft {
       border-left: 1px solid $graySecondary;
     }
 
@@ -59,6 +63,10 @@
 
     &--purpleColor {
       color: #9b5de5;
+    }
+
+    &--redColor {
+      color: #ff595e;
     }
   }
 }
