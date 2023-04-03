@@ -6,7 +6,7 @@
 
 .map {
   &__content {
-    height: calc(100% - 40px);
+    height: calc(100% - 50px);
     width: 100%;
     display: flex;
     align-items: center;
@@ -25,8 +25,17 @@
   }
 
   &__bar {
-    background: red;
-    height: 20px;
+    border-left: 1px solid $graySecondary;
+    border-right: 1px solid $graySecondary;
+    padding: 0 10px;
+    background: $black;
+    height: 25px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__text {
+    color: $graySecondary;
   }
 }
 
