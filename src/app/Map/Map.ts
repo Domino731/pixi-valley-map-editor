@@ -18,6 +18,10 @@ export class Map {
     private size: Vector;
     private hoverPosition: Vector;
     private readonly inspectWorldObjects: InspectWorldObjects;
+    private readonly elements: {
+        topBarCurrentCellX: HTMLSpanElement;
+        topBarCurrentCellY: HTMLSpanElement;
+    }
     private contentType: CONTENT_TYPE;
     private tile: {
         src: string;
@@ -27,6 +31,10 @@ export class Map {
 
     constructor(main: Main) {
         this.main = main;
+        this.elements = {
+            topBarCurrentCellX: document.querySelector('#map-current-cell-cords-x'),
+            topBarCurrentCellY: document.querySelector('#map-current-cell-cords-y')
+        }
         this.inspectWorldObjects = new InspectWorldObjects();
         this.size = {
             x: 60,
@@ -203,17 +211,29 @@ export class Map {
         hide(Map.getHoverObjectElement())
     }
 
+    private setCurrentCellCords({x, y}: Vector): void {
+        let xText: string = `${x}`;
+        let yText: string = `${y}`;
+        if (x < 0 || y < 0) {
+            xText = '';
+            yText = '';
+        }
+        this.elements.topBarCurrentCellX.innerText = xText;
+        this.elements.topBarCurrentCellY.innerText = yText;
+    }
+
     // show selected object on map using mouse position
     private selectedObjectOnMousePosition(): void {
         const rect = this.main.dom.map.getBoundingClientRect();
 
         // apply mousemove event and calculate mouse position
         this.main.dom.map.addEventListener('mousemove', (({clientX, clientY}): void => {
+            const position: Vector = {
+                x: Math.floor((clientX - rect.left) / this.cellSize),
+                y: Math.floor((clientY - rect.top) / this.cellSize)
+            }
+            this.setCurrentCellCords(position);
             if (this.contentType === CONTENT_TYPE.OBJECTS) {
-                const position: Vector = {
-                    x: Math.floor((clientX - rect.left) / this.cellSize),
-                    y: Math.floor((clientY - rect.top) / this.cellSize)
-                }
                 const engineObject: EngineObject | null = this.main.getEngineObject();
                 if (position.x >= 0 && position.y >= 0 && position.x <= this.size.x && position.y <= this.size.y && engineObject) {
                     this.main.dom.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
@@ -221,6 +241,9 @@ export class Map {
                 }
             }
         }));
+        this.main.dom.map.addEventListener('mouseleave', () => {
+            this.setCurrentCellCords({x: -1, y: -1});
+        })
     }
 
     public init(): void {
