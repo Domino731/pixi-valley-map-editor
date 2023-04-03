@@ -41,9 +41,7 @@ body {
     background: #252526;
     width: calc(100% - 800px);
     overflow: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100%;
   }
 
   &__hoverObject {

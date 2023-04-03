@@ -5,6 +5,14 @@
 }
 
 .map {
+  &__content {
+    height: calc(100% - 40px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__cell {
     width: 16px;
     height: 16px;
@@ -14,6 +22,11 @@
       border-left: 1px solid black;
       border-bottom: 1px solid black;
     }
+  }
+
+  &__bar {
+    background: red;
+    height: 20px;
   }
 }
 
