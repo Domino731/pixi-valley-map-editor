@@ -30,6 +30,7 @@ export class Map {
         position: Vector;
         spriteName: string;
     }
+    private mapDOMRect: DOMRect | null;
 
     constructor(main: Main) {
         this.main = main;
@@ -59,6 +60,7 @@ export class Map {
             position: {x: 0, y: 0},
             spriteName: ''
         }
+        this.mapDOMRect = null;
     }
 
     ////
@@ -224,13 +226,11 @@ export class Map {
 
     // show selected object on map using mouse position
     private selectedObjectOnMousePosition(): void {
-        const rect = this.elements.map.getBoundingClientRect();
-
         // apply mousemove event and calculate mouse position
         this.elements.map.addEventListener('mousemove', (({clientX, clientY}): void => {
             const position: Vector = {
-                x: Math.floor((clientX - rect.left) / this.cellSize),
-                y: Math.floor((clientY - rect.top) / this.cellSize)
+                x: Math.floor((clientX - this.mapDOMRect?.left) / this.cellSize),
+                y: Math.floor((clientY - this.mapDOMRect?.top) / this.cellSize)
             }
             this.setCurrentCellCords(position);
             if (this.contentType === CONTENT_TYPE.OBJECTS) {
@@ -246,11 +246,18 @@ export class Map {
         })
     }
 
+    private setMapDOMRect(): void {
+        this.mapDOMRect = this.elements.map.getBoundingClientRect();
+        window.addEventListener('resize', () => {
+            this.mapDOMRect = this.elements.map.getBoundingClientRect();
+        });
+    }
+
     public init(): void {
         this.renderMapGrid();
         this.setObject();
+        this.setMapDOMRect();
         this.selectedObjectOnMousePosition();
-
         Map.renderGround();
     }
 }
