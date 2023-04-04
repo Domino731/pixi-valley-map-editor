@@ -98,7 +98,6 @@ export class Map {
             const mapId = uuidv4();
 
             object.dataset.objectName = engineObject.name;
-            object.style.position = "absolute";
             object.dataset.spriteSrc = engineObject.sprite.src;
             object.dataset.spritePositionX = String(engineObject.sprite.position.x);
             object.dataset.spritePositionY = String(engineObject.sprite.position.y);
@@ -108,7 +107,7 @@ export class Map {
             object.dataset.objectGroup = engineObject.group;
             object.dataset.objectType = engineObject.type;
             object.id = mapId;
-
+            object.style.position = "absolute";
             object.style.width = `${spriteSize.cellWidth}px`;
             object.style.height = `${spriteSize.cellHeight}px`;
             object.style.left = `${this.cellSize * position.x}px`;
@@ -136,8 +135,6 @@ export class Map {
 
             new Locations().build(this.main.getDataObjects(), engineObject.id)
             if (inspect) {
-                // console.log('engineObject: ', engineObject);
-                // console.log(engineObject.type);
                 // @ts-ignore
                 this.inspectWorldObjects.build(engineObject.type, this.main.getDataObjects());
             }
