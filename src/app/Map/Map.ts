@@ -21,6 +21,8 @@ export class Map {
     private readonly elements: {
         topBarCurrentCellX: HTMLSpanElement;
         topBarCurrentCellY: HTMLSpanElement;
+        map: HTMLElement;
+        hoverObject: HTMLElement
     }
     private contentType: CONTENT_TYPE;
     private tile: {
@@ -33,7 +35,9 @@ export class Map {
         this.main = main;
         this.elements = {
             topBarCurrentCellX: document.querySelector('#map-current-cell-cords-x'),
-            topBarCurrentCellY: document.querySelector('#map-current-cell-cords-y')
+            topBarCurrentCellY: document.querySelector('#map-current-cell-cords-y'),
+            map: document.querySelector('#map'),
+            hoverObject: document.querySelector('#container-hover-object')
         }
         this.inspectWorldObjects = new InspectWorldObjects();
         this.size = {
@@ -126,7 +130,7 @@ export class Map {
                 object.style.backgroundPosition = `-${engineObject.sprite.position.x * spriteSize.cellWidth}px -${engineObject.sprite.position.y * spriteSize.cellHeight}px`;
             }
 
-            this.main.dom.map.appendChild(object);
+            this.elements.map.appendChild(object);
             this.main.pushToDataObjects({
                 ...engineObject, mapId: mapId, map: {
                     cord: {...position}
@@ -143,9 +147,9 @@ export class Map {
     }
 
     private setObject() {
-        this.main.dom.map.addEventListener('click', ({clientX, clientY}) => {
+        this.elements.map.addEventListener('click', ({clientX, clientY}) => {
             if (this.contentType === CONTENT_TYPE.OBJECTS) {
-                const {left, top}: DOMRect = this.main.dom.map.getBoundingClientRect();
+                const {left, top}: DOMRect = this.elements.map.getBoundingClientRect();
                 const position: Vector = {
                     x: Math.floor((clientX - left) / this.cellSize),
                     y: Math.floor((clientY - top) / this.cellSize)
@@ -181,7 +185,7 @@ export class Map {
                 row.appendChild(cell)
             }
 
-            this.main.dom.map.appendChild(row);
+            this.elements.map.appendChild(row);
         }
     }
 
@@ -220,10 +224,10 @@ export class Map {
 
     // show selected object on map using mouse position
     private selectedObjectOnMousePosition(): void {
-        const rect = this.main.dom.map.getBoundingClientRect();
+        const rect = this.elements.map.getBoundingClientRect();
 
         // apply mousemove event and calculate mouse position
-        this.main.dom.map.addEventListener('mousemove', (({clientX, clientY}): void => {
+        this.elements.map.addEventListener('mousemove', (({clientX, clientY}): void => {
             const position: Vector = {
                 x: Math.floor((clientX - rect.left) / this.cellSize),
                 y: Math.floor((clientY - rect.top) / this.cellSize)
@@ -232,12 +236,12 @@ export class Map {
             if (this.contentType === CONTENT_TYPE.OBJECTS) {
                 const engineObject: EngineObject | null = this.main.getEngineObject();
                 if (position.x >= 0 && position.y >= 0 && position.x <= this.size.x && position.y <= this.size.y && engineObject) {
-                    this.main.dom.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
-                    this.main.dom.hoverObject.style.top = `${(position.y * this.cellSize)}px`;
+                    this.elements.hoverObject.style.left = `${(position.x * this.cellSize)}px`;
+                    this.elements.hoverObject.style.top = `${(position.y * this.cellSize)}px`;
                 }
             }
         }));
-        this.main.dom.map.addEventListener('mouseleave', () => {
+        this.elements.map.addEventListener('mouseleave', () => {
             this.setCurrentCellCords({x: -1, y: -1});
         })
     }
