@@ -15,11 +15,19 @@ export class InspectWorldObjects {
         return document.getElementById(`${objectMapId}`) as HTMLDivElement | null;
     }
 
-    public deleteObjectFromMap(objectMapId: string, main: Main): void {
-        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
-        if (target) {
+    public deleteObjectFromMap(objectMapId: string, objectId: string, main: Main): void {
+        const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
+        if (checkedObjects.includes(objectMapId)) {
+            main.deleteObjectFromDataObjects(checkedObjects)
+        } else {
             main.deleteObjectFromDataObjects(objectMapId)
-            target.remove();
+        }
+
+        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
+        // OLD
+        if (target) {
+            // main.deleteObjectFromDataObjects(objectMapId)
+            // target.remove();
         }
     }
 
@@ -64,10 +72,6 @@ export class InspectWorldObjects {
         }
     }
 
-    private deleteObjects(objectMapId: string, objectId: string): void {
-
-    }
-
     private createObjectsListItem({name, mapId, map, id}: ExtendedEngineObject, main: Main): HTMLLIElement {
         const {cord} = map;
 
@@ -110,8 +114,7 @@ export class InspectWorldObjects {
             {
                 label: 'Delete',
                 onClick: () => {
-                    this.deleteObjectFromMap(mapId, main);
-                    liElement.remove();
+                    this.deleteObjectFromMap(mapId, id, main);
                 }
             },
         ]
