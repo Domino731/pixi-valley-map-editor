@@ -3,10 +3,9 @@ import {ExtendedEngineObject} from "../../../../types";
 import {ContextMenu} from "../../../../utils/ContextMenu";
 import {ContextMenuOption} from "../../../../utils/types";
 import {hide, show} from "../../../../utils/toggleElementVisibility";
+import {Main} from "../../../../Main";
 
 export class InspectWorldObjects {
-    private readonly MapObjectsElements: Array<HTMLDivElement>;
-
     constructor() {
 
     }
@@ -16,9 +15,10 @@ export class InspectWorldObjects {
         return document.getElementById(`${objectMapId}`) as HTMLDivElement | null;
     }
 
-    public deleteObjectFromMap(objectMapId: string): void {
+    public deleteObjectFromMap(objectMapId: string, main: Main): void {
         const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
         if (target) {
+            main.deleteObjectFromDataObjects(objectMapId)
             target.remove();
         }
     }
@@ -64,7 +64,7 @@ export class InspectWorldObjects {
         }
     }
 
-    private createObjectsListItem({name, mapId, map, id}: ExtendedEngineObject): HTMLLIElement {
+    private createObjectsListItem({name, mapId, map, id}: ExtendedEngineObject, main: Main): HTMLLIElement {
         const {cord} = map;
 
         const liElement: HTMLLIElement = document.createElement('li');
@@ -106,7 +106,7 @@ export class InspectWorldObjects {
             {
                 label: 'Delete',
                 onClick: () => {
-                    this.deleteObjectFromMap(mapId);
+                    this.deleteObjectFromMap(mapId, main);
                     liElement.remove();
                 }
             },
@@ -136,7 +136,7 @@ export class InspectWorldObjects {
     private createAccordion({
                                 name,
                                 id
-                            }: ExtendedEngineObject, objectsByName: Array<ExtendedEngineObject>): HTMLLIElement {
+                            }: ExtendedEngineObject, objectsByName: Array<ExtendedEngineObject>, main: Main): HTMLLIElement {
         const liElement: HTMLLIElement = document.createElement('li');
         const accordionButton: HTMLDivElement = document.createElement('div');
 
@@ -150,7 +150,7 @@ export class InspectWorldObjects {
         const objectsList: HTMLUListElement = document.createElement('ul');
         objectsList.className = 'accordion__list';
         objectsByName.forEach((el: ExtendedEngineObject) => {
-            objectsList.appendChild(this.createObjectsListItem(el))
+            objectsList.appendChild(this.createObjectsListItem(el, main))
         }, [])
 
         accordionButton.addEventListener('click', () => {
@@ -168,7 +168,7 @@ export class InspectWorldObjects {
         return liElement;
     }
 
-    private buildObjectsAccordionButtons(objects: Array<ExtendedEngineObject>, objectsType: EngineObjectTypesUnion): void {
+    private buildObjectsAccordionButtons(objects: Array<ExtendedEngineObject>, objectsType: EngineObjectTypesUnion, main: Main): void {
         const objectsList = document.querySelector(`#inspect-world-section ul[data-world-objects-list="${objectsType}"]`);
         const availableObjects: Array<string> = [];
         objectsList.innerHTML = ``;
@@ -179,15 +179,16 @@ export class InspectWorldObjects {
             } else {
                 availableObjects.push(el.name);
                 const objectsByName: Array<ExtendedEngineObject> = objects.filter(({name}: { name: string }) => el.name === name);
-                objectsList.appendChild(this.createAccordion(el, objectsByName));
+                objectsList.appendChild(this.createAccordion(el, objectsByName, main));
             }
         })
 
     }
 
 
-    public build(objectsType: EngineObjectTypesUnion, allObjects: Array<ExtendedEngineObject>): void {
+    public build(objectsType: EngineObjectTypesUnion, main: Main): void {
+        const allObjects: Array<ExtendedEngineObject> = main.getDataObjects();
         const objectsByType: Array<ExtendedEngineObject> = allObjects.filter(({type}: { type: EngineObjectTypesUnion }) => type === objectsType);
-        this.buildObjectsAccordionButtons(objectsByType, objectsType);
+        this.buildObjectsAccordionButtons(objectsByType, objectsType, main);
     }
 }

@@ -86,6 +86,14 @@ export class Main {
         return this.data.objects;
     }
 
+    public deleteObjectFromDataObjects(mapId: string) {
+        const index = this.data.objects.findIndex((el) => el.mapId === mapId);
+        if (index !== -1) {
+            this.data.objects.splice(index, 1);
+        }
+        console.log(this.data.objects);
+    }
+
     public getDataTiles(): Array<GameMapTileData> {
         return this.data.tiles;
     }
