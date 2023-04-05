@@ -14,6 +14,7 @@ import {ToggleDebuggerMode} from "./app/Inspect/ToggleDebuggerMode";
 import {SaveAndLoad} from "./app/Inspect/SaveAndLoad";
 import {CONTENT_TYPE} from "./app/Map/const";
 import {findObjectSprite} from "./utils/sprites";
+import {findObjectOnMap} from "./utils/objectUtils";
 
 export class Main {
     dom: DOM;
@@ -87,22 +88,14 @@ export class Main {
     }
 
     public deleteObjectFromDataObjects(mapId: string | Array<string>): void {
-        const findIndex = (mapId: string) => this.data.objects.findIndex((el) => el.mapId === mapId)
-        const remove = (index: number) => {
+        const idArray: Array<string> = typeof mapId === 'string' ? [mapId] : mapId;
+        idArray.forEach((id: string) => {
+            const index = this.data.objects.findIndex(({mapId}) => mapId === id);
             if (index !== -1) {
+                findObjectOnMap(id)?.remove();
                 this.data.objects.splice(index, 1);
             }
-        }
-        if (typeof mapId === 'string') {
-            const index = findIndex(mapId);
-            remove(index)
-        } else {
-            mapId.forEach((id: string) => {
-                const index = findIndex(id);
-                remove(index);
-            })
-        }
-
+        });
         this.elements.mapObjectsAmount.innerText = `${this.data.objects.length}`;
     }
 

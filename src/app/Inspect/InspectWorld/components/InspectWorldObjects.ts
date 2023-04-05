@@ -18,7 +18,6 @@ export class InspectWorldObjects {
 
     public deleteObjectFromMap(objectMapId: string, objectId: string, main: Main): void {
         const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
-        console.log(findEngineObjectOnMap(objectMapId));
         if (checkedObjects.includes(objectMapId)) {
             main.deleteObjectFromDataObjects(checkedObjects)
         } else {
