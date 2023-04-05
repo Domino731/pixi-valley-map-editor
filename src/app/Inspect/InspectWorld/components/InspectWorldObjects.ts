@@ -4,6 +4,7 @@ import {ContextMenu} from "../../../../utils/ContextMenu";
 import {ContextMenuOption} from "../../../../utils/types";
 import {hide, show} from "../../../../utils/toggleElementVisibility";
 import {Main} from "../../../../Main";
+import {findEngineObjectOnMap} from "../../../../utils/documentQuery";
 
 export class InspectWorldObjects {
     constructor() {
@@ -17,6 +18,7 @@ export class InspectWorldObjects {
 
     public deleteObjectFromMap(objectMapId: string, objectId: string, main: Main): void {
         const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
+        console.log(findEngineObjectOnMap(objectMapId));
         if (checkedObjects.includes(objectMapId)) {
             main.deleteObjectFromDataObjects(checkedObjects)
         } else {
