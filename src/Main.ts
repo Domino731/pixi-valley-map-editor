@@ -91,7 +91,7 @@ export class Main {
         if (index !== -1) {
             this.data.objects.splice(index, 1);
         }
-        console.log(this.data.objects);
+        this.elements.mapObjectsAmount.innerText = `${this.data.objects.length}`;
     }
 
     public getDataTiles(): Array<GameMapTileData> {
