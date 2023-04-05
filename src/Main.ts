@@ -86,11 +86,23 @@ export class Main {
         return this.data.objects;
     }
 
-    public deleteObjectFromDataObjects(mapId: string) {
-        const index = this.data.objects.findIndex((el) => el.mapId === mapId);
-        if (index !== -1) {
-            this.data.objects.splice(index, 1);
+    public deleteObjectFromDataObjects(mapId: string | Array<string>): void {
+        const findIndex = (mapId: string) => this.data.objects.findIndex((el) => el.mapId === mapId)
+        const remove = (index: number) => {
+            if (index !== -1) {
+                this.data.objects.splice(index, 1);
+            }
         }
+        if (typeof mapId === 'string') {
+            const index = findIndex(mapId);
+            remove(index)
+        } else {
+            mapId.forEach((id: string) => {
+                const index = findIndex(id);
+                remove(index);
+            })
+        }
+
         this.elements.mapObjectsAmount.innerText = `${this.data.objects.length}`;
     }
 

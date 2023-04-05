@@ -64,6 +64,10 @@ export class InspectWorldObjects {
         }
     }
 
+    private deleteObjects(objectMapId: string, objectId: string): void {
+
+    }
+
     private createObjectsListItem({name, mapId, map, id}: ExtendedEngineObject, main: Main): HTMLLIElement {
         const {cord} = map;
 
