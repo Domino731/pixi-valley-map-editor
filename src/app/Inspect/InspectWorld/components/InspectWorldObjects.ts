@@ -28,7 +28,7 @@ export class InspectWorldObjects {
         // OLD
         if (target) {
             // main.deleteObjectFromDataObjects(objectMapId)
-            // target.remove();
+            target.remove();
         }
     }
 
