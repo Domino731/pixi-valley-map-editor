@@ -154,6 +154,7 @@ export class InspectWorldObjects {
           <i class="fa-solid fa-chevron-down accordion__buttonIcon"></i>
         `
         liElement.id = this.getObjectsAccordionElementId(id);
+        liElement.dataset.inspectWorldObjectListItem = id;
 
         const objectsList: HTMLUListElement = document.createElement('ul');
         objectsList.className = 'accordion__list';
