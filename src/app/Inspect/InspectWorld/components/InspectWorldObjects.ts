@@ -4,7 +4,7 @@ import {ContextMenu} from "../../../../utils/ContextMenu";
 import {ContextMenuOption} from "../../../../utils/types";
 import {hide, show} from "../../../../utils/toggleElementVisibility";
 import {Main} from "../../../../Main";
-import {findEngineObjectOnMap} from "../../../../utils/documentQuery";
+import {findEngineObjectOnMap, findInspectWordObjectListItem} from "../../../../utils/documentQuery";
 
 export class InspectWorldObjects {
     constructor() {
@@ -16,19 +16,19 @@ export class InspectWorldObjects {
         return document.getElementById(`${objectMapId}`) as HTMLDivElement | null;
     }
 
+    private deleteListItem(objectId: string): void {
+        const element: HTMLElement | null = findInspectWordObjectListItem(objectId);
+        element?.remove();
+    }
+
     public deleteObjectFromMap(objectMapId: string, objectId: string, main: Main): void {
         const checkedObjects: Array<string> = this.getCheckedObjects(objectId);
         if (checkedObjects.includes(objectMapId)) {
             main.deleteObjectFromDataObjects(checkedObjects)
+            checkedObjects.forEach((objectId: string) => this.deleteListItem(objectId));
         } else {
-            main.deleteObjectFromDataObjects(objectMapId)
-        }
-
-        const target: HTMLDivElement | null = InspectWorldObjects.findObjectElement(objectMapId);
-        // OLD
-        if (target) {
-            // main.deleteObjectFromDataObjects(objectMapId)
-            target.remove();
+            main.deleteObjectFromDataObjects(objectMapId);
+            this.deleteListItem(objectId)
         }
     }
 

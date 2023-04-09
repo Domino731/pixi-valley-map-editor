@@ -6,4 +6,4 @@ export const findEngineObjectOnMap = (objectMapId: string): UtilsReturn => {
     return query(`#${objectMapId}`);
 }
 
-export const findInspectWordObjectListItem = (objectId: string) => query(`data[inspect-world-object-list-item="${objectId}"]`)
+export const findInspectWordObjectListItem = (objectId: string) => query(`[data-inspect-world-object-list-item="${objectId}"]`)
