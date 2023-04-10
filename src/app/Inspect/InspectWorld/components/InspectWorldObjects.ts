@@ -4,11 +4,10 @@ import {ContextMenu} from "../../../../utils/ContextMenu";
 import {ContextMenuOption} from "../../../../utils/types";
 import {hide, show} from "../../../../utils/toggleElementVisibility";
 import {Main} from "../../../../Main";
-import {findEngineObjectOnMap, findInspectWordObjectListItem} from "../../../../utils/documentQuery";
+import {findInspectWordObjectListItem} from "../../../../utils/documentQuery";
 
 export class InspectWorldObjects {
     constructor() {
-
     }
 
 
@@ -18,7 +17,9 @@ export class InspectWorldObjects {
 
     private deleteListItem(objectId: string): void {
         const element: HTMLElement | null = findInspectWordObjectListItem(objectId);
-        element?.remove();
+        if (element) {
+            element?.remove();
+        }
     }
 
     public deleteObjectFromMap(objectMapId: string, objectId: string, main: Main): void {
