@@ -13,13 +13,16 @@
     <script src="https://kit.fontawesome.com/acf6e6d0c7.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="container">
+<!--    debugger-->
     <div class="column debugger">
         <h2 class="section__header">
             DEBUGGER
         </h2>
         <div class="debugger__content">
             <div class="inspect">
+                <!-- top panel to toggle content (bottom panels)-->
                 <div class="debugger__panel">
                     <div class="debugger__buttonsColumn">
                         <button class="inspect__panelButton inspect__panelButton--disabled" title="Inspect object"
@@ -132,11 +135,11 @@
                         </div>
                     </div>
                 </div>
-
                 <p class="text text--grey text--center pt--4" id="inspect-blueprint-label"></p>
 
-                <!--                sections-->
+                <!-- sections -->
                 <div class="inspect__panel hide" id="inspect-objects-section">
+                    <!-- buttons to select specific object section-->
                     <div class="inspect__panelButtons" id="inspect-buttons">
                         <button class="inspect__panelButton inspect__panelButton--disabled" id="inspect-data-button" title="General data"
                                 data-section-name="GENERAL_DATA">
@@ -184,7 +187,7 @@
                         </button>
                     </div>
 
-                    <!-- inspect sections, the content is created by js -->
+                    <!-- inspect sections, the content is created dynamically by js -->
                     <div class="inspect__panelContent" id="inspect-sections-general-data">
                         <h2 class="text inspect__sectionTitle">GENERAL DATA</h2>
                         <section>
@@ -303,6 +306,7 @@
                     </div>
                 </div>
                 <div class="inspect__panel hide" id="inspect-world-section">
+                    <!-- buttons to select specific object section-->
                     <div class="inspect__panelButtons" id="inspect-world-buttons">
                         <button class="inspect__panelButton inspect__panelButton--active" title="Trees"
                                 data-section-name="TREES">
@@ -330,6 +334,7 @@
                         </button>
                     </div>
 
+                    <!-- these divs are responsible for displaying objects list by type -->
                     <div class="inspect__panelContent" data-section-panel-name="TREES">
                         <h2 class="text inspect__sectionTitle">Trees</h2>
                         <section>
@@ -373,11 +378,13 @@
                         </section>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
     <div class="container__map">
+        <!-- top bar with cell position, objects amount, tiles amount and map size-->
         <div class="map__bar">
             <div class="map__currentCellInfo">
                 <p>CELL: <span id="map-current-cell-cords-x" class="map__currentCellInfo--greenColor"></span> - <span
@@ -397,21 +404,27 @@
                 </p>
             </div>
         </div>
+
+        <!-- map, cells are rendering by js-->
         <div class="map__content">
+            <!-- the object which is moving with user's mouse -->
             <div id="map">
                 <div class="container__hoverObject" id="container-hover-object"></div>
             </div>
         </div>
+        <!-- bottom bar-->
         <div class="map__bar">
             <p class="map__text">PIXI VALLEY MAP EDITOR by Dominik Orzechowski 2023</p>
         </div>
     </div>
 
+    <!-- Content panel-->
     <div id="editor" class="column">
         <h2 class="section__header">
             Content
         </h2>
         <section class="debugger__panel debugger__panel--content">
+            <!-- sections with select to choose spritesheet or objects list-->
             <div class="debugger__panelContent debugger__panelContent--noBottomBorder" id="content-objects-section">
                 <h3 class="debugger__sectionTitle">Select object</h3>
                 <div id="content-objects-select" class="select">
@@ -435,6 +448,8 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- buttons to toggle section-->
             <div class="debugger__buttonsColumn">
                 <button class="inspect__panelButton inspect__panelButton--active"
                         id="context-toggle-objects-button" title="game objects">
@@ -447,7 +462,7 @@
             </div>
         </section>
 
-
+        <!-- spritesheet section-->
         <section class="debugger__panelContent--content hide" id="content-tiles-container">
             <p class="debugger__sectionTitle">Choose tile</p>
             <div class="tileSets__container">
@@ -457,6 +472,7 @@
                 </div>
             </div>
         </section>
+        <!-- objects list section-->
         <section class="debugger__panelContent--content" id="content-objects-list-container">
             <p class="debugger__sectionTitle">Choose object</p>
             <div class="editor__sprite styled-scrollbars flex__grow--1">
@@ -507,7 +523,10 @@
         </ul>
     </div>
 </div>
+
+<!--context menu, can be used to inject menu options-->
 <div class="contextMenu__portal" id="context-menu-portal"></div>
+
 <script src="dist/index.js"></script>
 </body>
 </html>
