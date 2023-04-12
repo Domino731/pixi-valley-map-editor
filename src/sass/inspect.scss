@@ -145,6 +145,8 @@
     padding: 16px;
     border-radius: 6px;
     line-height: 1.4em;
+    height: 300px;
+    overflow: auto;
   }
 
   &__locationsList {
