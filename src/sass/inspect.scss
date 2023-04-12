@@ -79,12 +79,16 @@
     font-size: 18px;
   }
 
+  &__panelWrapper {
+    height: 100%;
+    overflow: hidden;
+  }
+
   &__panel {
     display: flex;
     margin-top: 40px;
     border-radius: 2px;
     overflow: hidden;
-    height: calc(100% - 400px);
   }
 
   &__panelButtons {
