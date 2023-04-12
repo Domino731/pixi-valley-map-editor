@@ -2,6 +2,7 @@ import {CropObject} from "../types";
 import {CROPS_NAMES} from "../const";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
 import {cropStagesFactory} from "../utils";
+import {CROPS_DESCRIPTIONS} from "../../descriptions/crops";
 
 export const Eggplant: CropObject = {
     id: CROPS_NAMES.EGGPLANT,
@@ -17,5 +18,6 @@ export const Eggplant: CropObject = {
     checkboxes: [],
     items: [],
     group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
-    type: ENGINE_OBJECTS_TYPES.CROPS
+    type: ENGINE_OBJECTS_TYPES.CROPS,
+    description: CROPS_DESCRIPTIONS[CROPS_NAMES.EGGPLANT]
 }

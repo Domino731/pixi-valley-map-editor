@@ -45,5 +45,6 @@ export const CROPS_DESCRIPTIONS = {
     [CROPS_NAMES.PINEAPPLE]: 'A sweet and tangy tropical treat.',
     [CROPS_NAMES.TARO_ROOT]: 'This starchy root is one of the most ancient crops.',
     [CROPS_NAMES.SWEET_GEM_BERRY]: 'It\'s by far the sweetest thing you\'ve ever smelled.',
-    [CROPS_NAMES.TEA_LEAVES]: 'The young leaves of the tea plant. Can be brewed into the popular, energizing beverage.'
+    [CROPS_NAMES.TEA_LEAVES]: 'The young leaves of the tea plant. Can be brewed into the popular, energizing beverage.',
+    [CROPS_NAMES.BLUE_JAZZ]: 'The flower grows in a sphere to invite as many butterflies as possible.'
 }
