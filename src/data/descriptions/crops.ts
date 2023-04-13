@@ -1,7 +1,6 @@
 // DATA FROM https://stardewvalleywiki.com/Crops
 import {CROPS_NAMES} from "../crops/const";
 
-
 /** Object with descriptions for crops, data from https://stardewvalleywiki.com/Crops */
 export const CROPS_DESCRIPTIONS = {
     [CROPS_NAMES.CAULIFLOWER]: 'Valuable, but slow-growing. Despite its pale color, the florets are packed with nutrients. Cauliflower can become a Giant Crop.',
