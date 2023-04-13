@@ -2,6 +2,7 @@ import {TREE_NAMES} from "./const";
 import {TREE_ITEMS, TreeObject, TreeStageObject} from "../types";
 import {ENGINE_OBJECT_GROUPS, ENGINE_OBJECTS_TYPES, SPRITE_SRC} from "../../types";
 import {TOOLS} from "../../tools/types";
+import {TREES_DESCRIPTIONS} from "../../descriptions/trees";
 
 const TREE_STAGES: number = 4;
 
@@ -44,7 +45,8 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
         destroyable: true,
         checkboxes: [],
         items: [TREE_ITEMS.WOOD],
-        stages: []
+        stages: [],
+        description: TREES_DESCRIPTIONS[treeName]
     }
 
     for (let i = 1; i <= TREE_STAGES; i++) {
@@ -66,7 +68,8 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
             destroyable: true,
             checkboxes: [],
             items: [TREE_ITEMS.WOOD],
-            stage: i
+            stage: i,
+            description: TREES_DESCRIPTIONS[treeName]
         }
 
         Tree.stages.push(stageObject)
@@ -90,7 +93,8 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
         destroyable: true,
         checkboxes: [],
         items: [TREE_ITEMS.WOOD],
-        stage: 5
+        stage: 5,
+        description: TREES_DESCRIPTIONS[treeName]
     })
     return Tree;
 }
