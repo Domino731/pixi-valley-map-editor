@@ -9,7 +9,7 @@ import {v4 as uuidv4} from 'uuid';
 import {CONTENT_TYPE} from "./const";
 import {TILE_SIZE} from "../../const";
 import {Locations} from "../Inspect/Inspect/Components/Locations";
-import {hide, show} from "../../utils/toggleElementVisibility";
+import {hide, isVisible, show} from "../../utils/toggleElementVisibility";
 
 export class Map {
     readonly cellSize: number;
@@ -228,6 +228,9 @@ export class Map {
     private selectedObjectOnMousePosition(): void {
         // apply mousemove event and calculate mouse position
         this.elements.map.addEventListener('mousemove', (({clientX, clientY}): void => {
+            if (!isVisible(this.elements.hoverObject)) {
+                show(this.elements.hoverObject)
+            }
             const position: Vector = {
                 x: Math.floor((clientX - this.mapDOMRect?.left) / this.cellSize),
                 y: Math.floor((clientY - this.mapDOMRect?.top) / this.cellSize)
@@ -242,6 +245,7 @@ export class Map {
             }
         }));
         this.elements.map.addEventListener('mouseleave', () => {
+            hide(this.elements.hoverObject);
             this.setCurrentCellCords({x: -1, y: -1});
         })
     }
