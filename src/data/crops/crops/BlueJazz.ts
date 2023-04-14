@@ -12,7 +12,7 @@ export const BlueJazz: CropObject = {
         src: SPRITE_SRC.CROPS,
         position: {x: 28, y: 0}
     },
-    stages: cropStagesFactory(0, 0, 5, 'test'),
+    stages: cropStagesFactory(0, 0, 5, CROPS_NAMES.BLUE_JAZZ),
     tools: [],
     destroyable: true,
     checkboxes: [],
