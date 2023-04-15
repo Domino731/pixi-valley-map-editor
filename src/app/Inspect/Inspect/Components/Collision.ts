@@ -121,6 +121,8 @@ export class Collision {
 
         checkbox.addEventListener('input', (event: Event) => {
             const target = event.target as HTMLInputElement;
+            let backgroundColor = 'transparent';
+            let opacity = '1'
             if (target.checked) {
                 collisionArea.style.backgroundColor = this.color;
                 collisionArea.style.opacity = '0.7';
