@@ -96,5 +96,12 @@ export enum TREE_ITEMS {
 }
 
 export enum FLOORING_NAMES {
-    OAK = 'OAK'
+    Oak = 'Oak',
+    Pine = 'Pine',
+    LightStone = 'Light stone',
+    Barn = 'Barn',
+    Dirt = 'Dirt',
+    Plank = 'Plank',
+    DungeonStone = 'Dungeon stone'
+
 }
