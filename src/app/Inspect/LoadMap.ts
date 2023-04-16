@@ -21,7 +21,6 @@ export class LoadMap {
         const mapContainer = document.querySelector('#map');
         const tiles = document.querySelectorAll('#map .cell');
 
-        // clear map from objects
         currentObjects.forEach((el: HTMLDivElement) => el.remove());
 
         const createObject = (data: MapObjectData) => {
@@ -50,7 +49,6 @@ export class LoadMap {
             mapContainer.appendChild(object)
         }
 
-        // render tiles
         map.ground.forEach(({spriteCords, groundCellCords}) => {
             const tile: HTMLDivElement | null = document.querySelector(`#map div[data-cord-x="${groundCellCords.x}"][data-cord-y="${groundCellCords.y}"]`);
             if (tile) {
@@ -58,10 +56,7 @@ export class LoadMap {
             }
         })
 
-        // render environment - trees
         map.objects.environment.trees.map((el: MapObjectData) => createObject(el));
-
-
     }
 
     private inputChangeEvent(): void {
@@ -76,7 +71,6 @@ export class LoadMap {
         function onReaderLoad(event: any) {
             load(JSON.parse(event.target.result));
         }
-
 
         this.DOM.input.addEventListener('change', onChange);
     }
