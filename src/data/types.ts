@@ -179,15 +179,6 @@ export interface MapJsonData {
 
 export type EngineObjectsTypesUnion = keyof typeof ENGINE_OBJECTS_TYPES;
 
-export enum GAME_SEASONS {
-    WINTER = 'WINTER',
-    SPRING = 'SPRING',
-    SUMMER = 'SUMMER',
-    AUTUMN = 'AUTUMN'
-}
-
-export type GameSeasonsUnion = keyof typeof GAME_SEASONS;
-
 export interface DropItemInterface {
     id: string | number,
     chance: [number, number] | number;

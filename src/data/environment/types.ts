@@ -94,3 +94,7 @@ export enum BUILDINGS_NAMES {
 export enum TREE_ITEMS {
     WOOD = 'WOOD'
 }
+
+export enum FLOORING_NAMES {
+    OAK = 'OAK'
+}
