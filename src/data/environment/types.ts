@@ -103,5 +103,4 @@ export enum FLOORING_NAMES {
     Dirt = 'Dirt',
     Plank = 'Plank',
     DungeonStone = 'Dungeon stone'
-
 }
