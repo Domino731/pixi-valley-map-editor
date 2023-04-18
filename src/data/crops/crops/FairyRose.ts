@@ -17,7 +17,7 @@ export const FairyRose: CropObject = {
     destroyable: true,
     checkboxes: [],
     items: [],
-    group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+    group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
     type: ENGINE_OBJECTS_TYPES.CROPS,
     description: CROPS_DESCRIPTIONS[CROPS_NAMES.FAIRY_ROSE]
 }

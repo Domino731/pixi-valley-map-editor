@@ -167,4 +167,4 @@ export const resources32: Array<EngineObject> = [
         ],
         items: [TREE_ITEMS.WOOD]
     },
-].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIROMENT, type: ENGINE_OBJECTS_TYPES.RESOURCES_32}))
+].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIRONMENT, type: ENGINE_OBJECTS_TYPES.RESOURCES_32}))

@@ -153,7 +153,7 @@ export interface MapObjectData {
 }
 
 export enum ENGINE_OBJECT_GROUPS {
-    ENVIROMENT = "ENVIROMENT"
+    ENVIRONMENT = "ENVIRONMENT"
 }
 
 export enum ENGINE_OBJECTS_TYPES {

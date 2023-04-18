@@ -405,6 +405,6 @@ export const dirtHoed: Array<EngineObject> = [
     ...dirtHoedFactory(25),
 ].map(el => ({
     ...el,
-    group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+    group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
     type: ENGINE_OBJECTS_TYPES.TREES
 }))

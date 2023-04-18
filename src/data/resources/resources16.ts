@@ -603,4 +603,4 @@ export const resources16: Array<EngineObject> = [
         ],
         items: []
     },
-].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIROMENT, type: ENGINE_OBJECTS_TYPES.RESOURCES_16}))
+].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIRONMENT, type: ENGINE_OBJECTS_TYPES.RESOURCES_16}))

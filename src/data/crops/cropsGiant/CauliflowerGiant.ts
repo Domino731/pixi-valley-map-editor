@@ -15,6 +15,6 @@ export const CauliflowerGiant: CropObject = {
     destroyable: true,
     checkboxes: [],
     items: [],
-    group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+    group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
     type: ENGINE_OBJECTS_TYPES.CROPS
 }

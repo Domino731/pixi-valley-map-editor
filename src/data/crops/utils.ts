@@ -15,7 +15,7 @@ export const cropStagesFactory = (xOffsetFirst: number, yOffset: number, stages:
     for (let i = 0; i < stages; i++) {
         const stage: number = i + 1;
         const stageObject: CropStageObject = {
-            group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+            group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
             type: ENGINE_OBJECTS_TYPES.TREES,
             id: `${cropName} stage ${stage}`,
             name: `${cropName} stage ${stage}`,

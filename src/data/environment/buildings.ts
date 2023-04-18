@@ -197,4 +197,4 @@ export const buildings: Array<EngineObject> = [
         checkboxes: [],
         items: []
     }
-].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIROMENT, type: ENGINE_OBJECTS_TYPES.BUILDING}))
+].map(el => ({...el, group: ENGINE_OBJECT_GROUPS.ENVIRONMENT, type: ENGINE_OBJECTS_TYPES.BUILDING}))

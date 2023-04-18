@@ -28,7 +28,7 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
 
 
     const Tree: TreeObject = {
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.TREES,
         id: treeName,
         name: treeName,
@@ -51,7 +51,7 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
 
     for (let i = 1; i <= TREE_STAGES; i++) {
         const stageObject: TreeStageObject = {
-            group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+            group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
             type: ENGINE_OBJECTS_TYPES.TREES,
             id: `${treeName} stage ${i}`,
             name: `${treeName} stage ${i}`,
@@ -76,7 +76,7 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
     }
 
     Tree.stages.push({
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.TREES,
         id: treeName,
         name: treeName,
@@ -101,7 +101,7 @@ export const treeFactory = (treeName: keyof typeof TREE_NAMES): TreeObject => {
 
 export const treeStaticFactory = (treeName: keyof typeof TREE_NAMES) => {
     const Tree: TreeObject = {
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.TREES,
         id: treeName,
         name: treeName,

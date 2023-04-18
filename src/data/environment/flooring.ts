@@ -431,6 +431,6 @@ export const flooring: Array<EngineObject> = [
 ]
     .map(el => ({
         ...el,
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.TREES
     }))

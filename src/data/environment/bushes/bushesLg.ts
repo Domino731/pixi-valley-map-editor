@@ -5,7 +5,7 @@ import {TOOLS} from "../../tools/types";
 const defaultHp: number = 400;
 export const bushesLg: Array<EngineObject> = [
     {
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.BUSHES,
         id: BUSHES_NAMES.SUMMER_LG,
         name: BUSHES_NAMES.SUMMER_LG,
@@ -30,7 +30,7 @@ export const bushesLg: Array<EngineObject> = [
         items: [FOOD_ITEMS.STRAWBERRY]
     },
     {
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.BUSHES,
         id: BUSHES_NAMES.WINTER_LG,
         name: BUSHES_NAMES.WINTER_LG,
@@ -55,7 +55,7 @@ export const bushesLg: Array<EngineObject> = [
         items: [FOOD_ITEMS.STRAWBERRY]
     },
     {
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.BUSHES,
         id: BUSHES_NAMES.AUTUMN_LG,
         name: BUSHES_NAMES.AUTUMN_LG,
@@ -80,7 +80,7 @@ export const bushesLg: Array<EngineObject> = [
         items: [FOOD_ITEMS.STRAWBERRY]
     },
     {
-        group: ENGINE_OBJECT_GROUPS.ENVIROMENT,
+        group: ENGINE_OBJECT_GROUPS.ENVIRONMENT,
         type: ENGINE_OBJECTS_TYPES.BUSHES,
         id: BUSHES_NAMES.SPRING_LG,
         name: BUSHES_NAMES.SPRING_LG,
