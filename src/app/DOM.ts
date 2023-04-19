@@ -1,18 +1,18 @@
 /** Class which is holding data about DOM tree */
 export class DOM {
-    public currentSprite: HTMLDivElement;
-    public map: HTMLDivElement;
-    public panelCellSize: HTMLSpanElement;
-    public panelCellPosition: HTMLSpanElement;
-    public panelCellImage: HTMLDivElement;
-    public selectSprite: HTMLDivElement;
-    public panelCellAmount: HTMLSpanElement;
-    public panelSpriteSheetWidth: HTMLSpanElement;
-    public panelSpriteSheetHeight: HTMLSpanElement;
-    public panelSpriteSheetType: HTMLSpanElement;
-    public selectList: any
-    public selectSpriteSheetButton: HTMLButtonElement;
-    public hoverObject: HTMLButtonElement;
+    public readonly currentSprite: HTMLDivElement;
+    public readonly map: HTMLDivElement;
+    public readonly panelCellSize: HTMLSpanElement;
+    public readonly panelCellPosition: HTMLSpanElement;
+    public readonly panelCellImage: HTMLDivElement;
+    public readonly selectSprite: HTMLDivElement;
+    public readonly panelCellAmount: HTMLSpanElement;
+    public readonly panelSpriteSheetWidth: HTMLSpanElement;
+    public readonly panelSpriteSheetHeight: HTMLSpanElement;
+    public readonly panelSpriteSheetType: HTMLSpanElement;
+    public readonly selectList: any
+    public readonly selectSpriteSheetButton: HTMLButtonElement;
+    public readonly hoverObject: HTMLButtonElement;
 
     constructor() {
         this.currentSprite = document.querySelector('.editor__currentSprite');
