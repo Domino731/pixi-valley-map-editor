@@ -17,14 +17,12 @@ export class DOM {
     constructor() {
         this.currentSprite = document.querySelector('.editor__currentSprite');
         this.map = document.querySelector('#map');
-
         this.panelCellSize = document.querySelector('#panel-cell-size span');
         this.panelCellPosition = document.querySelector('#panel-cell-position span');
         this.panelSpriteSheetWidth = document.querySelector('#panel-sprite-sheet-width span');
         this.panelSpriteSheetHeight = document.querySelector('#panel-sprite-sheet-height span');
         this.panelCellAmount = document.querySelector('#panel-cell-amount span');
         this.panelSpriteSheetType = document.querySelector('#panel-sprite-sheet-type span');
-
         this.panelCellImage = document.querySelector('.editor__panelCellImage div');
         this.selectSprite = document.querySelector('#select-sprite-list');
         this.selectList = document.querySelector('#select-sprite-sheet-list');
