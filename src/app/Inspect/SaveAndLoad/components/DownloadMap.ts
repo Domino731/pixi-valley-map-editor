@@ -1,6 +1,7 @@
 import {Main} from "../../../../Main";
 import {ENGINE_OBJECTS_TYPES, GameMapDataJson} from "../../../../data/types";
 import {downloadJson} from "../../../../utils/downloadJson";
+import {Trees} from "../../../../data/environment/trees";
 
 export class DownloadMap {
     private readonly main: Main;

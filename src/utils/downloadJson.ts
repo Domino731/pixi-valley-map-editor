@@ -4,6 +4,7 @@
 * @Param fileName - name of the file
 *  */
 export const downloadJson = (exportObject: Record<string, any>, fileName: string): void => {
+    console.log('click');
     // create data with passed export object
     const dataStr: string = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObject));
     // create anchor needed for click event
