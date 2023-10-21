@@ -27,6 +27,7 @@ export class TileSets {
     private tileSetsSrc: string;
     // name of current sprite sheet
     private tileSpriteName: string;
+    private tileSpriteId: number;
 
     /**
      * @Param map - Map class
@@ -45,15 +46,17 @@ export class TileSets {
         this.currentTileRect = null;
         this.tileSetsSrc = TileSetsArray[0].src;
         this.tileSpriteName = TileSetsArray[0].name
+        this.tileSpriteId = 0;
         this.init();
     }
 
     /** create container with tiles */
     private createTileSetsContainer(tileSet: TileSetInterface): void {
         // set attributes
-        const {size: {x, y}, src, name} = tileSet;
+        const {size: {x, y}, src, name, id} = tileSet;
         this.tileSetsSrc = src;
         this.tileSpriteName = name;
+        this.tileSpriteId = id;
         // set container styles
         this.elements.container.style.width = `${x}px`;
         this.elements.container.style.height = `${y}px`;
@@ -100,7 +103,7 @@ export class TileSets {
             const {x, y} = this.tilePosition;
             show(this.elements.selectedTile)
             this.elements.selectedTile.style.transform = `translate(${x * TILE_SIZE}px, ${y * TILE_SIZE}px)`
-            this.map.setTile(this.tileSetsSrc, this.tilePosition, this.tileSpriteName);
+            this.map.setTile(this.tileSetsSrc, this.tilePosition, this.tileSpriteName, this.tileSpriteId);
         })
     }
 

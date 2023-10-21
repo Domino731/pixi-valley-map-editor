@@ -137,6 +137,7 @@ export interface GameMapTileData {
     spriteName: string;
     cords: Vector;
     spriteCords: Vector;
+    id: number;
 }
 
 export interface GroundData {

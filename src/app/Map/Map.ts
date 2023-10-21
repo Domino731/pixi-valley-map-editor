@@ -29,6 +29,7 @@ export class Map {
         src: string;
         position: Vector;
         spriteName: string;
+        id: number;
     }
     private mapDOMRect: DOMRect | null;
 
@@ -58,7 +59,8 @@ export class Map {
         this.tile = {
             src: '',
             position: {x: 0, y: 0},
-            spriteName: ''
+            spriteName: '',
+            id: 1
         }
         this.mapDOMRect = null;
     }
@@ -71,15 +73,15 @@ export class Map {
         this.contentType = payload
     }
 
-    public setTile(src: string, position: Vector, spriteName: string): void {
+    public setTile(src: string, position: Vector, spriteName: string, spriteId: number): void {
         Map.hideHoverObject();
         this.contentType = CONTENT_TYPE.TILE_SETS;
-        this.tile = {src, position, spriteName};
+        this.tile = {src, position, spriteName, id: spriteId};
     }
 
 
     private setGroundTile(cell: HTMLDivElement) {
-        const {src, position: {x, y}, spriteName} = this.tile;
+        const {src, position: {x, y}, spriteName, id} = this.tile;
         const {dataset: {cordX, cordY}} = cell;
         const tileData: GameMapTileData = {
             spriteName,
@@ -89,7 +91,8 @@ export class Map {
             },
             spriteCords: {
                 x, y
-            }
+            },
+            id
         }
         this.main.pushToDataTiles(tileData)
         cell.style.backgroundImage = `url("./src/sprites/${src}")`;
