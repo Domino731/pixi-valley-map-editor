@@ -29,16 +29,16 @@ export class DownloadMap {
             },
             tiles: this.main.getDataTiles(),
             mapSize: {
-                width: this.main.mapSize.x,
-                height: this.main.mapSize.y
+                width: this.main.map.size.x,
+                height: this.main.map.size.y
             }
         })
     }
 
     private buttonOnClick(): void {
         this.elements.button.addEventListener('click', () => {
-            console.log(this.createMapJson())
-            // downloadJson(this.createMapJson(), 'pixi-valley-map');
+            console.log("MAP DATA: ", this.createMapJson());
+            downloadJson(this.createMapJson(), 'pixi-valley-map');
         });
     }
 

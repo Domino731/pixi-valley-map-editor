@@ -15,7 +15,7 @@ export class Map {
     readonly cellSize: number;
     private spriteCell: Vector;
     private main: Main;
-    private size: Vector;
+    public readonly size: Vector;
     private hoverPosition: Vector;
     private readonly inspectWorldObjects: InspectWorldObjects;
     private readonly elements: {
