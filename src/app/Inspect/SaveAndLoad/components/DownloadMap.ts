@@ -27,7 +27,14 @@ export class DownloadMap {
                 [ENGINE_OBJECTS_TYPES.CROPS]: this.main.getDataObjects(ENGINE_OBJECTS_TYPES.CROPS),
                 [ENGINE_OBJECTS_TYPES.BUSHES]: this.main.getDataObjects(ENGINE_OBJECTS_TYPES.BUSHES)
             },
-            tiles: this.main.getDataTiles(),
+            tiles: this.main.getDataTiles().map(el => ({
+                ...el,
+                cords: {
+                    x: el.cords.x,
+                    // prefix for engine
+                    y: this.main.map.size.x - el.cords.y - 1
+                }
+            })),
             mapSize: {
                 width: this.main.map.size.x,
                 height: this.main.map.size.y
