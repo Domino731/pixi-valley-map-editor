@@ -131,6 +131,10 @@ export interface GameMapData {
 export interface GameMapDataJson {
     tiles: Array<GameMapTileData>;
     objects: Record<EngineObjectTypesUnion, Array<ExtendedEngineObject>>;
+    mapSize: {
+        width: number;
+        height: number;
+    }
 }
 
 export interface GameMapTileData {

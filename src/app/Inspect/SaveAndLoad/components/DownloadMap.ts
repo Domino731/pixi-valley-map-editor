@@ -27,13 +27,18 @@ export class DownloadMap {
                 [ENGINE_OBJECTS_TYPES.CROPS]: this.main.getDataObjects(ENGINE_OBJECTS_TYPES.CROPS),
                 [ENGINE_OBJECTS_TYPES.BUSHES]: this.main.getDataObjects(ENGINE_OBJECTS_TYPES.BUSHES)
             },
-            tiles: this.main.getDataTiles()
+            tiles: this.main.getDataTiles(),
+            mapSize: {
+                width: this.main.mapSize.x,
+                height: this.main.mapSize.y
+            }
         })
     }
 
     private buttonOnClick(): void {
         this.elements.button.addEventListener('click', () => {
-            downloadJson(this.createMapJson(), 'pixi-valley-map');
+            console.log(this.createMapJson())
+            // downloadJson(this.createMapJson(), 'pixi-valley-map');
         });
     }
 

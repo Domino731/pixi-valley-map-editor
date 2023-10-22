@@ -43,8 +43,8 @@ export class Map {
         }
         this.inspectWorldObjects = new InspectWorldObjects();
         this.size = {
-            x: 60,
-            y: 60
+            x: 70,
+            y: 70
         }
         this.cellSize = 16;
         this.spriteCell = {
@@ -94,6 +94,7 @@ export class Map {
             },
             id
         }
+        console.log('tileData: ', tileData);
         this.main.pushToDataTiles(tileData)
         cell.style.backgroundImage = `url("./src/sprites/${src}")`;
         cell.style.backgroundPosition = `-${x * TILE_SIZE}px -${y * TILE_SIZE}px`;
